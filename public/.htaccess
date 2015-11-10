@@ -1,0 +1,17 @@
+# Remove slash from end
+RewriteEngine  on
+RewriteRule ^(.+)/$ http://%{HTTP_HOST}/$1 [R=301,L]
+
+# Redirect requests to index.php if not a file or dir
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+RewriteCond %{REQUEST_FILENAME} -l [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^.*$ - [NC,L]
+
+# Ignore static content and don't redirect it to the app.
+RewriteCond %{REQUEST_URI} ^(css|js|img|assets)/ [OR]
+RewriteCond %{REQUEST_FILENAME} \.(js|map|css|ico|gif|jpg|png|eot|svg|ttf|woff)$
+RewriteRule ^.*$ - [NC,L]
+
+RewriteRule ^.*$ index.php [NC,L]

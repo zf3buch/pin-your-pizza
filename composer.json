@@ -1,0 +1,46 @@
+{
+    "name": "zf3buch/pin-your-pizza",
+    "description": "Pin Your Pizza! Example Application for the Zend Framework 3",
+    "type": "project",
+    "homepage": "https://github.com/zf3buch/pin-your-pizza",
+    "license": "The MIT License (MIT)",
+    "authors": [
+        {
+            "name": "Ralf Eggert",
+            "email": "ralf@travello.de",
+            "homepage": "http://www.travello.de",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "roave/security-advisories": "dev-master",
+        "zendframework/zend-expressive": "^0.5",
+        "zendframework/zend-stdlib": "~2.7",
+        "zendframework/zend-expressive-zendrouter": "^0.1",
+        "zendframework/zend-servicemanager": "^2.5",
+        "ocramius/proxy-manager": "^1.0",
+        "zendframework/zend-expressive-zendviewrenderer": "^0.1.2"
+    },
+    "require-dev": {
+        "composer/composer": ">=1.0.0-alpha10",
+        "phpunit/phpunit": "^4.8",
+        "squizlabs/php_codesniffer": "^2.3",
+        "filp/whoops": "^1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Application\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ApplicationTest\\": "test/"
+        }
+    },
+    "scripts": {
+        "test": [
+            "php vendor/squizlabs/php_codesniffer/scripts/phpcs",
+            "php vendor/phpunit/phpunit/phpunit"
+        ]
+    }
+}
