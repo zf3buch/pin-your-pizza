@@ -24,11 +24,6 @@ use Zend\Expressive\Template\TemplateRendererInterface;
 class HomePageAction
 {
     /**
-     * @var RouterInterface
-     */
-    private $router;
-
-    /**
      * @var TemplateRendererInterface
      */
     private $template;
@@ -36,13 +31,11 @@ class HomePageAction
     /**
      * HomePageAction constructor.
      *
-     * @param RouterInterface                $router
      * @param TemplateRendererInterface|null $template
      */
     public function __construct(
-        RouterInterface $router, TemplateRendererInterface $template = null
+        TemplateRendererInterface $template = null
     ) {
-        $this->router = $router;
         $this->template = $template;
     }
 
