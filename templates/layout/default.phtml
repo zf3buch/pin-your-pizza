@@ -15,26 +15,22 @@ $this->headMeta()->appendName(
 );
 $this->headLink(
     array(
-        'rel'  => 'shortcut icon',
-        'href' => '/assets/img/favicon.ico'
+        'rel' => 'shortcut icon',
+        'href' => '/assets/custom/img/favicon.ico'
     )
 );
 $this->headLink()->prependStylesheet(
-    'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'
+    '/assets/vendor/bootstrap-3.3.5/css/bootstrap.min.css'
 );
 $this->headLink()->prependStylesheet(
-    'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'
+    '/assets/vendor/font-awesome-4.4.0/css/font-awesome.min.css'
 );
-$this->headLink()->appendStylesheet(
-    '/assets/css/styles.css'
+$this->headLink()->appendStylesheet('/assets/custom/css/styles.css');
+$this->inlineScript()->prependFile(
+    '/assets/vendor/bootstrap-3.3.5/js/bootstrap.min.js', 'text/javascript'
 );
 $this->inlineScript()->prependFile(
-    'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js',
-    'text/javascript'
-);
-$this->inlineScript()->prependFile(
-    'https://code.jquery.com/jquery-2.1.4.min.js',
-    'text/javascript'
+    '/assets/vendor/jquery-2.1.4/jquery-2.1.4.min.js', 'text/javascript'
 );
 ?>
 <!DOCTYPE html>
@@ -53,7 +49,7 @@ $this->inlineScript()->prependFile(
         <div class="row">
             <div class="col-xs-12">
                 <a href="<?php echo $this->url('home'); ?>">
-                    <img src="/assets/img/logo.png" class="logo">
+                    <img src="/assets/custom/img/logo.png" class="logo">
                 </a>
             </div>
         </div>
