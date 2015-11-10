@@ -10,7 +10,6 @@
 namespace Application\Action;
 
 use Interop\Container\ContainerInterface;
-use Zend\Expressive\Router\RouterInterface;
 use Zend\Expressive\Template\TemplateRendererInterface;
 
 /**
