@@ -12,7 +12,6 @@ namespace ApplicationTest\Action;
 use Application\Action\HomePageAction;
 use Application\Action\HomePageFactory;
 use Interop\Container\ContainerInterface;
-use Zend\Expressive\Router\RouterInterface;
 use Zend\Expressive\Template\TemplateRendererInterface;
 
 class HomePageFactoryTest extends \PHPUnit_Framework_TestCase
@@ -22,21 +21,17 @@ class HomePageFactoryTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->container = $this->prophesize(ContainerInterface::class);
-        $router          = $this->prophesize(RouterInterface::class);
+        $template = $this->prophesize(TemplateRendererInterface::class);
 
-        $this->container->get(RouterInterface::class)->willReturn($router);
+        $this->container = $this->prophesize(ContainerInterface::class);
+        $this->container
+            ->get(TemplateRendererInterface::class)
+            ->willReturn($template);
     }
 
     public function testFactoryWithTemplate()
     {
         $factory = new HomePageFactory();
-
-        $this->container
-            ->get(TemplateRendererInterface::class)
-            ->willReturn(
-                $this->prophesize(TemplateRendererInterface::class)
-            );
 
         $this->assertTrue($factory instanceof HomePageFactory);
 

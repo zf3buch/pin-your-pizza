@@ -12,24 +12,33 @@ namespace AppTest\Action;
 use Application\Action\HomePageAction;
 use Zend\Diactoros\Response;
 use Zend\Diactoros\ServerRequest;
-use Zend\Expressive\Router\RouterInterface;
+use Zend\Expressive\Template\TemplateRendererInterface;
 
 class HomePageActionTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var RouterInterface */
-    protected $router;
+    /** @var TemplateRendererInterface */
+    protected $template;
 
     public function setUp()
     {
-        $this->router = $this->prophesize(RouterInterface::class);
+        $this->template = $this->prophesize(
+            TemplateRendererInterface::class
+        );
     }
 
     public function testResponse()
     {
-        $homePage = new HomePageAction($this->router->reveal(), null);
+        $this->template
+            ->render(
+                'application::home-page',
+                ['welcome' => 'Willkommen zu Pin Your Pizza!']
+            )
+            ->willReturn('Whatever');
+
+        $homePage = new HomePageAction($this->template->reveal());
+
         $response = $homePage(
-            new ServerRequest(['/']), new Response(), function () {
-        }
+            new ServerRequest(['/']), new Response()
         );
 
         $this->assertTrue($response instanceof Response);

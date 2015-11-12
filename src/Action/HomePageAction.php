@@ -12,7 +12,6 @@ namespace Application\Action;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\HtmlResponse;
-use Zend\Diactoros\Response\JsonResponse;
 use Zend\Expressive\Template\TemplateRendererInterface;
 
 /**
@@ -52,10 +51,6 @@ class HomePageAction
         $data = [
             'welcome' => 'Willkommen zu Pin Your Pizza!'
         ];
-
-        if (!$this->template) {
-            return new JsonResponse($data);
-        }
 
         return new HtmlResponse(
             $this->template->render('application::home-page', $data)
