@@ -14,11 +14,19 @@ use Zend\Diactoros\Response;
 use Zend\Diactoros\ServerRequest;
 use Zend\Expressive\Template\TemplateRendererInterface;
 
+/**
+ * Class HomePageActionTest
+ *
+ * @package AppTest\Action
+ */
 class HomePageActionTest extends \PHPUnit_Framework_TestCase
 {
     /** @var TemplateRendererInterface */
     protected $template;
 
+    /**
+     * Setup test cases
+     */
     public function setUp()
     {
         $this->template = $this->prophesize(
@@ -26,6 +34,9 @@ class HomePageActionTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * Test response object
+     */
     public function testResponse()
     {
         $this->template

@@ -14,11 +14,19 @@ use Application\Action\HomePageFactory;
 use Interop\Container\ContainerInterface;
 use Zend\Expressive\Template\TemplateRendererInterface;
 
+/**
+ * Class HomePageFactoryTest
+ *
+ * @package ApplicationTest\Action
+ */
 class HomePageFactoryTest extends \PHPUnit_Framework_TestCase
 {
     /** @var ContainerInterface */
     protected $container;
 
+    /**
+     * Setup test cases
+     */
     public function setUp()
     {
         $template = $this->prophesize(TemplateRendererInterface::class);
@@ -29,6 +37,9 @@ class HomePageFactoryTest extends \PHPUnit_Framework_TestCase
             ->willReturn($template);
     }
 
+    /**
+     * Test factory with template
+     */
     public function testFactoryWithTemplate()
     {
         $factory = new HomePageFactory();
