@@ -44,5 +44,16 @@ return [
                 ],
             ],
         ],
+        [
+            'name' => 'comment-pizza',
+            'path' => '/pizza/:id/comment',
+            'middleware' => Application\Action\HandleCommentAction::class,
+            'allowed_methods' => ['GET'],
+            'options' => [
+                'constraints' => [
+                    'id' => '[0-9]+',
+                ],
+            ],
+        ],
     ],
 ];
