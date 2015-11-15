@@ -13,6 +13,7 @@
     <?php foreach ($this->pizzaList as $pizza) : ?>
         <?php
         $urlShow = $this->url('show-pizza', ['id' => $pizza['id']]);
+        $urlVote = $this->url('vote-pizza', ['id' => $pizza['id']]);
 
         $this->inlineScript()->appendScript(
             "
@@ -34,7 +35,12 @@
                 </a>
 
                 <div class="caption">
-                    <p id="stars-<?php echo $pizza['id'] ?>"></p>
+                    <p>
+                        <a href="<?php echo $urlVote; ?>">
+                        <span id="stars-<?php echo $pizza['id'] ?>">
+                        </span>
+                        </a>
+                    </p>
                     <p class="small">
                         <?php echo $pizza['name'] ?>
                     </p>
