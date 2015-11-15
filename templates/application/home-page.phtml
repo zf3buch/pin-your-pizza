@@ -8,12 +8,34 @@
  */
 ?>
 <h1><?php echo $this->welcome; ?></h1>
-<div class="well text-center">
-    <h3>
-        <i class="fa fa-hourglass fa-spin"></i>
-        &nbsp;
-        In Kürze mehr...
-        &nbsp;
-        <i class="fa fa-hourglass fa-spin"></i>
-    </h3>
+<div class="row">
+    <?php foreach ($this->pizzaList as $pizza) : ?>
+        <?php
+        $this->inlineScript()->appendScript(
+            "
+    $('#stars-" . $pizza['id'] . "').raty({
+        readOnly: true,
+        score   : " . round($pizza['rate'], 1) * 5 . ",
+        half    : true,
+        starOff : '/assets/vendor/raty-2.7.0/images/star-off.png',
+        starOn  : '/assets/vendor/raty-2.7.0/images/star-on.png',
+        starHalf: '/assets/vendor/raty-2.7.0/images/star-on.png'
+    });
+    "
+        ); ?>
+        <div class="col-md-4">
+            <div class="thumbnail text-center">
+                <img src="<?php echo $pizza['image'] ?>"
+                     title="<?php echo $pizza['name'] ?>">
+
+                <div class="caption">
+                    <p class="small">
+                        <?php echo $pizza['name'] ?>
+                    </p>
+
+                    <div id="stars-<?php echo $pizza['id'] ?>"></div>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
 </div>

@@ -9,6 +9,7 @@
 
 namespace Application\Action;
 
+use Application\Model\Repository\PizzaRepositoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\HtmlResponse;
@@ -27,14 +28,22 @@ class HomePageAction
     private $template;
 
     /**
+     * @var PizzaRepositoryInterface
+     */
+    private $repository;
+
+    /**
      * HomePageAction constructor.
      *
-     * @param TemplateRendererInterface|null $template
+     * @param TemplateRendererInterface $template
+     * @param PizzaRepositoryInterface  $repository
      */
     public function __construct(
-        TemplateRendererInterface $template = null
+        TemplateRendererInterface $template,
+        PizzaRepositoryInterface $repository
     ) {
-        $this->template = $template;
+        $this->template   = $template;
+        $this->repository = $repository;
     }
 
     /**
@@ -48,8 +57,11 @@ class HomePageAction
         ServerRequestInterface $request, ResponseInterface $response,
         callable $next = null
     ) {
+        $pizzaList = $this->repository->getPizzaPinboard();
+
         $data = [
-            'welcome' => 'Willkommen zu Pin Your Pizza!'
+            'welcome'   => 'Willkommen zu Pin Your Pizza!',
+            'pizzaList' => $pizzaList,
         ];
 
         return new HtmlResponse(
