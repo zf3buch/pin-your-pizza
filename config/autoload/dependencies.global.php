@@ -12,6 +12,8 @@ return [
         'factories' => [
             Application\Action\HomePageAction::class =>
                 Application\Action\HomePageFactory::class,
+            Application\Action\ShowPizzaAction::class =>
+                Application\Action\ShowPizzaFactory::class,
 
             Application\Model\Repository\PizzaRepositoryInterface::class =>
                 Application\Model\Repository\StaticPizzaRepositoryFactory::class,

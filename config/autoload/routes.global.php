@@ -22,5 +22,11 @@ return [
             'middleware' => Application\Action\HomePageAction::class,
             'allowed_methods' => ['GET'],
         ],
+        [
+            'name' => 'pizza',
+            'path' => '/pizza/:id',
+            'middleware' => Application\Action\ShowPizzaAction::class,
+            'allowed_methods' => ['GET'],
+        ],
     ],
 ];

@@ -6,11 +6,14 @@
  * @link       https://github.com/zf3buch/pin-your-pizza
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
+
 ?>
 <h1><?php echo $this->welcome; ?></h1>
 <div class="row">
     <?php foreach ($this->pizzaList as $pizza) : ?>
         <?php
+        $urlShow = $this->url('pizza', ['id' => $pizza['id']]);
+
         $this->inlineScript()->appendScript(
             "
     $('#stars-" . $pizza['id'] . "').raty({
@@ -25,8 +28,10 @@
         ); ?>
         <div class="col-md-4">
             <div class="thumbnail text-center">
-                <img src="<?php echo $pizza['image'] ?>"
-                     title="<?php echo $pizza['name'] ?>">
+                <a href="<?php echo $urlShow ?>">
+                    <img src="<?php echo $pizza['image'] ?>"
+                         title="<?php echo $pizza['name'] ?>">
+                </a>
 
                 <div class="caption">
                     <p id="stars-<?php echo $pizza['id'] ?>"></p>
