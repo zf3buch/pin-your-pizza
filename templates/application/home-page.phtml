@@ -15,7 +15,7 @@
             "
     $('#stars-" . $pizza['id'] . "').raty({
         readOnly: true,
-        score   : " . round($pizza['rate'], 1) * 5 . ",
+        score   : " . $pizza['rate'] . ",
         half    : true,
         starOff : '/assets/vendor/raty-2.7.0/images/star-off.png',
         starOn  : '/assets/vendor/raty-2.7.0/images/star-on.png',
@@ -29,11 +29,14 @@
                      title="<?php echo $pizza['name'] ?>">
 
                 <div class="caption">
+                    <p id="stars-<?php echo $pizza['id'] ?>"></p>
                     <p class="small">
                         <?php echo $pizza['name'] ?>
                     </p>
-
-                    <div id="stars-<?php echo $pizza['id'] ?>"></div>
+                    <p class="label label-success">
+                        <i class="fa fa-comment-o"></i>
+                        <?php echo count($pizza['comments']) ?>
+                    </p>
                 </div>
             </div>
         </div>
