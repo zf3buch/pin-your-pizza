@@ -29,18 +29,33 @@
 
             <div class="caption">
                 <p id="stars-<?php echo $this->pizza['id'] ?>"></p>
-                <p class="small">
+                <p>
                     <?php echo $this->pizza['name'] ?>
                 </p>
             </div>
         </div>
     </div>
     <div class="col-md-6">
-        <div class="well">
-            <?php foreach ($this->pizza['comments'] as $comment) : ?>
-                <?php echo $comment; ?>
-                <hr>
-            <?php endforeach ?>
-        </div>
+        <?php foreach ($this->pizza['comments'] as $comment) : ?>
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <?php echo $comment['name']; ?>
+                    schrieb am
+                    <?php echo date('d.m.Y', $comment['date']); ?>
+                    um
+                    <?php echo date('H:i:s', $comment['date']); ?>
+                </div>
+                <div class="panel-body">
+                    <?php echo $comment['text']; ?>
+                </div>
+            </div>
+        <?php endforeach ?>
     </div>
+</div>
+<div class="row">
+    <p class="text-center">
+        <a href="<?php echo $this->url('home') ?>" class="btn btn-success">
+            Zurück zur Pizza Pinnwand
+        </a>
+    </p>
 </div>
