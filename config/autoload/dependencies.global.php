@@ -12,6 +12,10 @@ return [
         'factories' => [
             Application\Action\HomePageAction::class =>
                 Application\Action\HomePageFactory::class,
+
+            Application\Model\Repository\PizzaRepositoryInterface::class =>
+                Application\Model\Repository\StaticPizzaRepositoryFactory::class,
+
             Zend\Expressive\Application::class =>
                 Zend\Expressive\Container\ApplicationFactory::class,
         ]
