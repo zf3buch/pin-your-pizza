@@ -30,20 +30,20 @@ class ShowPizzaAction
     /**
      * @var PizzaRepositoryInterface
      */
-    private $repository;
+    private $pizzaRepository;
 
     /**
      * ShowPizzaAction constructor.
      *
      * @param TemplateRendererInterface $template
-     * @param PizzaRepositoryInterface  $repository
+     * @param PizzaRepositoryInterface  $pizzaRepository
      */
     public function __construct(
         TemplateRendererInterface $template,
-        PizzaRepositoryInterface $repository
+        PizzaRepositoryInterface $pizzaRepository
     ) {
         $this->template   = $template;
-        $this->repository = $repository;
+        $this->pizzaRepository = $pizzaRepository;
     }
 
     /**
@@ -60,7 +60,7 @@ class ShowPizzaAction
         // get id
         $id = $request->getAttribute('id');
 
-        $pizza = $this->repository->getSinglePizza($id);
+        $pizza = $this->pizzaRepository->getSinglePizza($id);
 
         $data = [
             'pizza' => $pizza,
