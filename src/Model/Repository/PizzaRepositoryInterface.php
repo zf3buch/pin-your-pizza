@@ -46,9 +46,9 @@ interface PizzaRepositoryInterface
      * Save comment for a single pizza
      *
      * @param integer $id
-     * @param string  $comment
+     * @param array   $data
      *
      * @return boolean
      */
-    public function saveComment($id, $comment);
+    public function saveComment($id, $data);
 }
