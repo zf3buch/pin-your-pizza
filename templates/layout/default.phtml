@@ -25,7 +25,14 @@ $this->headLink()->prependStylesheet(
 $this->headLink()->prependStylesheet(
     '/assets/vendor/font-awesome-4.4.0/css/font-awesome.min.css'
 );
+$this->headLink()->appendStylesheet(
+    '/assets/vendor/raty-2.7.0/jquery.raty.css'
+);
 $this->headLink()->appendStylesheet('/assets/custom/css/styles.css');
+
+$this->inlineScript()->prependFile(
+    '/assets/vendor/raty-2.7.0/jquery.raty.js'
+);
 $this->inlineScript()->prependFile(
     '/assets/vendor/bootstrap-3.3.5/js/bootstrap.min.js', 'text/javascript'
 );
