@@ -34,10 +34,15 @@ return [
             ],
         ],
         [
-            'name' => 'pizza',
-            'path' => '/pizza/:id',
-            'middleware' => Application\Action\ShowPizzaAction::class,
+            'name' => 'vote-pizza',
+            'path' => '/pizza/:id/vote',
+            'middleware' => Application\Action\HandleVoteAction::class,
             'allowed_methods' => ['GET'],
+            'options' => [
+                'constraints' => [
+                    'id' => '[0-9]+',
+                ],
+            ],
         ],
     ],
 ];

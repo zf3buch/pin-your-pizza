@@ -13,6 +13,7 @@ use Application\Model\Repository\PizzaRepositoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\HtmlResponse;
+use Zend\Diactoros\Response\RedirectResponse;
 use Zend\Expressive\Router\RouterInterface;
 
 /**
@@ -30,20 +31,20 @@ class HandleVoteAction
     /**
      * @var PizzaRepositoryInterface
      */
-    private $repository;
+    private $pizzaRepository;
 
     /**
      * HandleVoteAction constructor.
      *
      * @param RouterInterface          $router
-     * @param PizzaRepositoryInterface $repository
+     * @param PizzaRepositoryInterface $pizzaRepository
      */
     public function __construct(
         RouterInterface $router,
-        PizzaRepositoryInterface $repository
+        PizzaRepositoryInterface $pizzaRepository
     ) {
-        $this->router     = $router;
-        $this->repository = $repository;
+        $this->router          = $router;
+        $this->pizzaRepository = $pizzaRepository;
     }
 
     /**
@@ -57,17 +58,14 @@ class HandleVoteAction
         ServerRequestInterface $request, ResponseInterface $response,
         callable $next = null
     ) {
-        // get id
-        $id = $request->getAttribute('id');
+        // get params
+        $id   = $request->getAttribute('id');
+        $vote = 5;
 
-        $pizza = $this->repository->getSinglePizza($id);
+        $this->pizzaRepository->saveVoting($id, $vote);
 
-        $data = [
-            'pizza' => $pizza,
-        ];
-
-        return new HtmlResponse(
-            $this->template->render('application::show-pizza', $data)
+        return new RedirectResponse(
+            $this->router->generateUri('show-pizza', ['id' => $id])
         );
     }
 }

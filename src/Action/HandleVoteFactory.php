@@ -11,7 +11,7 @@ namespace Application\Action;
 
 use Application\Model\Repository\PizzaRepositoryInterface;
 use Interop\Container\ContainerInterface;
-use Zend\Expressive\Template\TemplateRendererInterface;
+use Zend\Expressive\Router\RouterInterface;
 
 /**
  * Class HandleVoteFactory
@@ -27,9 +27,9 @@ class HandleVoteFactory
      */
     public function __invoke(ContainerInterface $container)
     {
-        $template   = $container->get(TemplateRendererInterface::class);
+        $router     = $container->get(RouterInterface::class);
         $repository = $container->get(PizzaRepositoryInterface::class);
 
-        return new HandleVoteAction($template, $repository);
+        return new HandleVoteAction($router, $repository);
     }
 }

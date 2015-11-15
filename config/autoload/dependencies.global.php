@@ -14,6 +14,8 @@ return [
                 Application\Action\HomePageFactory::class,
             Application\Action\ShowPizzaAction::class =>
                 Application\Action\ShowPizzaFactory::class,
+            Application\Action\HandleVoteAction::class =>
+                Application\Action\HandleVoteFactory::class,
 
             Application\Model\Repository\PizzaRepositoryInterface::class =>
                 Application\Model\Repository\StaticPizzaRepositoryFactory::class,

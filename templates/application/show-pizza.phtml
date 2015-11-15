@@ -6,6 +6,9 @@
  * @link       https://github.com/zf3buch/pin-your-pizza
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
+
+$urlVote = $this->url('vote-pizza', ['id' => $this->pizza['id']]);
+
 ?>
 <h1><?php echo $this->pizza['name']; ?></h1>
 <div class="row">
@@ -28,7 +31,13 @@
                  title="<?php echo $this->pizza['name'] ?>">
 
             <div class="caption">
-                <p id="stars-<?php echo $this->pizza['id'] ?>"></p>
+                <p>
+                    <a href="<?php echo $urlVote; ?>">
+                        <span id="stars-<?php echo $this->pizza['id'] ?>">
+                        </span>
+                    </a>
+                </p>
+
                 <p>
                     <?php echo $this->pizza['name'] ?>
                 </p>
