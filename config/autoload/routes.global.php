@@ -23,10 +23,15 @@ return [
             'allowed_methods' => ['GET'],
         ],
         [
-            'name' => 'pizza',
+            'name' => 'show-pizza',
             'path' => '/pizza/:id',
             'middleware' => Application\Action\ShowPizzaAction::class,
             'allowed_methods' => ['GET'],
+            'options' => [
+                'constraints' => [
+                    'id' => '[0-9]+',
+                ],
+            ],
         ],
         [
             'name' => 'pizza',
