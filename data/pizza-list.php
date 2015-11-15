@@ -15,10 +15,18 @@ return [
         'rate'     => 4.5,
         'comments' => [
             1 => [
-                '<p>Sehr lecker!</p>',
+                'date' => mktime(
+                    15, 12, 56, date('m') - 1, date('d') - 6, date('Y')
+                ),
+                'name' => 'Peter',
+                'text' => '<p>Sehr lecker!</p>',
             ],
             2 => [
-                '<p>Beste Pizza!</p>',
+                'date' => mktime(
+                    18, 2, 14, date('m'), date('d') - 16, date('Y')
+                ),
+                'name' => 'Paul',
+                'text' => '<p>Beste Pizza!</p>',
             ],
         ],
     ],
@@ -29,7 +37,11 @@ return [
         'rate'     => 5.0,
         'comments' => [
             3 => [
-                '<p>Könnte meine Mamma nicht besser machen!</p>',
+                'date' => mktime(
+                    12, 37, 5, date('m') - 2, date('d') - 11, date('Y')
+                ),
+                'name' => 'Luigi',
+                'text' => '<p>Könnte meine Mamma nicht besser machen!</p>',
             ],
         ],
     ],
@@ -40,7 +52,11 @@ return [
         'rate'     => 2.0,
         'comments' => [
             4 => [
-                '<p>Irgendwie langweilig.</p>',
+                'date' => mktime(
+                    11, 9, 2, date('m'), date('d') - 17, date('Y')
+                ),
+                'name' => 'Heinzelmann',
+                'text' => '<p>Irgendwie langweilig.</p>',
             ],
         ],
     ],
@@ -51,7 +67,11 @@ return [
         'rate'     => 1.5,
         'comments' => [
             5 => [
-                '<p>Toter Fisch hat auf Pizza nichts zu suchen!</p>',
+                'date' => mktime(
+                    4, 42, 49, date('m') - 3, date('d') - 19, date('Y')
+                ),
+                'name' => 'Heinzelmann',
+                'text' => '<p>Toter Fisch hat auf Pizza nichts zu suchen!</p>',
             ],
         ],
     ],
@@ -62,7 +82,11 @@ return [
         'rate'     => 2.5,
         'comments' => [
             6 => [
-                '<p>Geht so!</p>',
+                'date' => mktime(
+                    12, 0, 17, date('m') - 2, date('d') - 1, date('Y')
+                ),
+                'name' => 'Heinzelmann',
+                'text' => '<p>Geht so!</p>',
             ],
         ],
     ],
@@ -73,16 +97,32 @@ return [
         'rate'     => 3.0,
         'comments' => [
             7  => [
-                '<p>Da sind ja gar keine Peperoni darauf!</p>',
+                'date' => mktime(
+                    18, 18, 19, date('m') - 3, date('d') - 12, date('Y')
+                ),
+                'name' => 'Heinzelmann',
+                'text' => '<p>Da sind ja gar keine Peperoni darauf!</p>',
             ],
             8  => [
-                '<p>Da steht ja auch Peperone und nicht Peperoni!</p>',
+                'date' => mktime(
+                    2, 8, 57, date('m') - 3, date('d') - 9, date('Y')
+                ),
+                'name' => 'Luigi',
+                'text' => '<p>Da steht ja auch Peperone und nicht Peperoni!</p>',
             ],
             9  => [
-                '<p>Witzbold! Als wenn da ein Unterschied wäre...</p>',
+                'date' => mktime(
+                    15, 47, 1, date('m') - 2, date('d') - 27, date('Y')
+                ),
+                'name' => 'Heinzelmann',
+                'text' => '<p>Witzbold! Als wenn da ein Unterschied wäre...</p>',
             ],
             10 => [
-                '<p>Peperone heißt nun mal Paprika, du Schlaumeier!</p>',
+                'date' => mktime(
+                    12, 1, 59, date('m') - 1, date('d') - 12, date('Y')
+                ),
+                'name' => 'Luigi',
+                'text' => '<p>Peperone heißt nun mal Paprika, du Schlaumeier!</p>',
             ],
         ],
     ],
@@ -100,7 +140,11 @@ return [
         'rate'     => 5.0,
         'comments' => [
             11 => [
-                '<p>Es gibt kaum etwas besseres...</p>',
+                'date' => mktime(
+                    1, 3, 59, date('m'), date('d') - 1, date('Y')
+                ),
+                'name' => 'Peter',
+                'text' => '<p>Es gibt kaum etwas besseres...</p>',
             ],
         ],
     ],
