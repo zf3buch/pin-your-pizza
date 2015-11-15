@@ -30,20 +30,20 @@ class HomePageAction
     /**
      * @var PizzaRepositoryInterface
      */
-    private $repository;
+    private $pizzaRepository;
 
     /**
      * HomePageAction constructor.
      *
      * @param TemplateRendererInterface $template
-     * @param PizzaRepositoryInterface  $repository
+     * @param PizzaRepositoryInterface  $pizzaRepository
      */
     public function __construct(
         TemplateRendererInterface $template,
-        PizzaRepositoryInterface $repository
+        PizzaRepositoryInterface $pizzaRepository
     ) {
-        $this->template   = $template;
-        $this->repository = $repository;
+        $this->template        = $template;
+        $this->pizzaRepository = $pizzaRepository;
     }
 
     /**
@@ -57,7 +57,7 @@ class HomePageAction
         ServerRequestInterface $request, ResponseInterface $response,
         callable $next = null
     ) {
-        $pizzaList = $this->repository->getPizzaPinboard();
+        $pizzaList = $this->pizzaRepository->getPizzaPinboard();
 
         $data = [
             'welcome'   => 'Willkommen zu Pin Your Pizza!',

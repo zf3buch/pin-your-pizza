@@ -27,7 +27,7 @@ class HomePageFactory
      */
     public function __invoke(ContainerInterface $container)
     {
-        $template = $container->get(TemplateRendererInterface::class);
+        $template   = $container->get(TemplateRendererInterface::class);
         $repository = $container->get(PizzaRepositoryInterface::class);
 
         return new HomePageAction($template, $repository);
