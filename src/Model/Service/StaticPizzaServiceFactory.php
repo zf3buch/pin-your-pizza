@@ -7,26 +7,26 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
-namespace Application\Model\Repository;
+namespace Application\Model\Service;
 
 use Interop\Container\ContainerInterface;
 
 /**
- * Class StaticPizzaRepositoryFactory
+ * Class StaticPizzaServiceFactory
  *
- * @package Application\Model\Repository
+ * @package Application\Model\Service
  */
-class StaticPizzaRepositoryFactory
+class StaticPizzaServiceFactory
 {
     /**
      * @param ContainerInterface $container
      *
-     * @return StaticPizzaRepository
+     * @return StaticPizzaService
      */
     public function __invoke(ContainerInterface $container)
     {
         $pizzaList = include APPLICATION_ROOT . '/data/pizza-list.php';
 
-        return new StaticPizzaRepository($pizzaList);
+        return new StaticPizzaService($pizzaList);
     }
 }
