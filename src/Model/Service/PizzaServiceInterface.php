@@ -33,16 +33,6 @@ interface PizzaServiceInterface
     public function getSinglePizza($id);
 
     /**
-     * Save vote for a single pizza
-     *
-     * @param integer $id
-     * @param boolean $vote
-     *
-     * @return boolean
-     */
-    public function saveVoting($id, $vote);
-
-    /**
      * Save comment for a single pizza
      *
      * @param integer $id
@@ -51,4 +41,14 @@ interface PizzaServiceInterface
      * @return boolean
      */
     public function saveComment($id, $data);
+
+    /**
+     * Save vote for a single pizza
+     *
+     * @param integer $id
+     * @param boolean $vote
+     *
+     * @return boolean
+     */
+    public function saveVoting($id, $vote);
 }
