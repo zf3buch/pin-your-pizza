@@ -19,8 +19,8 @@ return [
             Application\Action\HandleCommentAction::class =>
                 Application\Action\HandleCommentFactory::class,
 
-            Application\Model\Repository\PizzaRepositoryInterface::class =>
-                Application\Model\Repository\StaticPizzaRepositoryFactory::class,
+            Application\Model\Service\PizzaServiceInterface::class =>
+                Application\Model\Service\StaticPizzaServiceFactory::class,
 
             Zend\Expressive\Application::class =>
                 Zend\Expressive\Container\ApplicationFactory::class,

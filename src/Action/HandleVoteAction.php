@@ -9,7 +9,7 @@
 
 namespace Application\Action;
 
-use Application\Model\Repository\PizzaRepositoryInterface;
+use Application\Model\Service\PizzaServiceInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\HtmlResponse;
@@ -29,22 +29,22 @@ class HandleVoteAction
     private $router;
 
     /**
-     * @var PizzaRepositoryInterface
+     * @var PizzaServiceInterface
      */
-    private $pizzaRepository;
+    private $pizzaService;
 
     /**
      * HandleVoteAction constructor.
      *
-     * @param RouterInterface          $router
-     * @param PizzaRepositoryInterface $pizzaRepository
+     * @param RouterInterface       $router
+     * @param PizzaServiceInterface $pizzaService
      */
     public function __construct(
         RouterInterface $router,
-        PizzaRepositoryInterface $pizzaRepository
+        PizzaServiceInterface $pizzaService
     ) {
-        $this->router          = $router;
-        $this->pizzaRepository = $pizzaRepository;
+        $this->router       = $router;
+        $this->pizzaService = $pizzaService;
     }
 
     /**
@@ -62,7 +62,7 @@ class HandleVoteAction
         $id   = $request->getAttribute('id');
         $vote = 5;
 
-        $this->pizzaRepository->saveVoting($id, $vote);
+        $this->pizzaService->saveVoting($id, $vote);
 
         return new RedirectResponse(
             $this->router->generateUri('show-pizza', ['id' => $id])

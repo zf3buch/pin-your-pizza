@@ -9,7 +9,7 @@
 
 namespace Application\Action;
 
-use Application\Model\Repository\PizzaRepositoryInterface;
+use Application\Model\Service\PizzaServiceInterface;
 use Interop\Container\ContainerInterface;
 use Zend\Expressive\Template\TemplateRendererInterface;
 
@@ -27,9 +27,9 @@ class HomePageFactory
      */
     public function __invoke(ContainerInterface $container)
     {
-        $template   = $container->get(TemplateRendererInterface::class);
-        $repository = $container->get(PizzaRepositoryInterface::class);
+        $template = $container->get(TemplateRendererInterface::class);
+        $service  = $container->get(PizzaServiceInterface::class);
 
-        return new HomePageAction($template, $repository);
+        return new HomePageAction($template, $service);
     }
 }

@@ -7,14 +7,14 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
-namespace Application\Model\Repository;
+namespace Application\Model\Service;
 
 /**
- * Class StaticPizzaRepository
+ * Class StaticPizzaService
  *
- * @package Application\Model\Repository
+ * @package Application\Model\Service
  */
-class StaticPizzaRepository implements PizzaRepositoryInterface
+class StaticPizzaService implements PizzaServiceInterface
 {
     /**
      * @var array
@@ -22,7 +22,7 @@ class StaticPizzaRepository implements PizzaRepositoryInterface
     private $pizzaList = [];
 
     /**
-     * StaticPizzaRepository constructor.
+     * StaticPizzaService constructor.
      *
      * @param array $pizzaList
      */
