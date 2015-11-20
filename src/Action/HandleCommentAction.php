@@ -9,7 +9,7 @@
 
 namespace Application\Action;
 
-use Application\Model\Repository\PizzaRepositoryInterface;
+use Application\Model\Service\PizzaServiceInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\HtmlResponse;
@@ -29,22 +29,22 @@ class HandleCommentAction
     private $router;
 
     /**
-     * @var PizzaRepositoryInterface
+     * @var PizzaServiceInterface
      */
-    private $pizzaRepository;
+    private $pizzaService;
 
     /**
      * HandleCommentAction constructor.
      *
-     * @param RouterInterface          $router
-     * @param PizzaRepositoryInterface $pizzaRepository
+     * @param RouterInterface       $router
+     * @param PizzaServiceInterface $pizzaService
      */
     public function __construct(
         RouterInterface $router,
-        PizzaRepositoryInterface $pizzaRepository
+        PizzaServiceInterface $pizzaService
     ) {
-        $this->router          = $router;
-        $this->pizzaRepository = $pizzaRepository;
+        $this->router       = $router;
+        $this->pizzaService = $pizzaService;
     }
 
     /**
@@ -64,7 +64,7 @@ class HandleCommentAction
         // prepare comment data
         $commentData = [];
 
-        $this->pizzaRepository->saveComment($id, $commentData);
+        $this->pizzaService->saveComment($id, $commentData);
 
         return new RedirectResponse(
             $this->router->generateUri('show-pizza', ['id' => $id])
