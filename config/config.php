@@ -17,7 +17,7 @@ if (is_file($cachedConfigFile)) {
 } else {
     $config = [];
 
-    $pattern = '{,*.}{global,\' . APPLICATION_ENV . \',local}.php';
+    $pattern = '{,*.}{global,' . APPLICATION_ENV . ',local}.php';
     $files   = Glob::glob(
         APPLICATION_ROOT . '/config/autoload/' . $pattern, Glob::GLOB_BRACE
     );
