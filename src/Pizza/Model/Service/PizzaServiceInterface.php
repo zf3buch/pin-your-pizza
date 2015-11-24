@@ -7,12 +7,12 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
-namespace Application\Model\Service;
+namespace Pizza\Model\Service;
 
 /**
  * Interface PizzaServiceInterface
  *
- * @package Application\Model\Service
+ * @package Pizza\Model\Service
  */
 interface PizzaServiceInterface
 {
