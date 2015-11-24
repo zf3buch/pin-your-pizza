@@ -7,14 +7,14 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
-namespace Application\Model\Service;
+namespace Pizza\Model\Service;
 
 use Interop\Container\ContainerInterface;
 
 /**
  * Class StaticPizzaServiceFactory
  *
- * @package Application\Model\Service
+ * @package Pizza\Model\Service
  */
 class StaticPizzaServiceFactory
 {
