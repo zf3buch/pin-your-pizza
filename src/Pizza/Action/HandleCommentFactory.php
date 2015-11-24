@@ -7,26 +7,29 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
-namespace Application\Model\Service;
+namespace Pizza\Action;
 
+use Pizza\Model\Service\PizzaServiceInterface;
 use Interop\Container\ContainerInterface;
+use Zend\Expressive\Router\RouterInterface;
 
 /**
- * Class StaticPizzaServiceFactory
+ * Class HandleCommentFactory
  *
- * @package Application\Model\Service
+ * @package Application\Action
  */
-class StaticPizzaServiceFactory
+class HandleCommentFactory
 {
     /**
      * @param ContainerInterface $container
      *
-     * @return StaticPizzaService
+     * @return HandleCommentAction
      */
     public function __invoke(ContainerInterface $container)
     {
-        $pizzaList = include APPLICATION_ROOT . '/data/pizza-list.php';
+        $router  = $container->get(RouterInterface::class);
+        $service = $container->get(PizzaServiceInterface::class);
 
-        return new StaticPizzaService($pizzaList);
+        return new HandleCommentAction($router, $service);
     }
 }

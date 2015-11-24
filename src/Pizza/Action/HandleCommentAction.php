@@ -7,25 +7,26 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
-namespace Application\Action;
+namespace Pizza\Action;
 
-use Application\Model\Service\PizzaServiceInterface;
+use Pizza\Model\Service\PizzaServiceInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\HtmlResponse;
-use Zend\Expressive\Template\TemplateRendererInterface;
+use Zend\Diactoros\Response\RedirectResponse;
+use Zend\Expressive\Router\RouterInterface;
 
 /**
- * Class HomePageAction
+ * Class HandleCommentAction
  *
  * @package Application\Action
  */
-class HomePageAction
+class HandleCommentAction
 {
     /**
-     * @var TemplateRendererInterface
+     * @var RouterInterface
      */
-    private $template;
+    private $router;
 
     /**
      * @var PizzaServiceInterface
@@ -33,16 +34,16 @@ class HomePageAction
     private $pizzaService;
 
     /**
-     * HomePageAction constructor.
+     * HandleCommentAction constructor.
      *
-     * @param TemplateRendererInterface $template
-     * @param PizzaServiceInterface     $pizzaService
+     * @param RouterInterface       $router
+     * @param PizzaServiceInterface $pizzaService
      */
     public function __construct(
-        TemplateRendererInterface $template,
+        RouterInterface $router,
         PizzaServiceInterface $pizzaService
     ) {
-        $this->template     = $template;
+        $this->router       = $router;
         $this->pizzaService = $pizzaService;
     }
 
@@ -57,15 +58,16 @@ class HomePageAction
         ServerRequestInterface $request, ResponseInterface $response,
         callable $next = null
     ) {
-        $pizzaList = $this->pizzaService->getPizzaPinboard();
+        // get params
+        $id = $request->getAttribute('id');
 
-        $data = [
-            'welcome'   => 'Willkommen zu Pin Your Pizza!',
-            'pizzaList' => $pizzaList,
-        ];
+        // prepare comment data
+        $commentData = [];
 
-        return new HtmlResponse(
-            $this->template->render('application::home-page', $data)
+        $this->pizzaService->saveComment($id, $commentData);
+
+        return new RedirectResponse(
+            $this->router->generateUri('show-pizza', ['id' => $id])
         );
     }
 }

@@ -9,27 +9,27 @@
 
 namespace Application\Action;
 
-use Application\Model\Service\PizzaServiceInterface;
+use Pizza\Model\Service\PizzaServiceInterface;
 use Interop\Container\ContainerInterface;
-use Zend\Expressive\Router\RouterInterface;
+use Zend\Expressive\Template\TemplateRendererInterface;
 
 /**
- * Class HandleCommentFactory
+ * Class HomePageFactory
  *
  * @package Application\Action
  */
-class HandleCommentFactory
+class HomePageFactory
 {
     /**
      * @param ContainerInterface $container
      *
-     * @return HandleCommentAction
+     * @return HomePageAction
      */
     public function __invoke(ContainerInterface $container)
     {
-        $router  = $container->get(RouterInterface::class);
-        $service = $container->get(PizzaServiceInterface::class);
+        $template = $container->get(TemplateRendererInterface::class);
+        $service  = $container->get(PizzaServiceInterface::class);
 
-        return new HandleCommentAction($router, $service);
+        return new HomePageAction($template, $service);
     }
 }
