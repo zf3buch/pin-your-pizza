@@ -9,24 +9,23 @@
 
 namespace Application\Action;
 
-use Application\Model\Service\PizzaServiceInterface;
+use Pizza\Model\Service\PizzaServiceInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\HtmlResponse;
-use Zend\Diactoros\Response\RedirectResponse;
-use Zend\Expressive\Router\RouterInterface;
+use Zend\Expressive\Template\TemplateRendererInterface;
 
 /**
- * Class HandleVoteAction
+ * Class HomePageAction
  *
  * @package Application\Action
  */
-class HandleVoteAction
+class HomePageAction
 {
     /**
-     * @var RouterInterface
+     * @var TemplateRendererInterface
      */
-    private $router;
+    private $template;
 
     /**
      * @var PizzaServiceInterface
@@ -34,16 +33,16 @@ class HandleVoteAction
     private $pizzaService;
 
     /**
-     * HandleVoteAction constructor.
+     * HomePageAction constructor.
      *
-     * @param RouterInterface       $router
-     * @param PizzaServiceInterface $pizzaService
+     * @param TemplateRendererInterface $template
+     * @param PizzaServiceInterface     $pizzaService
      */
     public function __construct(
-        RouterInterface $router,
+        TemplateRendererInterface $template,
         PizzaServiceInterface $pizzaService
     ) {
-        $this->router       = $router;
+        $this->template     = $template;
         $this->pizzaService = $pizzaService;
     }
 
@@ -58,14 +57,15 @@ class HandleVoteAction
         ServerRequestInterface $request, ResponseInterface $response,
         callable $next = null
     ) {
-        // get params
-        $id   = $request->getAttribute('id');
-        $vote = 5;
+        $pizzaList = $this->pizzaService->getPizzaPinboard();
 
-        $this->pizzaService->saveVoting($id, $vote);
+        $data = [
+            'welcome'   => 'Willkommen zu Pin Your Pizza!',
+            'pizzaList' => $pizzaList,
+        ];
 
-        return new RedirectResponse(
-            $this->router->generateUri('show-pizza', ['id' => $id])
+        return new HtmlResponse(
+            $this->template->render('application::home-page', $data)
         );
     }
 }

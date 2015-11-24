@@ -7,9 +7,9 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
-namespace Application\Action;
+namespace Pizza\Action;
 
-use Application\Model\Service\PizzaServiceInterface;
+use Pizza\Model\Service\PizzaServiceInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\HtmlResponse;
@@ -67,7 +67,7 @@ class ShowPizzaAction
         ];
 
         return new HtmlResponse(
-            $this->template->render('application::show-pizza', $data)
+            $this->template->render('pizza::show-pizza', $data)
         );
     }
 }

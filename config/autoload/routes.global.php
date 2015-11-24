@@ -25,7 +25,7 @@ return [
         [
             'name' => 'show-pizza',
             'path' => '/pizza/:id',
-            'middleware' => Application\Action\ShowPizzaAction::class,
+            'middleware' => Pizza\Action\ShowPizzaAction::class,
             'allowed_methods' => ['GET'],
             'options' => [
                 'constraints' => [
@@ -36,7 +36,7 @@ return [
         [
             'name' => 'vote-pizza',
             'path' => '/pizza/:id/vote',
-            'middleware' => Application\Action\HandleVoteAction::class,
+            'middleware' => Pizza\Action\HandleVoteAction::class,
             'allowed_methods' => ['GET'],
             'options' => [
                 'constraints' => [
