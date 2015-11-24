@@ -27,6 +27,7 @@ return [
         ],
         'paths'  => [
             'application' => ['templates/application'],
+            'pizza'       => ['templates/pizza'],
             'layout'      => ['templates/layout'],
             'error'       => ['templates/error'],
         ]

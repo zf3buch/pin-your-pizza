@@ -7,9 +7,9 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
-namespace Application\Action;
+namespace Pizza\Action;
 
-use Application\Model\Service\PizzaServiceInterface;
+use Pizza\Model\Service\PizzaServiceInterface;
 use Interop\Container\ContainerInterface;
 use Zend\Expressive\Template\TemplateRendererInterface;
 

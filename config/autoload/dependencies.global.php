@@ -12,8 +12,9 @@ return [
         'factories' => [
             Application\Action\HomePageAction::class =>
                 Application\Action\HomePageFactory::class,
-            Application\Action\ShowPizzaAction::class =>
-                Application\Action\ShowPizzaFactory::class,
+
+            Pizza\Action\ShowPizzaAction::class =>
+                Pizza\Action\ShowPizzaFactory::class,
 
             Pizza\Model\Service\PizzaServiceInterface::class =>
                 Pizza\Model\Service\StaticPizzaServiceFactory::class,

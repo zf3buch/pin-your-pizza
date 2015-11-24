@@ -25,7 +25,7 @@ return [
         [
             'name' => 'show-pizza',
             'path' => '/pizza/:id',
-            'middleware' => Application\Action\ShowPizzaAction::class,
+            'middleware' => Pizza\Action\ShowPizzaAction::class,
             'allowed_methods' => ['GET'],
             'options' => [
                 'constraints' => [
