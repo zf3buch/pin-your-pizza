@@ -15,8 +15,8 @@ return [
             Application\Action\ShowPizzaAction::class =>
                 Application\Action\ShowPizzaFactory::class,
 
-            Application\Model\Service\PizzaServiceInterface::class =>
-                Application\Model\Service\StaticPizzaServiceFactory::class,
+            Pizza\Model\Service\PizzaServiceInterface::class =>
+                Pizza\Model\Service\StaticPizzaServiceFactory::class,
 
             Zend\Expressive\Application::class =>
                 Zend\Expressive\Container\ApplicationFactory::class,
