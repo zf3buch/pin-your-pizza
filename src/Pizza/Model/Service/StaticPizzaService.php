@@ -61,11 +61,11 @@ class StaticPizzaService implements PizzaServiceInterface
      * Save vote for a single pizza
      *
      * @param integer $id
-     * @param boolean $vote
+     * @param integer $star
      *
      * @return boolean
      */
-    public function saveVoting($id, $vote)
+    public function saveVoting($id, $star)
     {
         return true;
     }
