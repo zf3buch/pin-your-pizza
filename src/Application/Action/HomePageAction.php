@@ -1,6 +1,6 @@
 <?php
 /**
- * ZF3 book Vote my Pizza Example Application
+ * ZF3 book Pin Your Pizza Example Application
  *
  * @author     Ralf Eggert <ralf@travello.de>
  * @link       https://github.com/zf3buch/pin-your-pizza
