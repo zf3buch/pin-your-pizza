@@ -14,46 +14,4 @@ return [
                 Zend\Expressive\Router\ZendRouter::class,
         ],
     ],
-
-    'routes' => [
-        [
-            'name' => 'home',
-            'path' => '/',
-            'middleware' => Application\Action\HomePageAction::class,
-            'allowed_methods' => ['GET'],
-        ],
-        [
-            'name' => 'show-pizza',
-            'path' => '/pizza/:id',
-            'middleware' => Pizza\Action\ShowPizzaAction::class,
-            'allowed_methods' => ['GET'],
-            'options' => [
-                'constraints' => [
-                    'id' => '[0-9]+',
-                ],
-            ],
-        ],
-        [
-            'name' => 'vote-pizza',
-            'path' => '/pizza/:id/vote',
-            'middleware' => Pizza\Action\HandleVoteAction::class,
-            'allowed_methods' => ['GET'],
-            'options' => [
-                'constraints' => [
-                    'id' => '[0-9]+',
-                ],
-            ],
-        ],
-        [
-            'name' => 'comment-pizza',
-            'path' => '/pizza/:id/comment',
-            'middleware' => Pizza\Action\HandleCommentAction::class,
-            'allowed_methods' => ['GET'],
-            'options' => [
-                'constraints' => [
-                    'id' => '[0-9]+',
-                ],
-            ],
-        ],
-    ],
 ];

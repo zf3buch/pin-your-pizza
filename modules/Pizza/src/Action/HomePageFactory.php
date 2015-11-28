@@ -7,7 +7,7 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
-namespace Application\Action;
+namespace Pizza\Action;
 
 use Pizza\Model\Service\PizzaServiceInterface;
 use Interop\Container\ContainerInterface;
