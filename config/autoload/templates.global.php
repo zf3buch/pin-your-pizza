@@ -21,14 +21,14 @@ return [
     'templates' => [
         'layout' => 'layout/default',
         'map'    => [
-            'layout/default' => 'modules/Application/templates/layout/default.phtml',
-            'error/error'    => 'modules/Application/templates/error/error.phtml',
-            'error/404'      => 'modules/Application/templates/error/404.phtml',
+            'layout/default' => 'templates/layout/default.phtml',
+            'error/error'    => 'templates/error/error.phtml',
+            'error/404'      => 'templates/error/404.phtml',
         ],
         'paths'  => [
-            'application' => ['modules/Application/templates/application'],
-            'layout'      => ['modules/Application/templates/layout'],
-            'error'       => ['modules/Application/templates/error'],
+            'application' => ['templates/application'],
+            'layout'      => ['templates/layout'],
+            'error'       => ['templates/error'],
         ]
     ]
 ];
