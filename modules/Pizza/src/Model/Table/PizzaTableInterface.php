@@ -21,11 +21,11 @@ interface PizzaTableInterface extends TableGatewayInterface
     /**
      * Fetch all pizzas
      *
-     * @param integer $count
+     * @param integer|null $count
      *
      * @return array
      */
-    public function fetchAllPizzas($count);
+    public function fetchAllPizzas($count = null);
 
     /**
      * Fetch pizza by id
