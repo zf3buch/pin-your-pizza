@@ -18,6 +18,20 @@ return [
         ]
     ],
 
+    'routes' => [
+        [
+            'name' => 'show-pizza',
+            'path' => '/pizza/:id',
+            'middleware' => Pizza\Action\ShowPizzaAction::class,
+            'allowed_methods' => ['GET'],
+            'options' => [
+                'constraints' => [
+                    'id' => '[0-9]+',
+                ],
+            ],
+        ],
+    ],
+
     'templates' => [
         'paths'  => [
             'pizza' => ['modules/Pizza/templates/'],
