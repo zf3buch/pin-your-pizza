@@ -7,7 +7,7 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
-namespace Application\Action;
+namespace Pizza\Action;
 
 use Pizza\Model\Service\PizzaServiceInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -65,7 +65,7 @@ class HomePageAction
         ];
 
         return new HtmlResponse(
-            $this->template->render('application::home-page', $data)
+            $this->template->render('pizza::home-page', $data)
         );
     }
 }

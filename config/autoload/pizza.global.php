@@ -10,6 +10,9 @@
 return [
     'dependencies' => [
         'factories' => [
+            Pizza\Action\HomePageAction::class =>
+                Pizza\Action\HomePageFactory::class,
+
             Pizza\Action\ShowPizzaAction::class =>
                 Pizza\Action\ShowPizzaFactory::class,
             Pizza\Action\HandleVoteAction::class =>
@@ -23,6 +26,12 @@ return [
     ],
 
     'routes' => [
+        [
+            'name'            => 'home',
+            'path'            => '/',
+            'middleware'      => Pizza\Action\HomePageAction::class,
+            'allowed_methods' => ['GET'],
+        ],
         [
             'name' => 'show-pizza',
             'path' => '/pizza/:id',
@@ -62,5 +71,5 @@ return [
         'paths'  => [
             'pizza' => ['modules/Pizza/templates/'],
         ]
-    ]
+    ],
 ];
