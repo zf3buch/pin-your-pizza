@@ -10,19 +10,21 @@
 return [
     'dependencies' => [
         'factories' => [
-            Application\Action\HomePageAction::class =>
-                Application\Action\HomePageFactory::class,
-
             Pizza\Action\ShowPizzaAction::class =>
                 Pizza\Action\ShowPizzaFactory::class,
             Pizza\Action\HandleVoteAction::class =>
                 Pizza\Action\HandleVoteFactory::class,
+            Pizza\Action\HandleCommentAction::class =>
+                Pizza\Action\HandleCommentFactory::class,
 
             Pizza\Model\Service\PizzaServiceInterface::class =>
                 Pizza\Model\Service\StaticPizzaServiceFactory::class,
+        ]
+    ],
 
-            Zend\Expressive\Application::class =>
-                Zend\Expressive\Container\ApplicationFactory::class,
+    'templates' => [
+        'paths'  => [
+            'pizza' => ['modules/Pizza/templates/'],
         ]
     ]
 ];
