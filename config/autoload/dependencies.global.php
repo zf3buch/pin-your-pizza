@@ -13,14 +13,6 @@ return [
             Application\Action\HomePageAction::class =>
                 Application\Action\HomePageFactory::class,
 
-            Pizza\Action\ShowPizzaAction::class =>
-                Pizza\Action\ShowPizzaFactory::class,
-            Pizza\Action\HandleVoteAction::class =>
-                Pizza\Action\HandleVoteFactory::class,
-
-            Pizza\Model\Service\PizzaServiceInterface::class =>
-                Pizza\Model\Service\StaticPizzaServiceFactory::class,
-
             Zend\Expressive\Application::class =>
                 Zend\Expressive\Container\ApplicationFactory::class,
         ]
