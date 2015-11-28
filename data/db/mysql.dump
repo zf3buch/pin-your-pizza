@@ -2,9 +2,9 @@ SET FOREIGN_KEY_CHECKS=0;
 
 START TRANSACTION;
 
-DROP TABLE IF EXISTS `comments`;
+DROP TABLE IF EXISTS `comment`;
 
-CREATE TABLE IF NOT EXISTS `comments` (
+CREATE TABLE IF NOT EXISTS `comment` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `pizza` smallint(5) unsigned NOT NULL,
   `date` datetime NOT NULL,
@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
   KEY `pizza` (`pizza`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=35 ;
 
-INSERT INTO `comments` (`id`, `pizza`, `date`, `name`, `text`) VALUES
+INSERT INTO `comment` (`id`, `pizza`, `date`, `name`, `text`) VALUES
 (1, 1, '2015-11-25 20:26:12', 'Peter', '<p>Sehr lecker!</p>'),
 (2, 1, '2015-11-25 20:26:49', 'Paul', '<p>Beste Pizza!</p>'),
 (21, 2, '2015-11-25 20:27:40', 'Luigi', '<p>Könnte meine Mamma nicht besser machen!</p>'),
@@ -54,8 +54,8 @@ INSERT INTO `pizza` (`id`, `name`, `image`, `stars1`, `stars2`, `stars3`, `stars
 (8, 'Pizza Salame', '/assets/custom/pizza/008.jpg', 0, 0, 0, 0, 2, 2, 5.0000),
 (9, 'Pizza Funghi e Oliva', '/assets/custom/pizza/009.jpg', 0, 1, 1, 0, 0, 2, 2.5000);
 
-ALTER TABLE `comments`
-  ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`pizza`) REFERENCES `pizza` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE `comment`
+  ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`pizza`) REFERENCES `pizza` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 SET FOREIGN_KEY_CHECKS=1;
 
