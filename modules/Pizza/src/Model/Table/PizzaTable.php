@@ -91,46 +91,52 @@ class PizzaTable extends TableGateway implements PizzaTableInterface
      */
     public function saveVoting($id, $star)
     {
-        $platform      = $this->getAdapter()->getPlatform();
-        $starAddColumn = $platform->quoteIdentifier('stars' . $star);
-        $stars1Column  = $platform->quoteIdentifier('stars1');
-        $stars2Column  = $platform->quoteIdentifier('stars2');
-        $stars3Column  = $platform->quoteIdentifier('stars3');
-        $stars4Column  = $platform->quoteIdentifier('stars4');
-        $stars5Column  = $platform->quoteIdentifier('stars5');
-        $totalColumn   = $platform->quoteIdentifier('total');
+        $starAddColumn = 'stars' . $star;
+        $totalColumn   = 'total';
+
+        $platform     = $this->getAdapter()->getPlatform();
+        $stars1Column = $platform->quoteIdentifier('stars1');
+        $stars2Column = $platform->quoteIdentifier('stars2');
+        $stars3Column = $platform->quoteIdentifier('stars3');
+        $stars4Column = $platform->quoteIdentifier('stars4');
+        $stars5Column = $platform->quoteIdentifier('stars5');
 
         // increase
         $update = $this->getSql()->update();
         $update->set(
             [
-                $starAddColumn => new Expression($starAddColumn . ' + 1'),
-                $totalColumn   => new Expression($totalColumn . ' + 1'),
+                $starAddColumn => new Expression(
+                    $platform->quoteIdentifier($starAddColumn) . ' + 1'
+                ),
+                $totalColumn   => new Expression(
+                    $platform->quoteIdentifier($totalColumn) . ' + 1'
+                ),
             ]
         );
         $update->where->equalTo('id', $id);
 
-        var_dump($this->getSql()->buildSqlString($update));
-
-//        $this->updateWith($update);
+        $this->updateWith($update);
 
         // recalc
         $update = $this->getSql()->update();
         $update->set(
             [
                 'rate' => new Expression(
-                    '(' . $stars1Column . ' + ' . $stars2Column . ' + '
-                    . $stars3Column . ' + ' . $stars4Column . ' + '
-                    . $stars5Column . ')' . '/(' . $totalColumn . ')'
+                    '('
+                    . $stars1Column . ' * 1 + '
+                    . $stars2Column . ' * 2 + '
+                    . $stars3Column . ' * 3 + '
+                    . $stars4Column . ' * 4 + '
+                    . $stars5Column . ' * 5 '
+                    . ')'
+                    . ' / '
+                    . '(' . $totalColumn . ')'
                 )
             ]
         );
         $update->where->equalTo('id', $id);
 
-        var_dump($this->getSql()->buildSqlString($update));
-        exit;
-        
-//        $this->updateWith($update);
+        $this->updateWith($update);
 
         return true;
     }
