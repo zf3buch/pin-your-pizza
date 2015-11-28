@@ -18,12 +18,14 @@
         $this->inlineScript()->appendScript(
             "
     $('#stars-" . $pizza['id'] . "').raty({
-        readOnly: true,
         score   : " . $pizza['rate'] . ",
         half    : true,
         starOff : '/assets/vendor/raty-2.7.0/images/star-off.png',
         starOn  : '/assets/vendor/raty-2.7.0/images/star-on.png',
-        starHalf: '/assets/vendor/raty-2.7.0/images/star-on.png'
+        starHalf: '/assets/vendor/raty-2.7.0/images/star-on.png',
+        click: function(score, evt) {
+            $(location).attr('href','" . $urlVote . "?star=' + (Math.floor(score) + 1));
+        }
     });
     "
         ); ?>
@@ -35,12 +37,7 @@
                 </a>
 
                 <div class="caption">
-                    <p>
-                        <a href="<?php echo $urlVote; ?>">
-                        <span id="stars-<?php echo $pizza['id'] ?>">
-                        </span>
-                        </a>
-                    </p>
+                    <p id="stars-<?php echo $pizza['id'] ?>"></p>
                     <p class="small">
                         <?php echo $pizza['name'] ?>
                     </p>
