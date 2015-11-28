@@ -29,7 +29,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Application\\": "src/"
+            "Application\\": "modules/Application/src/"
         }
     },
     "autoload-dev": {
