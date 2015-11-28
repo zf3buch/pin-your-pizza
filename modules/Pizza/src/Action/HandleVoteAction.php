@@ -63,7 +63,7 @@ class HandleVoteAction
 
         // get params
         $id   = $request->getAttribute('id');
-        $star = $queryParams['star'];
+        $star = (int) $queryParams['star'];
 
         if ($star) {
             $this->pizzaService->saveVoting($id, $star);
