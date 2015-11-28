@@ -10,9 +10,6 @@
 return [
     'dependencies' => [
         'factories' => [
-            Application\Action\HomePageAction::class =>
-                Application\Action\HomePageFactory::class,
-
             Zend\Expressive\Application::class =>
                 Zend\Expressive\Container\ApplicationFactory::class,
         ]
