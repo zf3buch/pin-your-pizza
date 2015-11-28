@@ -7,7 +7,7 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
-$urlVote = $this->url('vote-pizza', ['id' => $this->pizza['id']]);
+$urlVote = $this->url('vote-pizza', ['id' => $this->pizza['id'], 'star' => 12]);
 
 ?>
 <h1><?php echo $this->pizza['name']; ?></h1>
@@ -16,12 +16,14 @@ $urlVote = $this->url('vote-pizza', ['id' => $this->pizza['id']]);
     $this->inlineScript()->appendScript(
         "
     $('#stars-" . $this->pizza['id'] . "').raty({
-        readOnly: true,
         score   : " . $this->pizza['rate'] . ",
         half    : true,
         starOff : '/assets/vendor/raty-2.7.0/images/star-off.png',
         starOn  : '/assets/vendor/raty-2.7.0/images/star-on.png',
-        starHalf: '/assets/vendor/raty-2.7.0/images/star-on.png'
+        starHalf: '/assets/vendor/raty-2.7.0/images/star-on.png',
+        click: function(score, evt) {
+            $(location).attr('href','" . $urlVote . "?star=' + (Math.floor(score) + 1));
+        }
     });
     "
     ); ?>
@@ -31,13 +33,7 @@ $urlVote = $this->url('vote-pizza', ['id' => $this->pizza['id']]);
                  title="<?php echo $this->pizza['name'] ?>">
 
             <div class="caption">
-                <p>
-                    <a href="<?php echo $urlVote; ?>">
-                        <span id="stars-<?php echo $this->pizza['id'] ?>">
-                        </span>
-                    </a>
-                </p>
-
+                <p id="stars-<?php echo $this->pizza['id'] ?>"></p>
                 <p>
                     <?php echo $this->pizza['name'] ?>
                 </p>

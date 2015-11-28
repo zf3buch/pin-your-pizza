@@ -13,7 +13,7 @@ return [
             Pizza\Action\HomePageAction::class =>
                 Pizza\Action\HomePageFactory::class,
 
-            Pizza\Action\ShowPizzaAction::class =>
+            Pizza\Action\ShowPizzaAction::class  =>
                 Pizza\Action\ShowPizzaFactory::class,
             Pizza\Action\HandleVoteAction::class =>
                 Pizza\Action\HandleVoteFactory::class,
@@ -31,31 +31,32 @@ return [
             'allowed_methods' => ['GET'],
         ],
         [
-            'name' => 'show-pizza',
-            'path' => '/pizza/:id',
-            'middleware' => Pizza\Action\ShowPizzaAction::class,
+            'name'            => 'show-pizza',
+            'path'            => '/pizza/:id',
+            'middleware'      => Pizza\Action\ShowPizzaAction::class,
             'allowed_methods' => ['GET'],
-            'options' => [
+            'options'         => [
                 'constraints' => [
                     'id' => '[0-9]+',
                 ],
             ],
         ],
         [
-            'name' => 'vote-pizza',
-            'path' => '/pizza/:id/vote',
-            'middleware' => Pizza\Action\HandleVoteAction::class,
+            'name'            => 'vote-pizza',
+            'path'            => '/pizza/:id/vote',
+            'middleware'      => Pizza\Action\HandleVoteAction::class,
             'allowed_methods' => ['GET'],
-            'options' => [
+            'options'         => [
                 'constraints' => [
-                    'id' => '[0-9]+',
+                    'id'   => '[0-9]+',
+                    'star' => '[1-5]{1}',
                 ],
             ],
         ],
     ],
 
     'templates' => [
-        'paths'  => [
+        'paths' => [
             'pizza' => ['modules/Pizza/templates/'],
         ]
     ],
