@@ -107,7 +107,9 @@ class PizzaTable extends TableGateway implements PizzaTableInterface
         );
         $update->where->equalTo('id', $id);
 
-        $this->updateWith($update);
+        var_dump($this->getSql()->buildSqlString($update));
+
+//        $this->updateWith($update);
 
         // recalc
         $update = $this->getSql()->update();
@@ -122,7 +124,10 @@ class PizzaTable extends TableGateway implements PizzaTableInterface
         );
         $update->where->equalTo('id', $id);
 
-        $this->updateWith($update);
+        var_dump($this->getSql()->buildSqlString($update));
+        exit;
+        
+//        $this->updateWith($update);
 
         return true;
     }

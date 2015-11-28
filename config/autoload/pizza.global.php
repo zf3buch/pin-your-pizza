@@ -19,8 +19,13 @@ return [
             Pizza\Action\HandleCommentAction::class =>
                 Pizza\Action\HandleCommentFactory::class,
 
+            Pizza\Model\Table\PizzaTableInterface::class =>
+                Pizza\Model\Table\PizzaTableFactory::class,
+            Pizza\Model\Table\CommentTableInterface::class =>
+                Pizza\Model\Table\CommentTableFactory::class,
+
             Pizza\Model\Service\PizzaServiceInterface::class =>
-                Pizza\Model\Service\StaticPizzaServiceFactory::class,
+                Pizza\Model\Service\DbPizzaServiceFactory::class,
         ]
     ],
 
