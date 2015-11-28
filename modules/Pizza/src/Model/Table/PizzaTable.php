@@ -36,15 +36,18 @@ class PizzaTable extends TableGateway implements PizzaTableInterface
     /**
      * Fetch all pizzas
      *
-     * @param integer $count
+     * @param integer|null $count
      *
      * @return array
      */
-    public function fetchAllPizzas($count)
+    public function fetchAllPizzas($count = null)
     {
         // select pizzas
         $select = $this->getSql()->select();
-        $select->limit($count);
+
+        if ($count) {
+            $select->limit($count);
+        }
 
         // initialize data
         $data = array();
