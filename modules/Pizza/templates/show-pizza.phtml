@@ -51,9 +51,9 @@ $urlComment = $this->url('comment-pizza', ['id' => $this->pizza['id']]);
                 <div class="panel-heading">
                     <?php echo $comment['name']; ?>
                     schrieb am
-                    <?php echo date('d.m.Y', $comment['date']); ?>
+                    <?php echo $comment['date']; ?>
                     um
-                    <?php echo date('H:i:s', $comment['date']); ?>
+                    <?php echo $comment['date']; ?>
                 </div>
                 <div class="panel-body">
                     <?php echo $comment['text']; ?>
