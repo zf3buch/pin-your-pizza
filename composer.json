@@ -29,13 +29,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Application\\": "modules/Application/src/",
             "Pizza\\": "modules/Pizza/src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "ApplicationTest\\": "test/"
         }
     },
     "scripts": {

@@ -10,8 +10,26 @@
 return [
     'dependencies' => [
         'factories' => [
+            Pizza\Action\HomePageAction::class =>
+                Pizza\Action\HomePageFactory::class,
+
             Pizza\Model\Service\PizzaServiceInterface::class =>
                 Pizza\Model\Service\StaticPizzaServiceFactory::class,
         ]
-    ]
+    ],
+
+    'routes' => [
+        [
+            'name'            => 'home',
+            'path'            => '/',
+            'middleware'      => Pizza\Action\HomePageAction::class,
+            'allowed_methods' => ['GET'],
+        ],
+    ],
+
+    'templates' => [
+        'paths'  => [
+            'pizza' => ['modules/Pizza/templates/'],
+        ]
+    ],
 ];
