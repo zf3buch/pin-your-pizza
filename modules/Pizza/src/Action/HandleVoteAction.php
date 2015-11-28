@@ -58,11 +58,16 @@ class HandleVoteAction
         ServerRequestInterface $request, ResponseInterface $response,
         callable $next = null
     ) {
+        // get query params
+        $queryParams = $request->getQueryParams();
+
         // get params
         $id   = $request->getAttribute('id');
-        $vote = 5;
+        $star = $queryParams['star'];
 
-        $this->pizzaService->saveVoting($id, $vote);
+        if ($star) {
+            $this->pizzaService->saveVoting($id, $star);
+        }
 
         return new RedirectResponse(
             $this->router->generateUri('show-pizza', ['id' => $id])
