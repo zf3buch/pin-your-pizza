@@ -10,9 +10,11 @@
 return [
     'dependencies' => [
         'factories' => [
-            Pizza\Action\ShowPizzaAction::class =>
+            Pizza\Action\HomePageAction::class      =>
+                Pizza\Action\HomePageFactory::class,
+            Pizza\Action\ShowPizzaAction::class     =>
                 Pizza\Action\ShowPizzaFactory::class,
-            Pizza\Action\HandleVoteAction::class =>
+            Pizza\Action\HandleVoteAction::class    =>
                 Pizza\Action\HandleVoteFactory::class,
             Pizza\Action\HandleCommentAction::class =>
                 Pizza\Action\HandleCommentFactory::class,
@@ -24,33 +26,39 @@ return [
 
     'routes' => [
         [
-            'name' => 'show-pizza',
-            'path' => '/pizza/:id',
-            'middleware' => Pizza\Action\ShowPizzaAction::class,
+            'name'            => 'home',
+            'path'            => '/',
+            'middleware'      => Pizza\Action\HomePageAction::class,
             'allowed_methods' => ['GET'],
-            'options' => [
+        ],
+        [
+            'name'            => 'show-pizza',
+            'path'            => '/pizza/:id',
+            'middleware'      => Pizza\Action\ShowPizzaAction::class,
+            'allowed_methods' => ['GET'],
+            'options'         => [
                 'constraints' => [
                     'id' => '[0-9]+',
                 ],
             ],
         ],
         [
-            'name' => 'vote-pizza',
-            'path' => '/pizza/:id/vote',
-            'middleware' => Pizza\Action\HandleVoteAction::class,
+            'name'            => 'vote-pizza',
+            'path'            => '/pizza/:id/vote',
+            'middleware'      => Pizza\Action\HandleVoteAction::class,
             'allowed_methods' => ['GET'],
-            'options' => [
+            'options'         => [
                 'constraints' => [
                     'id' => '[0-9]+',
                 ],
             ],
         ],
         [
-            'name' => 'comment-pizza',
-            'path' => '/pizza/:id/comment',
-            'middleware' => Pizza\Action\HandleCommentAction::class,
+            'name'            => 'comment-pizza',
+            'path'            => '/pizza/:id/comment',
+            'middleware'      => Pizza\Action\HandleCommentAction::class,
             'allowed_methods' => ['GET'],
-            'options' => [
+            'options'         => [
                 'constraints' => [
                     'id' => '[0-9]+',
                 ],
@@ -59,8 +67,8 @@ return [
     ],
 
     'templates' => [
-        'paths'  => [
+        'paths' => [
             'pizza' => ['modules/Pizza/templates/'],
         ]
-    ]
+    ],
 ];
