@@ -7,9 +7,8 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
-namespace Pizza\Action;
+namespace Application\Action;
 
-use Pizza\Model\Service\PizzaServiceInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\HtmlResponse;
@@ -28,22 +27,14 @@ class HomePageAction
     private $template;
 
     /**
-     * @var PizzaServiceInterface
-     */
-    private $pizzaService;
-
-    /**
      * HomePageAction constructor.
      *
-     * @param TemplateRendererInterface $template
-     * @param PizzaServiceInterface     $pizzaService
+     * @param TemplateRendererInterface|null $template
      */
     public function __construct(
-        TemplateRendererInterface $template,
-        PizzaServiceInterface $pizzaService
+        TemplateRendererInterface $template = null
     ) {
-        $this->template     = $template;
-        $this->pizzaService = $pizzaService;
+        $this->template = $template;
     }
 
     /**
@@ -57,15 +48,12 @@ class HomePageAction
         ServerRequestInterface $request, ResponseInterface $response,
         callable $next = null
     ) {
-        $pizzaList = $this->pizzaService->getPizzaPinboard();
-
         $data = [
-            'welcome'   => 'Willkommen zu Pin Your Pizza!',
-            'pizzaList' => $pizzaList,
+            'welcome' => 'Willkommen zu Pin Your Pizza!'
         ];
 
         return new HtmlResponse(
-            $this->template->render('pizza::home-page', $data)
+            $this->template->render('application::home-page', $data)
         );
     }
 }

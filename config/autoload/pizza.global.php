@@ -10,8 +10,8 @@
 return [
     'dependencies' => [
         'factories' => [
-            Pizza\Action\HomePageAction::class =>
-                Pizza\Action\HomePageFactory::class,
+            Pizza\Action\ShowIntroAction::class =>
+                Pizza\Action\ShowIntroFactory::class,
 
             Pizza\Action\ShowPizzaAction::class =>
                 Pizza\Action\ShowPizzaFactory::class,
@@ -23,9 +23,9 @@ return [
 
     'routes' => [
         [
-            'name'            => 'home',
-            'path'            => '/',
-            'middleware'      => Pizza\Action\HomePageAction::class,
+            'name'            => 'pizza-intro',
+            'path'            => '/pizza',
+            'middleware'      => Pizza\Action\ShowIntroAction::class,
             'allowed_methods' => ['GET'],
         ],
         [
@@ -43,7 +43,7 @@ return [
 
     'templates' => [
         'paths'  => [
-            'pizza' => ['modules/Pizza/templates/'],
+            'pizza' => ['templates/pizza'],
         ]
     ],
 ];
