@@ -7,20 +7,19 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
-namespace Pizza\Action;
+namespace Application\Action;
 
-use Pizza\Model\Service\PizzaServiceInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\HtmlResponse;
 use Zend\Expressive\Template\TemplateRendererInterface;
 
 /**
- * Class ShowPizzaAction
+ * Class HomePageAction
  *
  * @package Application\Action
  */
-class ShowPizzaAction
+class HomePageAction
 {
     /**
      * @var TemplateRendererInterface
@@ -28,22 +27,14 @@ class ShowPizzaAction
     private $template;
 
     /**
-     * @var PizzaServiceInterface
-     */
-    private $pizzaService;
-
-    /**
-     * ShowPizzaAction constructor.
+     * HomePageAction constructor.
      *
-     * @param TemplateRendererInterface $template
-     * @param PizzaServiceInterface     $pizzaService
+     * @param TemplateRendererInterface|null $template
      */
     public function __construct(
-        TemplateRendererInterface $template,
-        PizzaServiceInterface $pizzaService
+        TemplateRendererInterface $template = null
     ) {
-        $this->template     = $template;
-        $this->pizzaService = $pizzaService;
+        $this->template = $template;
     }
 
     /**
@@ -57,17 +48,12 @@ class ShowPizzaAction
         ServerRequestInterface $request, ResponseInterface $response,
         callable $next = null
     ) {
-        // get id
-        $id = $request->getAttribute('id');
-
-        $pizza = $this->pizzaService->getSinglePizza($id);
-
         $data = [
-            'pizza' => $pizza,
+            'welcome' => 'Willkommen zu Pin Your Pizza!'
         ];
 
         return new HtmlResponse(
-            $this->template->render('pizza::show-pizza', $data)
+            $this->template->render('application::home-page', $data)
         );
     }
 }

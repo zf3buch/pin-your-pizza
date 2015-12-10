@@ -7,6 +7,8 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
+use Interop\Container\ContainerInterface;
+
 // define application root for better file path definitions
 define('APPLICATION_ROOT', realpath(__DIR__ . '/..'));
 
@@ -26,12 +28,12 @@ if (php_sapi_name() === 'cli-server'
 }
 
 // setup autoloading from composer
-require_once '../vendor/autoload.php';
+require_once APPLICATION_ROOT . '/vendor/autoload.php';
 
 // change working dir
 chdir(dirname(__DIR__));
 
-/** @var Interop\Container\ContainerInterface $container */
+/** @var ContainerInterface $container */
 $container = require APPLICATION_ROOT . '/config/container.php';
 
 // run the application
