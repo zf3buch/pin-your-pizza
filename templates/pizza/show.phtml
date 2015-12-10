@@ -7,7 +7,7 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
-$urlVote = $this->url('vote-pizza', ['id' => $this->pizza['id'], 'star' => 12]);
+$urlVote = $this->url('pizza-vote', ['id' => $this->pizza['id'], 'star' => 12]);
 
 ?>
 <h1><?php echo $this->pizza['name']; ?></h1>
@@ -59,7 +59,7 @@ $urlVote = $this->url('vote-pizza', ['id' => $this->pizza['id'], 'star' => 12]);
 </div>
 <div class="row">
     <p class="text-center">
-        <a href="<?php echo $this->url('home') ?>" class="btn btn-success">
+        <a href="<?php echo $this->url('pizza-intro') ?>" class="btn btn-success">
             Zurück zur Pizza Pinnwand
         </a>
     </p>

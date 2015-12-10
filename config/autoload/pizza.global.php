@@ -10,9 +10,8 @@
 return [
     'dependencies' => [
         'factories' => [
-            Pizza\Action\HomePageAction::class =>
-                Pizza\Action\HomePageFactory::class,
-
+            Pizza\Action\ShowIntroAction::class  =>
+                Pizza\Action\ShowIntroFactory::class,
             Pizza\Action\ShowPizzaAction::class  =>
                 Pizza\Action\ShowPizzaFactory::class,
             Pizza\Action\HandleVoteAction::class =>
@@ -25,30 +24,30 @@ return [
 
     'routes' => [
         [
-            'name'            => 'home',
-            'path'            => '/',
-            'middleware'      => Pizza\Action\HomePageAction::class,
+            'name'            => 'pizza-intro',
+            'path'            => '/pizza',
+            'middleware'      => Pizza\Action\ShowIntroAction::class,
             'allowed_methods' => ['GET'],
         ],
         [
-            'name'            => 'show-pizza',
+            'name'            => 'pizza-show',
             'path'            => '/pizza/:id',
             'middleware'      => Pizza\Action\ShowPizzaAction::class,
             'allowed_methods' => ['GET'],
             'options'         => [
                 'constraints' => [
-                    'id' => '[0-9]+',
+                    'id' => '[1-9][0-9]*',
                 ],
             ],
         ],
         [
-            'name'            => 'vote-pizza',
+            'name'            => 'pizza-vote',
             'path'            => '/pizza/:id/vote',
             'middleware'      => Pizza\Action\HandleVoteAction::class,
             'allowed_methods' => ['GET'],
             'options'         => [
                 'constraints' => [
-                    'id'   => '[0-9]+',
+                    'id'   => '[1-9][0-9]*',
                     'star' => '[1-5]{1}',
                 ],
             ],
@@ -57,7 +56,7 @@ return [
 
     'templates' => [
         'paths' => [
-            'pizza' => ['modules/Pizza/templates/'],
+            'pizza' => ['templates/pizza'],
         ]
     ],
 ];
