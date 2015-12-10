@@ -12,8 +12,8 @@
 <div class="row">
     <?php foreach ($this->pizzaList as $pizza) : ?>
         <?php
-        $urlShow = $this->url('show-pizza', ['id' => $pizza['id']]);
-        $urlVote = $this->url('vote-pizza', ['id' => $pizza['id']]);
+        $urlShow = $this->url('pizza-show', ['id' => $pizza['id']]);
+        $urlVote = $this->url('pizza-vote', ['id' => $pizza['id']]);
 
         $this->inlineScript()->appendScript(
             "
