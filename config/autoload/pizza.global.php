@@ -10,8 +10,8 @@
 return [
     'dependencies' => [
         'factories' => [
-            Pizza\Action\HomePageAction::class =>
-                Pizza\Action\HomePageFactory::class,
+            Pizza\Action\ShowIntroAction::class =>
+                Pizza\Action\ShowIntroFactory::class,
 
             Pizza\Model\Service\PizzaServiceInterface::class =>
                 Pizza\Model\Service\StaticPizzaServiceFactory::class,
@@ -20,16 +20,16 @@ return [
 
     'routes' => [
         [
-            'name'            => 'home',
-            'path'            => '/',
-            'middleware'      => Pizza\Action\HomePageAction::class,
+            'name'            => 'pizza-intro',
+            'path'            => '/pizza',
+            'middleware'      => Pizza\Action\ShowIntroAction::class,
             'allowed_methods' => ['GET'],
         ],
     ],
 
     'templates' => [
         'paths'  => [
-            'pizza' => ['modules/Pizza/templates/'],
+            'pizza' => ['templates/pizza'],
         ]
     ],
 ];
