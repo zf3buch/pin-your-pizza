@@ -16,11 +16,11 @@ use Zend\Diactoros\Response\HtmlResponse;
 use Zend\Expressive\Template\TemplateRendererInterface;
 
 /**
- * Class HomePageAction
+ * Class ShowIntroAction
  *
  * @package Application\Action
  */
-class HomePageAction
+class ShowIntroAction
 {
     /**
      * @var TemplateRendererInterface
@@ -33,7 +33,7 @@ class HomePageAction
     private $pizzaService;
 
     /**
-     * HomePageAction constructor.
+     * ShowIntroAction constructor.
      *
      * @param TemplateRendererInterface $template
      * @param PizzaServiceInterface     $pizzaService
@@ -65,7 +65,7 @@ class HomePageAction
         ];
 
         return new HtmlResponse(
-            $this->template->render('pizza::home-page', $data)
+            $this->template->render('pizza::intro', $data)
         );
     }
 }

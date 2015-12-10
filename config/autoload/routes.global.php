@@ -13,5 +13,18 @@ return [
             Zend\Expressive\Router\RouterInterface::class =>
                 Zend\Expressive\Router\ZendRouter::class,
         ],
+        'factories' => [
+            Application\Action\HomePageAction::class =>
+                Application\Action\HomePageFactory::class,
+        ],
+    ],
+
+    'routes' => [
+        [
+            'name' => 'home',
+            'path' => '/',
+            'middleware' => Application\Action\HomePageAction::class,
+            'allowed_methods' => ['GET'],
+        ],
     ],
 ];
