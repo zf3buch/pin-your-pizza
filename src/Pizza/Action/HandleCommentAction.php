@@ -67,7 +67,7 @@ class HandleCommentAction
         $this->pizzaService->saveComment($id, $commentData);
 
         return new RedirectResponse(
-            $this->router->generateUri('show-pizza', ['id' => $id])
+            $this->router->generateUri('pizza-show', ['id' => $id])
         );
     }
 }
