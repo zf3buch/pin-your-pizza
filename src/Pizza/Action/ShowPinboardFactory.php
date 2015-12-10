@@ -14,22 +14,22 @@ use Interop\Container\ContainerInterface;
 use Zend\Expressive\Template\TemplateRendererInterface;
 
 /**
- * Class ShowIntroFactory
+ * Class ShowPinboardFactory
  *
  * @package Application\Action
  */
-class ShowIntroFactory
+class ShowPinboardFactory
 {
     /**
      * @param ContainerInterface $container
      *
-     * @return ShowIntroAction
+     * @return ShowPinboardAction
      */
     public function __invoke(ContainerInterface $container)
     {
         $template = $container->get(TemplateRendererInterface::class);
         $service  = $container->get(PizzaServiceInterface::class);
 
-        return new ShowIntroAction($template, $service);
+        return new ShowPinboardAction($template, $service);
     }
 }
