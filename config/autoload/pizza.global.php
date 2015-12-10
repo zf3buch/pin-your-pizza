@@ -10,9 +10,9 @@
 return [
     'dependencies' => [
         'factories' => [
-            Pizza\Action\ShowIntroAction::class  =>
-                Pizza\Action\ShowIntroFactory::class,
-            Pizza\Action\ShowPizzaAction::class  =>
+            Pizza\Action\ShowPinboardAction::class =>
+                Pizza\Action\ShowPinboardFactory::class,
+            Pizza\Action\ShowPizzaAction::class    =>
                 Pizza\Action\ShowPizzaFactory::class,
             Pizza\Action\HandleVoteAction::class =>
                 Pizza\Action\HandleVoteFactory::class,
@@ -24,9 +24,9 @@ return [
 
     'routes' => [
         [
-            'name'            => 'pizza-intro',
+            'name'            => 'pizza-pinboard',
             'path'            => '/pizza',
-            'middleware'      => Pizza\Action\ShowIntroAction::class,
+            'middleware'      => Pizza\Action\ShowPinboardAction::class,
             'allowed_methods' => ['GET'],
         ],
         [
