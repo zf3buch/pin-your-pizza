@@ -12,7 +12,6 @@ return [
         'factories' => [
             Pizza\Action\ShowIntroAction::class =>
                 Pizza\Action\ShowIntroFactory::class,
-
             Pizza\Action\ShowPizzaAction::class =>
                 Pizza\Action\ShowPizzaFactory::class,
 
@@ -29,20 +28,20 @@ return [
             'allowed_methods' => ['GET'],
         ],
         [
-            'name' => 'show-pizza',
-            'path' => '/pizza/:id',
-            'middleware' => Pizza\Action\ShowPizzaAction::class,
+            'name'            => 'pizza-show',
+            'path'            => '/pizza/:id',
+            'middleware'      => Pizza\Action\ShowPizzaAction::class,
             'allowed_methods' => ['GET'],
-            'options' => [
+            'options'         => [
                 'constraints' => [
-                    'id' => '[0-9]+',
+                    'id' => '[1-9][0-9]*',
                 ],
             ],
         ],
     ],
 
     'templates' => [
-        'paths'  => [
+        'paths' => [
             'pizza' => ['templates/pizza'],
         ]
     ],
