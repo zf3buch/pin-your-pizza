@@ -13,30 +13,41 @@
         }
     ],
     "require": {
+        "php": "^5.5 || ^7.0",
         "roave/security-advisories": "dev-master",
         "zendframework/zend-db": "^2.5",
-        "zendframework/zend-expressive": "^0.5",
+        "zendframework/zend-expressive": "~1.0.0@rc || ^1.0",
+        "zendframework/zend-expressive-zendrouter": "^1.0",
+        "zendframework/zend-expressive-zendviewrenderer": "^1.0",
+        "zendframework/zend-expressive-helpers": "^1.2",
         "zendframework/zend-stdlib": "~2.7",
-        "zendframework/zend-expressive-zendrouter": "^0.1",
         "zendframework/zend-servicemanager": "^2.5",
-        "ocramius/proxy-manager": "^1.0",
-        "zendframework/zend-expressive-zendviewrenderer": "^0.1.2"
+        "ocramius/proxy-manager": "^1.0"
     },
     "require-dev": {
-        "composer/composer": ">=1.0.0-alpha10",
         "phpunit/phpunit": "^4.8",
         "squizlabs/php_codesniffer": "^2.3",
         "filp/whoops": "^1.1"
     },
     "autoload": {
         "psr-4": {
-            "Pizza\\": "modules/Pizza/src/"
+            "Application\\": "src/Application/",
+            "Pizza\\": "src/Pizza/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ApplicationTest\\": "test/ApplicationTest/"
         }
     },
     "scripts": {
-        "test": [
-            "php vendor/squizlabs/php_codesniffer/scripts/phpcs",
-            "php vendor/phpunit/phpunit/phpunit"
-        ]
+        "check": [
+            "@cs",
+            "@test"
+        ],
+        "cs": "phpcs",
+        "cs-fix": "phpcbf",
+        "serve": "php -S 0.0.0.0:8080 -t public/",
+        "test": "phpunit"
     }
 }

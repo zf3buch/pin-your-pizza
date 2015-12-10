@@ -9,9 +9,16 @@
 
 return [
     'dependencies' => [
+        'invokables' => [
+            Zend\Expressive\Helper\ServerUrlHelper::class =>
+                Zend\Expressive\Helper\ServerUrlHelper::class,
+        ],
+
         'factories' => [
             Zend\Expressive\Application::class =>
                 Zend\Expressive\Container\ApplicationFactory::class,
+            Zend\Expressive\Helper\UrlHelper::class =>
+                Zend\Expressive\Helper\UrlHelperFactory::class,
         ]
     ]
 ];

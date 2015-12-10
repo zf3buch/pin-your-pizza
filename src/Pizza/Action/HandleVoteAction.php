@@ -70,7 +70,7 @@ class HandleVoteAction
         }
 
         return new RedirectResponse(
-            $this->router->generateUri('show-pizza', ['id' => $id])
+            $this->router->generateUri('pizza-show', ['id' => $id])
         );
     }
 }
