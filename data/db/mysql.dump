@@ -17,15 +17,15 @@ CREATE TABLE IF NOT EXISTS `comment` (
 INSERT INTO `comment` (`id`, `pizza`, `date`, `name`, `text`) VALUES
 (1, 1, '2015-11-25 20:26:12', 'Peter', '<p>Sehr lecker!</p>'),
 (2, 1, '2015-11-25 20:26:49', 'Paul', '<p>Beste Pizza!</p>'),
-(21, 2, '2015-11-25 20:27:40', 'Luigi', '<p>Könnte meine Mamma nicht besser machen!</p>'),
-(27, 3, '2015-11-25 20:28:45', 'Heinzelmann', '<p>Irgendwie langweilig.</p>'),
-(28, 4, '2015-11-25 20:29:19', 'Heinzelmann', '<p>Toter Fisch hat auf Pizza nichts zu suchen!</p>'),
-(29, 5, '2015-11-25 20:29:45', 'Heinzelmann', '<p>Geht so!</p>'),
-(30, 6, '2015-11-25 20:30:13', 'Heinzelmann', '<p>Da sind ja gar keine Peperoni darauf!</p>'),
-(31, 6, '2015-11-25 20:30:32', 'Luigi', '<p>Da steht ja auch Peperone und nicht Peperoni!</p>'),
-(32, 6, '2015-11-25 20:27:40', 'Heinzelmann', '<p>Witzbold! Als wenn da ein Unterschied wäre...</p>'),
-(33, 6, '2015-11-25 20:30:55', 'Luigi', '<p>Peperone heißt nun mal Paprika, du Schlaumeier!</p>'),
-(34, 8, '2015-11-25 20:31:22', 'Peter', '<p>Es gibt kaum etwas besseres...</p>');
+(3, 2, '2015-11-25 20:27:40', 'Luigi', '<p>Könnte meine Mamma nicht besser machen!</p>'),
+(4, 3, '2015-11-25 20:28:45', 'Heinzelmann', '<p>Irgendwie langweilig.</p>'),
+(5, 4, '2015-11-25 20:29:19', 'Heinzelmann', '<p>Toter Fisch hat auf Pizza nichts zu suchen!</p>'),
+(6, 5, '2015-11-25 20:29:45', 'Heinzelmann', '<p>Geht so!</p>'),
+(7, 6, '2015-11-25 20:30:13', 'Heinzelmann', '<p>Da sind ja gar keine Peperoni darauf!</p>'),
+(8, 6, '2015-11-25 20:30:32', 'Luigi', '<p>Da steht ja auch Peperone und nicht Peperoni!</p>'),
+(9, 6, '2015-11-25 20:27:40', 'Heinzelmann', '<p>Witzbold! Als wenn da ein Unterschied wäre...</p>'),
+(10, 6, '2015-11-25 20:30:55', 'Luigi', '<p>Peperone heißt nun mal Paprika, du Schlaumeier!</p>'),
+(11, 8, '2015-11-25 20:31:22', 'Peter', '<p>Es gibt kaum etwas besseres...</p>');
 
 DROP TABLE IF EXISTS `pizza`;
 
