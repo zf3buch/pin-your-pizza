@@ -19,7 +19,7 @@ return [
             Pizza\Action\HandleCommentAction::class =>
                 Pizza\Action\HandleCommentFactory::class,
 
-            Pizza\Model\Table\PizzaTableInterface::class =>
+            Pizza\Model\Table\PizzaTableInterface::class   =>
                 Pizza\Model\Table\PizzaTableFactory::class,
             Pizza\Model\Table\CommentTableInterface::class =>
                 Pizza\Model\Table\CommentTableFactory::class,
@@ -68,8 +68,11 @@ return [
         [
             'name'            => 'pizza-comment',
             'path'            => '/pizza/:id/comment',
-            'middleware'      => Pizza\Action\HandleCommentAction::class,
-            'allowed_methods' => ['GET'],
+            'middleware'      => [
+                Pizza\Action\HandleCommentAction::class,
+                Pizza\Action\ShowPizzaAction::class,
+            ],
+            'allowed_methods' => ['POST'],
             'options'         => [
                 'constraints' => [
                     'id' => '[1-9][0-9]*',

@@ -9,8 +9,9 @@
 
 namespace Pizza\Action;
 
-use Pizza\Model\Service\PizzaServiceInterface;
 use Interop\Container\ContainerInterface;
+use Pizza\Form\CommentForm;
+use Pizza\Model\Service\PizzaServiceInterface;
 use Zend\Expressive\Router\RouterInterface;
 
 /**
@@ -29,7 +30,8 @@ class HandleCommentFactory
     {
         $router  = $container->get(RouterInterface::class);
         $service = $container->get(PizzaServiceInterface::class);
+        $form    = $container->get(CommentForm::class);
 
-        return new HandleCommentAction($router, $service);
+        return new HandleCommentAction($router, $service, $form);
     }
 }

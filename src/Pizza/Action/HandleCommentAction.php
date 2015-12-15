@@ -9,6 +9,7 @@
 
 namespace Pizza\Action;
 
+use Pizza\Form\CommentForm;
 use Pizza\Model\Service\PizzaServiceInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -34,17 +35,25 @@ class HandleCommentAction
     private $pizzaService;
 
     /**
+     * @var CommentForm
+     */
+    private $commentForm;
+
+    /**
      * HandleCommentAction constructor.
      *
      * @param RouterInterface       $router
      * @param PizzaServiceInterface $pizzaService
+     * @param CommentForm           $commentForm
      */
     public function __construct(
         RouterInterface $router,
-        PizzaServiceInterface $pizzaService
+        PizzaServiceInterface $pizzaService,
+        CommentForm $commentForm
     ) {
         $this->router       = $router;
         $this->pizzaService = $pizzaService;
+        $this->commentForm  = $commentForm;
     }
 
     /**
@@ -58,16 +67,22 @@ class HandleCommentAction
         ServerRequestInterface $request, ResponseInterface $response,
         callable $next = null
     ) {
-        // get params
         $id = $request->getAttribute('id');
 
-        // prepare comment data
-        $commentData = [];
+        $postData = $request->getParsedBody();
 
-        $this->pizzaService->saveComment($id, $commentData);
+        $this->commentForm->setData($postData);
 
-        return new RedirectResponse(
-            $this->router->generateUri('pizza-show', ['id' => $id])
-        );
+        if ($this->commentForm->isValid()) {
+            $this->pizzaService->saveComment(
+                $id, $this->commentForm->getData()
+            );
+
+            return new RedirectResponse(
+                $this->router->generateUri('pizza-show', ['id' => $id])
+            );
+        }
+
+        return $next($request, $response);
     }
 }
