@@ -9,6 +9,7 @@
 
 namespace Pizza\Action;
 
+use Pizza\Form\CommentForm;
 use Pizza\Model\Service\PizzaServiceInterface;
 use Interop\Container\ContainerInterface;
 use Zend\Expressive\Template\TemplateRendererInterface;
@@ -29,7 +30,8 @@ class ShowPizzaFactory
     {
         $template = $container->get(TemplateRendererInterface::class);
         $service  = $container->get(PizzaServiceInterface::class);
+        $form     = $container->get(CommentForm::class);
 
-        return new ShowPizzaAction($template, $service);
+        return new ShowPizzaAction($template, $service, $form);
     }
 }

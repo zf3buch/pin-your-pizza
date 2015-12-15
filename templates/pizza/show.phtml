@@ -7,8 +7,14 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
+use Pizza\Form\CommentForm;
+
 $urlVote    = $this->url('pizza-vote', ['id' => $this->pizza['id']]);
 $urlComment = $this->url('pizza-comment', ['id' => $this->pizza['id']]);
+
+/** @var CommentForm $form */
+$form = $this->commentForm;
+$form->setAttribute('action', $urlComment);
 
 ?>
 <h1><?php echo $this->pizza['name']; ?></h1>
@@ -56,11 +62,42 @@ $urlComment = $this->url('pizza-comment', ['id' => $this->pizza['id']]);
                 </div>
             </div>
         <?php endforeach ?>
-        <p class="text-center">
-            <a href="<?php echo $urlComment; ?>" class="btn btn-success">
-                Kommentar speichern
-            </a>
-        </p>
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                Neuen Kommentar für
+                <strong><?php echo $this->pizza['name'] ?></strong>
+                schreiben
+            </div>
+            <div class="panel-body">
+                <?php echo $this->form()->openTag($form); ?>
+                <div class="form-group">
+                    <?php echo $this->formLabel($form->get('name')); ?>
+                    <div class="col-sm-8">
+                        <?php
+                        echo $this->formElement($form->get('name'));
+                        echo $this->formElementErrors($form->get('name'));
+                        ?>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <?php echo $this->formLabel($form->get('text')); ?>
+                    <div class="col-sm-8">
+                        <?php
+                        echo $this->formElement($form->get('text'));
+                        echo $this->formElementErrors($form->get('text'));
+                        ?>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-8">
+                        <?php
+                        echo $this->formElement($form->get('save_comment'));
+                        ?>
+                    </div>
+                </div>
+            </div>
+            <?php echo $this->form()->closeTag(); ?>
+        </div>
     </div>
 </div>
 <div class="row">

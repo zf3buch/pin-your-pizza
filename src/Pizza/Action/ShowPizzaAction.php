@@ -9,6 +9,7 @@
 
 namespace Pizza\Action;
 
+use Pizza\Form\CommentForm;
 use Pizza\Model\Service\PizzaServiceInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -33,17 +34,25 @@ class ShowPizzaAction
     private $pizzaService;
 
     /**
+     * @var CommentForm
+     */
+    private $commentForm;
+
+    /**
      * ShowPizzaAction constructor.
      *
      * @param TemplateRendererInterface $template
      * @param PizzaServiceInterface     $pizzaService
+     * @param CommentForm               $commentForm
      */
     public function __construct(
         TemplateRendererInterface $template,
-        PizzaServiceInterface $pizzaService
+        PizzaServiceInterface $pizzaService,
+        CommentForm $commentForm
     ) {
         $this->template     = $template;
         $this->pizzaService = $pizzaService;
+        $this->commentForm  = $commentForm;
     }
 
     /**
@@ -63,7 +72,8 @@ class ShowPizzaAction
         $pizza = $this->pizzaService->getSinglePizza($id);
 
         $data = [
-            'pizza' => $pizza,
+            'pizza'       => $pizza,
+            'commentForm' => $this->commentForm,
         ];
 
         return new HtmlResponse(
