@@ -26,6 +26,9 @@ return [
 
             Pizza\Model\Service\PizzaServiceInterface::class =>
                 Pizza\Model\Service\DbPizzaServiceFactory::class,
+
+            Pizza\Model\InputFilter\CommentInputFilter::class =>
+                Pizza\Model\InputFilter\CommentInputFilterFactory::class,
         ]
     ],
 
