@@ -29,6 +29,9 @@ return [
 
             Pizza\Model\InputFilter\CommentInputFilter::class =>
                 Pizza\Model\InputFilter\CommentInputFilterFactory::class,
+
+            Pizza\Form\CommentForm::class =>
+                Pizza\Form\CommentFormFactory::class,
         ]
     ],
 
