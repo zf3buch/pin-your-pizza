@@ -20,8 +20,12 @@
         "zendframework/zend-expressive-zendrouter": "^1.0",
         "zendframework/zend-expressive-zendviewrenderer": "^1.0",
         "zendframework/zend-expressive-helpers": "^1.2",
+        "zendframework/zend-form": "^2.5",
+        "zendframework/zend-filter": "^2.5",
+        "zendframework/zend-inputfilter": "^2.5",
         "zendframework/zend-stdlib": "~2.7",
         "zendframework/zend-servicemanager": "^2.5",
+        "zendframework/zend-validator": "^2.5",
         "ocramius/proxy-manager": "^1.0"
     },
     "require-dev": {
