@@ -17,7 +17,7 @@ return [
                 Zend\Expressive\ZendView\ZendViewRendererFactory::class,
 
             Zend\View\HelperPluginManager::class =>
-                Zend\Expressive\ZendView\HelperPluginManagerFactory::class,
+                Application\View\HelperPluginManagerFactory::class,
         ],
     ],
 
