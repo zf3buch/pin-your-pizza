@@ -9,8 +9,8 @@
 
 namespace Pizza\Action;
 
-use Pizza\Model\Service\PizzaServiceInterface;
 use Interop\Container\ContainerInterface;
+use Pizza\Model\Repository\PizzaRepositoryInterface;
 use Zend\Expressive\Template\TemplateRendererInterface;
 
 /**
@@ -27,9 +27,9 @@ class ShowPinboardFactory
      */
     public function __invoke(ContainerInterface $container)
     {
-        $template = $container->get(TemplateRendererInterface::class);
-        $service  = $container->get(PizzaServiceInterface::class);
+        $template   = $container->get(TemplateRendererInterface::class);
+        $repository = $container->get(PizzaRepositoryInterface::class);
 
-        return new ShowPinboardAction($template, $service);
+        return new ShowPinboardAction($template, $repository);
     }
 }
