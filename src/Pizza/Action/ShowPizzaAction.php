@@ -9,7 +9,7 @@
 
 namespace Pizza\Action;
 
-use Pizza\Model\Service\PizzaServiceInterface;
+use Pizza\Model\Repository\PizzaRepositoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\HtmlResponse;
@@ -28,22 +28,22 @@ class ShowPizzaAction
     private $template;
 
     /**
-     * @var PizzaServiceInterface
+     * @var PizzaRepositoryInterface
      */
-    private $pizzaService;
+    private $pizzaRepository;
 
     /**
      * ShowPizzaAction constructor.
      *
      * @param TemplateRendererInterface $template
-     * @param PizzaServiceInterface     $pizzaService
+     * @param PizzaRepositoryInterface     $pizzaRepository
      */
     public function __construct(
         TemplateRendererInterface $template,
-        PizzaServiceInterface $pizzaService
+        PizzaRepositoryInterface $pizzaRepository
     ) {
         $this->template     = $template;
-        $this->pizzaService = $pizzaService;
+        $this->pizzaRepository = $pizzaRepository;
     }
 
     /**
@@ -60,7 +60,7 @@ class ShowPizzaAction
         // get id
         $id = $request->getAttribute('id');
 
-        $pizza = $this->pizzaService->getSinglePizza($id);
+        $pizza = $this->pizzaRepository->getSinglePizza($id);
 
         $data = [
             'pizza' => $pizza,
