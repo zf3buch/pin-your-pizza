@@ -24,8 +24,8 @@ return [
             Pizza\Model\Table\CommentTableInterface::class =>
                 Pizza\Model\Table\CommentTableFactory::class,
 
-            Pizza\Model\Service\PizzaServiceInterface::class =>
-                Pizza\Model\Service\DbPizzaServiceFactory::class,
+            Pizza\Model\Repository\PizzaRepositoryInterface::class =>
+                Pizza\Model\Repository\DbPizzaRepositoryFactory::class,
 
             Pizza\Model\InputFilter\CommentInputFilter::class =>
                 Pizza\Model\InputFilter\CommentInputFilterFactory::class,
