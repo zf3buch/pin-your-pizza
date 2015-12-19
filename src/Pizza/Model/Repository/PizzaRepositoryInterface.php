@@ -7,14 +7,14 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
-namespace Pizza\Model\Service;
+namespace Pizza\Model\Repository;
 
 /**
- * Interface PizzaServiceInterface
+ * Interface PizzaRepositoryInterface
  *
- * @package Pizza\Model\Service
+ * @package Pizza\Model\Repository
  */
-interface PizzaServiceInterface
+interface PizzaRepositoryInterface
 {
     /**
      * Get pizza pinboard

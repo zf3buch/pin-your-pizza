@@ -7,16 +7,16 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
-namespace Pizza\Model\Service;
+namespace Pizza\Model\Repository;
 use Pizza\Model\Table\CommentTableInterface;
 use Pizza\Model\Table\PizzaTableInterface;
 
 /**
- * Class DbPizzaService
+ * Class DbPizzaRepository
  *
- * @package Pizza\Model\Service
+ * @package Pizza\Model\Repository
  */
-class DbPizzaService implements PizzaServiceInterface
+class DbPizzaRepository implements PizzaRepositoryInterface
 {
     /**
      * @var PizzaTableInterface
@@ -29,7 +29,7 @@ class DbPizzaService implements PizzaServiceInterface
     private $commentTable;
 
     /**
-     * DbPizzaService constructor.
+     * DbPizzaRepository constructor.
      *
      * @param PizzaTableInterface   $pizzaTable
      * @param CommentTableInterface $commentTable
