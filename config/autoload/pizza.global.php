@@ -19,8 +19,8 @@ return [
             Pizza\Action\HandleCommentAction::class =>
                 Pizza\Action\HandleCommentFactory::class,
 
-            Pizza\Model\Service\PizzaServiceInterface::class =>
-                Pizza\Model\Service\StaticPizzaServiceFactory::class,
+            Pizza\Model\Repository\PizzaRepositoryInterface::class =>
+                Pizza\Model\Repository\StaticPizzaRepositoryFactory::class,
         ]
     ],
 

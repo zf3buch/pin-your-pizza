@@ -9,8 +9,8 @@
 
 namespace Pizza\Action;
 
-use Pizza\Model\Service\PizzaServiceInterface;
 use Interop\Container\ContainerInterface;
+use Pizza\Model\Repository\PizzaRepositoryInterface;
 use Zend\Expressive\Router\RouterInterface;
 
 /**
@@ -27,9 +27,9 @@ class HandleCommentFactory
      */
     public function __invoke(ContainerInterface $container)
     {
-        $router  = $container->get(RouterInterface::class);
-        $service = $container->get(PizzaServiceInterface::class);
+        $router     = $container->get(RouterInterface::class);
+        $repository = $container->get(PizzaRepositoryInterface::class);
 
-        return new HandleCommentAction($router, $service);
+        return new HandleCommentAction($router, $repository);
     }
 }
