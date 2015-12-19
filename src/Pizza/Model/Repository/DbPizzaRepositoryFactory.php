@@ -7,29 +7,29 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
-namespace Pizza\Model\Service;
+namespace Pizza\Model\Repository;
 
 use Interop\Container\ContainerInterface;
 use Pizza\Model\Table\CommentTableInterface;
 use Pizza\Model\Table\PizzaTableInterface;
 
 /**
- * Class DbPizzaServiceFactory
+ * Class DbPizzaRepositoryFactory
  *
- * @package Pizza\Model\Service
+ * @package Pizza\Model\Repository
  */
-class DbPizzaServiceFactory
+class DbPizzaRepositoryFactory
 {
     /**
      * @param ContainerInterface $container
      *
-     * @return DbPizzaService
+     * @return DbPizzaRepository
      */
     public function __invoke(ContainerInterface $container)
     {
         $pizzaTable   = $container->get(PizzaTableInterface::class);
         $commentTable = $container->get(CommentTableInterface::class);
 
-        return new DbPizzaService($pizzaTable, $commentTable);
+        return new DbPizzaRepository($pizzaTable, $commentTable);
     }
 }
