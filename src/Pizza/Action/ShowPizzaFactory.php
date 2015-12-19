@@ -9,9 +9,9 @@
 
 namespace Pizza\Action;
 
-use Pizza\Form\CommentForm;
-use Pizza\Model\Service\PizzaServiceInterface;
 use Interop\Container\ContainerInterface;
+use Pizza\Form\CommentForm;
+use Pizza\Model\Repository\PizzaRepositoryInterface;
 use Zend\Expressive\Template\TemplateRendererInterface;
 
 /**
@@ -28,10 +28,10 @@ class ShowPizzaFactory
      */
     public function __invoke(ContainerInterface $container)
     {
-        $template = $container->get(TemplateRendererInterface::class);
-        $service  = $container->get(PizzaServiceInterface::class);
-        $form     = $container->get(CommentForm::class);
+        $template   = $container->get(TemplateRendererInterface::class);
+        $repository = $container->get(PizzaRepositoryInterface::class);
+        $form       = $container->get(CommentForm::class);
 
-        return new ShowPizzaAction($template, $service, $form);
+        return new ShowPizzaAction($template, $repository, $form);
     }
 }

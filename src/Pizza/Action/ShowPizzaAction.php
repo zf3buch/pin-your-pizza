@@ -10,7 +10,7 @@
 namespace Pizza\Action;
 
 use Pizza\Form\CommentForm;
-use Pizza\Model\Service\PizzaServiceInterface;
+use Pizza\Model\Repository\PizzaRepositoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\HtmlResponse;
@@ -29,9 +29,9 @@ class ShowPizzaAction
     private $template;
 
     /**
-     * @var PizzaServiceInterface
+     * @var PizzaRepositoryInterface
      */
-    private $pizzaService;
+    private $pizzaRepository;
 
     /**
      * @var CommentForm
@@ -42,17 +42,17 @@ class ShowPizzaAction
      * ShowPizzaAction constructor.
      *
      * @param TemplateRendererInterface $template
-     * @param PizzaServiceInterface     $pizzaService
+     * @param PizzaRepositoryInterface  $pizzaRepository
      * @param CommentForm               $commentForm
      */
     public function __construct(
         TemplateRendererInterface $template,
-        PizzaServiceInterface $pizzaService,
+        PizzaRepositoryInterface $pizzaRepository,
         CommentForm $commentForm
     ) {
-        $this->template     = $template;
-        $this->pizzaService = $pizzaService;
-        $this->commentForm  = $commentForm;
+        $this->template        = $template;
+        $this->pizzaRepository = $pizzaRepository;
+        $this->commentForm     = $commentForm;
     }
 
     /**
@@ -69,7 +69,7 @@ class ShowPizzaAction
         // get id
         $id = $request->getAttribute('id');
 
-        $pizza = $this->pizzaService->getSinglePizza($id);
+        $pizza = $this->pizzaRepository->getSinglePizza($id);
 
         $data = [
             'pizza'       => $pizza,
