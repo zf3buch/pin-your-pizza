@@ -69,8 +69,13 @@ class HandleVoteAction
             $this->pizzaRepository->saveVoting($id, $star);
         }
 
+        $routeParams = [
+            'id'   => $id,
+            'lang' => $request->getAttribute('lang'),
+        ];
+
         return new RedirectResponse(
-            $this->router->generateUri('pizza-show', ['id' => $id])
+            $this->router->generateUri('pizza-show', $routeParams)
         );
     }
 }

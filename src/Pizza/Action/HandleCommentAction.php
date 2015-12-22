@@ -78,8 +78,13 @@ class HandleCommentAction
                 $id, $this->commentForm->getData()
             );
 
+            $routeParams = [
+                'id'   => $id,
+                'lang' => $request->getAttribute('lang'),
+            ];
+
             return new RedirectResponse(
-                $this->router->generateUri('pizza-show', ['id' => $id])
+                $this->router->generateUri('pizza-show', $routeParams)
             );
         }
 

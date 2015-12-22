@@ -22,9 +22,14 @@ return [
     'routes' => [
         [
             'name' => 'home',
-            'path' => '/',
+            'path' => '/:lang',
             'middleware' => Application\Action\HomePageAction::class,
             'allowed_methods' => ['GET'],
+            'options'         => [
+                'constraints' => [
+                    'lang' => '(de|en)',
+                ],
+            ],
         ],
     ],
 ];

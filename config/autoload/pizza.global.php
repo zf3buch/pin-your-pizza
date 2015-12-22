@@ -38,36 +38,43 @@ return [
     'routes' => [
         [
             'name'            => 'pizza-pinboard',
-            'path'            => '/pizza',
+            'path'            => '/:lang/pizza',
             'middleware'      => Pizza\Action\ShowPinboardAction::class,
             'allowed_methods' => ['GET'],
+            'options'         => [
+                'constraints' => [
+                    'lang' => '(de|en)',
+                ],
+            ],
         ],
         [
             'name'            => 'pizza-show',
-            'path'            => '/pizza/:id',
+            'path'            => '/:lang/pizza/:id',
             'middleware'      => Pizza\Action\ShowPizzaAction::class,
             'allowed_methods' => ['GET'],
             'options'         => [
                 'constraints' => [
-                    'id' => '[1-9][0-9]*',
+                    'id'   => '[1-9][0-9]*',
+                    'lang' => '(de|en)',
                 ],
             ],
         ],
         [
             'name'            => 'pizza-vote',
-            'path'            => '/pizza/:id/vote',
+            'path'            => '/:lang/pizza/:id/vote',
             'middleware'      => Pizza\Action\HandleVoteAction::class,
             'allowed_methods' => ['GET'],
             'options'         => [
                 'constraints' => [
                     'id'   => '[1-9][0-9]*',
                     'star' => '[1-5]{1}',
+                    'lang' => '(de|en)',
                 ],
             ],
         ],
         [
             'name'            => 'pizza-comment',
-            'path'            => '/pizza/:id/comment',
+            'path'            => '/:lang/pizza/:id/comment',
             'middleware'      => [
                 Pizza\Action\HandleCommentAction::class,
                 Pizza\Action\ShowPizzaAction::class,
@@ -75,7 +82,8 @@ return [
             'allowed_methods' => ['POST'],
             'options'         => [
                 'constraints' => [
-                    'id' => '[1-9][0-9]*',
+                    'id'   => '[1-9][0-9]*',
+                    'lang' => '(de|en)',
                 ],
             ],
         ],

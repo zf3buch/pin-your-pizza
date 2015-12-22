@@ -9,6 +9,10 @@
 
 return [
     'dependencies' => [
+        'invokables' => [
+            Application\I18n\Middleware\CheckLanguage::class =>
+                Application\I18n\Middleware\CheckLanguage::class,
+        ],
         'factories' => [
             Zend\Expressive\Helper\ServerUrlMiddleware::class =>
                 Zend\Expressive\Helper\ServerUrlMiddlewareFactory::class,
@@ -21,6 +25,7 @@ return [
         'pre_routing' => [
             [
                 'middleware' => [
+                    Application\I18n\Middleware\CheckLanguage::class,
                     Zend\Expressive\Helper\ServerUrlMiddleware::class,
                     Zend\Expressive\Helper\UrlHelperMiddleware::class,
                 ],
