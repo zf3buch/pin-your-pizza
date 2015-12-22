@@ -32,16 +32,23 @@ class SetLanguageObserver implements RouteResultObserverInterface
     private $locales = [];
 
     /**
+     * @var Translator
+     */
+    private $translator;
+
+    /**
      * SetLanguageObserver constructor.
      *
      * @param string     $defaultLang
      * @param array      $allowedLocales
+     * @param Translator $translator
      */
     public function __construct(
-        $defaultLang, array $allowedLocales = []
+        $defaultLang, array $allowedLocales = [], Translator $translator
     ) {
         $this->default    = $defaultLang;
         $this->locales    = $allowedLocales;
+        $this->translator = $translator;
     }
 
     /**
@@ -59,5 +66,7 @@ class SetLanguageObserver implements RouteResultObserverInterface
         $locale = $this->locales[$lang];
 
         Locale::setDefault($locale);
+
+        $this->translator->setLocale($locale);
     }
 }

@@ -10,6 +10,7 @@
 namespace Application\I18n\Observer;
 
 use Interop\Container\ContainerInterface;
+use Zend\I18n\Translator\Translator;
 
 /**
  * Class SetLanguageObserverFactory
@@ -25,10 +26,11 @@ class SetLanguageObserverFactory
      */
     public function __invoke(ContainerInterface $container)
     {
-        $config = $container->get('config')['i18n'];
+        $config     = $container->get('config')['i18n'];
+        $translator = $container->get(Translator::class);
 
         return new SetLanguageObserver(
-            $config['defaultLang'], $config['allowedLocales']
+            $config['defaultLang'], $config['allowedLocales'], $translator
         );
     }
 }

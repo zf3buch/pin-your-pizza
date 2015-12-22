@@ -8,11 +8,29 @@
  */
 
 return [
+    'dependencies' => [
+        'factories' => [
+            Zend\I18n\Translator\Translator::class =>
+                Application\I18n\Translator\TranslatorFactory::class,
+        ],
+    ],
+
     'i18n' => [
         'defaultLang'    => 'de',
         'allowedLocales' => [
             'de' => 'de_DE',
             'en' => 'en_US',
         ]
-    ]
+    ],
+
+    'translate' => [
+        'translation_file_patterns' => [
+            [
+                'type'         => 'phpArray',
+                'base_dir'     => APPLICATION_ROOT . '/language/application',
+                'pattern'      => '%s.php',
+                'text_domain'  => 'default',
+            ],
+        ],
+    ],
 ];

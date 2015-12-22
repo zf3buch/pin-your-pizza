@@ -94,4 +94,15 @@ return [
             'pizza' => ['templates/pizza'],
         ]
     ],
+
+    'translate' => [
+        'translation_file_patterns' => [
+            [
+                'type'         => 'phpArray',
+                'base_dir'     => APPLICATION_ROOT . '/language/pizza',
+                'pattern'      => '%s.php',
+                'text_domain'  => 'default',
+            ],
+        ],
+    ],
 ];
