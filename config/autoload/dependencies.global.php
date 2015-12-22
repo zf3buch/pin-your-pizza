@@ -19,6 +19,8 @@ return [
                 Zend\Expressive\Container\ApplicationFactory::class,
             Zend\Expressive\Helper\UrlHelper::class =>
                 Application\View\Helper\UrlHelperFactory::class,
+            Application\I18n\Observer\SetLanguageObserver::class =>
+                Application\I18n\Observer\SetLanguageObserverFactory::class,
         ]
     ]
 ];
