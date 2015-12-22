@@ -7,12 +7,12 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 ?>
-<h1><?php echo $this->welcome; ?></h1>
+<h1><?php echo $this->translate($this->welcome); ?></h1>
 <div class="well text-center">
     <h3>
         <i class="fa fa-hourglass fa-spin"></i>
         &nbsp;
-        In Kürze mehr...
+        <?php echo $this->translate('application_message_soon_more'); ?>
         &nbsp;
         <i class="fa fa-hourglass fa-spin"></i>
     </h3>

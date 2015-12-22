@@ -60,7 +60,7 @@ class ShowPinboardAction
         $pizzaList = $this->pizzaRepository->getPizzaPinboard();
 
         $data = [
-            'welcome'   => 'Willkommen zu Pin Your Pizza!',
+            'welcome'   => 'pizza_heading_welcome',
             'pizzaList' => $pizzaList,
         ];
 

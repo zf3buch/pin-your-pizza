@@ -40,7 +40,7 @@ class CommentInputFilter extends InputFilter
                         'name'                   => 'NotEmpty',
                         'break_chain_on_failure' => true,
                         'options'                => [
-                            'message' => 'Bitte Namen eingeben!',
+                            'message' => 'pizza_validator_name_notempty',
                         ],
                     ],
                     [
@@ -49,7 +49,7 @@ class CommentInputFilter extends InputFilter
                             'encoding' => 'UTF-8',
                             'min'      => 3,
                             'max'      => 64,
-                            'message'  => 'Nur %min%-%max% Zeichen erlaubt!',
+                            'message'  => 'pizza_validator_name_length',
                         ],
                     ],
                 ],
@@ -73,7 +73,7 @@ class CommentInputFilter extends InputFilter
                         'name'                   => 'NotEmpty',
                         'break_chain_on_failure' => true,
                         'options'                => [
-                            'message' => 'Bitte Kommentar eingeben!',
+                            'message' => 'pizza_validator_comment_notempty',
                         ],
                     ],
                     [
@@ -81,7 +81,7 @@ class CommentInputFilter extends InputFilter
                         'options' => [
                             'encoding' => 'UTF-8',
                             'min'      => 3,
-                            'message'  => 'Mindestens %min% Zeichen eingeben!',
+                            'message'  => 'pizza_validator_comment_length',
                         ],
                     ],
                 ],

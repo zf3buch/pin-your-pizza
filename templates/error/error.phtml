@@ -9,13 +9,22 @@
 ?>
 <?php $this->headTitle(sprintf('%d %s', $this->status, $this->reason)); ?>
 
-<h1>Oops!</h1>
-<h2>This is awkward.</h2>
-<p>We encountered a <?php echo $this->escapeHtml(sprintf('%d %s', $this->status, $this->reason)); ?> error.</p>
+<h1><?php echo $this->translate('application_heading_oops'); ?></h1>
+<h2><?php echo $this->translate('application_heading_awkward'); ?></h2>
+
+<p>
+    <?php echo sprintf(
+        $this->translate('application_message_not_found_500'),
+        $this->escapeHtml(sprintf('%d %s', $this->status, $this->reason))
+    ); ?>
+</p>
+
 <?php if ($this->status == 404) : ?>
     <p>
-        You are looking for something that doesn't exist or may have moved. Check out one of the links on this page
-        or head back to <a href="/">Home</a>.
+        <?php echo sprintf(
+            $this->translate('application_message_not_found_404'),
+            $this->url('home')
+        ); ?>
     </p>
 <?php else : ?>
     <pre><code><?php var_dump($this->error); ?></code></pre>

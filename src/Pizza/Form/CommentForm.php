@@ -33,7 +33,7 @@ class CommentForm extends Form
                 'name'       => 'name',
                 'type'       => 'text',
                 'options'    => [
-                    'label'            => 'Ihr Name',
+                    'label'            => 'pizza_label_name',
                     'label_attributes' => [
                         'class' => 'col-sm-4 control-label',
                     ],
@@ -49,7 +49,7 @@ class CommentForm extends Form
                 'name'       => 'text',
                 'type'       => 'textarea',
                 'options'    => [
-                    'label'            => 'Ihr Kommentar',
+                    'label'            => 'pizza_label_comment',
                     'label_attributes' => [
                         'class' => 'col-sm-4 control-label',
                     ],
@@ -66,7 +66,7 @@ class CommentForm extends Form
                 'type'       => 'submit',
                 'attributes' => [
                     'class' => 'btn btn-success',
-                    'value' => 'Neuen Kommentar speichern',
+                    'value' => 'pizza_action_new_comment',
                     'id'    => 'save_comment',
                 ],
             ]

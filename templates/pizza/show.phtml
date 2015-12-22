@@ -51,11 +51,14 @@ $form->setAttribute('action', $urlComment);
         <?php foreach ($this->pizza['comments'] as $comment) : ?>
             <div class="panel panel-success">
                 <div class="panel-heading">
-                    <?php echo $comment['name']; ?>
-                    schrieb am
-                    <?php echo $comment['date']; ?>
-                    um
-                    <?php echo $comment['date']; ?>
+                    <?php
+                    echo sprintf(
+                        $this->translate('pizza_message_comment'),
+                        $comment['name'],
+                        $comment['date'],
+                        $comment['date']
+                    );
+                    ?>
                 </div>
                 <div class="panel-body">
                     <?php echo $comment['text']; ?>
@@ -64,9 +67,12 @@ $form->setAttribute('action', $urlComment);
         <?php endforeach ?>
         <div class="panel panel-success">
             <div class="panel-heading">
-                Neuen Kommentar für
-                <strong><?php echo $this->pizza['name'] ?></strong>
-                schreiben
+                <?php
+                echo sprintf(
+                    $this->translate('pizza_heading_new_comment'),
+                    $this->pizza['name']
+                );
+                ?>
             </div>
             <div class="panel-body">
                 <?php echo $this->form()->openTag($form); ?>
@@ -104,7 +110,7 @@ $form->setAttribute('action', $urlComment);
     <p class="text-center">
         <a href="<?php echo $this->url('pizza-pinboard') ?>"
            class="btn btn-success">
-            Zurück zur Pizza Pinnwand
+            <?php echo $this->translate('pizza_action_back_pinboard'); ?>
         </a>
     </p>
 </div>
