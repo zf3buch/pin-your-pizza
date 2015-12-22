@@ -55,8 +55,16 @@ $form->setAttribute('action', $urlComment);
                     echo sprintf(
                         $this->translate('pizza_message_comment'),
                         $comment['name'],
-                        $comment['date'],
-                        $comment['date']
+                        $this->dateFormat(
+                            strtotime($comment['date']),
+                            IntlDateFormatter::LONG,
+                            IntlDateFormatter::NONE
+                        ),
+                        $this->dateFormat(
+                            strtotime($comment['date']),
+                            IntlDateFormatter::NONE,
+                            IntlDateFormatter::LONG
+                        )
                     );
                     ?>
                 </div>

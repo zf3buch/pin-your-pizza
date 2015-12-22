@@ -95,6 +95,18 @@ $this->inlineScript()->prependFile(
                     </a>
                 </li>
             </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="<?php echo $this->url(null, ['lang' => 'de']) ?>">
+                        <?php echo $this->translate('application_navigation_german'); ?>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo $this->url(null, ['lang' => 'en']) ?>">
+                        <?php echo $this->translate('application_navigation_english'); ?>
+                    </a>
+                </li>
+            </ul>
         </div>
     </nav>
 </div>
