@@ -18,6 +18,8 @@ return [
                 Zend\Expressive\Helper\ServerUrlMiddlewareFactory::class,
             Zend\Expressive\Helper\UrlHelperMiddleware::class =>
                 Zend\Expressive\Helper\UrlHelperMiddlewareFactory::class,
+            Application\I18n\Middleware\InjectTranslator::class =>
+                Application\I18n\Middleware\InjectTranslatorFactory::class,
         ],
     ],
 
@@ -28,6 +30,7 @@ return [
                     Application\I18n\Middleware\CheckLanguage::class,
                     Zend\Expressive\Helper\ServerUrlMiddleware::class,
                     Zend\Expressive\Helper\UrlHelperMiddleware::class,
+                    Application\I18n\Middleware\InjectTranslator::class,
                 ],
             ],
         ],
