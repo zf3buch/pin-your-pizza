@@ -16,7 +16,7 @@ return [
 
         'factories' => [
             Zend\Expressive\Application::class =>
-                Zend\Expressive\Container\ApplicationFactory::class,
+                Application\Expressive\ApplicationFactory::class,
             Zend\Expressive\Helper\UrlHelper::class =>
                 Application\View\Helper\UrlHelperFactory::class,
         ]
