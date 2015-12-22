@@ -22,11 +22,6 @@ use Zend\I18n\Translator\Translator;
 class SetLanguageObserver implements RouteResultObserverInterface
 {
     /**
-     * @var Translator
-     */
-    private $translator;
-
-    /**
      * @var string
      */
     private $default = null;
@@ -39,14 +34,12 @@ class SetLanguageObserver implements RouteResultObserverInterface
     /**
      * SetLanguageObserver constructor.
      *
-     * @param Translator $translator
      * @param string     $defaultLang
      * @param array      $allowedLocales
      */
     public function __construct(
-        Translator $translator, $defaultLang, array $allowedLocales = []
+        $defaultLang, array $allowedLocales = []
     ) {
-        $this->translator = $translator;
         $this->default    = $defaultLang;
         $this->locales    = $allowedLocales;
     }
@@ -66,7 +59,5 @@ class SetLanguageObserver implements RouteResultObserverInterface
         $locale = $this->locales[$lang];
 
         Locale::setDefault($locale);
-
-        $this->translator->setLocale($locale);
     }
 }

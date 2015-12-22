@@ -9,6 +9,7 @@
 
 namespace Application\Expressive;
 
+use Application\I18n\Observer\SetLanguageObserver;
 use Interop\Container\ContainerInterface;
 use Zend\Expressive\Application;
 use Zend\Expressive\Container\ApplicationFactory as ExpressiveApplicationFactory;
@@ -30,6 +31,9 @@ class ApplicationFactory extends ExpressiveApplicationFactory
     public function __invoke(ContainerInterface $container)
     {
         $application = parent::__invoke($container);
+        $application->attachRouteResultObserver(
+            $container->get(SetLanguageObserver::class)
+        );
 
         return $application;
     }
