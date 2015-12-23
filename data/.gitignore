@@ -2,4 +2,4 @@
 !.gitignore
 !pizza-list.php
 !db
-!db/mysql.dump
+!db/pizza.mysql.sql
