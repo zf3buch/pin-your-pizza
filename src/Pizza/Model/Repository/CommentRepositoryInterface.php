@@ -10,35 +10,28 @@
 namespace Pizza\Model\Repository;
 
 /**
- * Interface PizzaRepositoryInterface
+ * Interface CommentRepositoryInterface
  *
  * @package Pizza\Model\Repository
  */
-interface PizzaRepositoryInterface
+interface CommentRepositoryInterface
 {
     /**
-     * Get pizza pinboard
-     *
-     * @return array
-     */
-    public function getPizzaPinboard();
-
-    /**
-     * Get single pizza
+     * Save comment for a single pizza
      *
      * @param integer $id
-     *
-     * @return array
-     */
-    public function getSinglePizza($id);
-
-    /**
-     * Save vote for a single pizza
-     *
-     * @param integer $id
-     * @param integer $star
+     * @param array   $data
      *
      * @return boolean
      */
-    public function saveVoting($id, $star);
+    public function saveComment($id, $data);
+
+    /**
+     * Delete comment
+     *
+     * @param integer $id
+     *
+     * @return boolean
+     */
+    public function deleteComment($id);
 }
