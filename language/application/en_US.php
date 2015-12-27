@@ -21,6 +21,7 @@ return [
     'application_navigation_english' => 'English',
 
     'application_action_toggle_navigation' => 'Toogle navigation',
+    'application_action_back_home'         => 'Back to home',
 
     'application_message_soon_more'     => 'More to come in the near future...',
     'application_message_not_found_404' => 'The requested page was not found. You are looking for something that doesn\'t exist or may have moved. ',
