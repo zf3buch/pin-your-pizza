@@ -14,22 +14,22 @@ use Pizza\Model\Table\CommentTableInterface;
 use Pizza\Model\Table\PizzaTableInterface;
 
 /**
- * Class DbPizzaRepositoryFactory
+ * Class PizzaRepositoryFactory
  *
  * @package Pizza\Model\Repository
  */
-class DbPizzaRepositoryFactory
+class PizzaRepositoryFactory
 {
     /**
      * @param ContainerInterface $container
      *
-     * @return DbPizzaRepository
+     * @return PizzaRepository
      */
     public function __invoke(ContainerInterface $container)
     {
         $pizzaTable   = $container->get(PizzaTableInterface::class);
         $commentTable = $container->get(CommentTableInterface::class);
 
-        return new DbPizzaRepository($pizzaTable, $commentTable);
+        return new PizzaRepository($pizzaTable, $commentTable);
     }
 }
