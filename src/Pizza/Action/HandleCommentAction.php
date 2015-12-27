@@ -10,7 +10,7 @@
 namespace Pizza\Action;
 
 use Pizza\Form\CommentForm;
-use Pizza\Model\Repository\PizzaRepositoryInterface;
+use Pizza\Model\Repository\CommentRepositoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\HtmlResponse;
@@ -30,9 +30,9 @@ class HandleCommentAction
     private $router;
 
     /**
-     * @var PizzaRepositoryInterface
+     * @var CommentRepositoryInterface
      */
-    private $pizzaRepository;
+    private $commentRepository;
 
     /**
      * @var CommentForm
@@ -42,17 +42,17 @@ class HandleCommentAction
     /**
      * HandleCommentAction constructor.
      *
-     * @param RouterInterface          $router
-     * @param PizzaRepositoryInterface $pizzaRepository
+     * @param RouterInterface            $router
+     * @param CommentRepositoryInterface $commentRepository
      * @param CommentForm              $commentForm
      */
     public function __construct(
         RouterInterface $router,
-        PizzaRepositoryInterface $pizzaRepository,
+        CommentRepositoryInterface $commentRepository,
         CommentForm $commentForm
     ) {
-        $this->router          = $router;
-        $this->pizzaRepository = $pizzaRepository;
+        $this->router            = $router;
+        $this->commentRepository = $commentRepository;
         $this->commentForm     = $commentForm;
     }
 
@@ -74,7 +74,7 @@ class HandleCommentAction
         $this->commentForm->setData($postData);
 
         if ($this->commentForm->isValid()) {
-            $this->pizzaRepository->saveComment(
+            $this->commentRepository->saveComment(
                 $id, $this->commentForm->getData()
             );
 
