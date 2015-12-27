@@ -12,7 +12,6 @@ namespace Application\I18n\Observer;
 use Locale;
 use Zend\Expressive\Router\RouteResult;
 use Zend\Expressive\Router\RouteResultObserverInterface;
-use Zend\I18n\Translator\Translator;
 
 /**
  * Class SetLanguageObserver
@@ -57,12 +56,13 @@ class SetLanguageObserver implements RouteResultObserverInterface
     public function update(RouteResult $result)
     {
         if ($result->isFailure()) {
-            return;
+            $lang = $this->default;
+        } else {
+            $matchedParams = $result->getMatchedParams();
+
+            $lang = $matchedParams['lang'] ?: $this->default;
         }
 
-        $matchedParams = $result->getMatchedParams();
-
-        $lang   = $matchedParams['lang'] ?: $this->default;
         $locale = $this->locales[$lang];
 
         Locale::setDefault($locale);
