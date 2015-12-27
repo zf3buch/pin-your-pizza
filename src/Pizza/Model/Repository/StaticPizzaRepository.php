@@ -69,18 +69,4 @@ class StaticPizzaRepository implements PizzaRepositoryInterface
     {
         return true;
     }
-
-    /**
-     * Save comment for a single pizza
-     *
-     * @param integer $id
-     * @param array   $data
-     *
-     * @return boolean
-     */
-    public function saveComment($id, $data)
-    {
-        return true;
-    }
-
 }
