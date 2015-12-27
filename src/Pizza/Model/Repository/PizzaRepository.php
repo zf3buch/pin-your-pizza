@@ -12,11 +12,11 @@ use Pizza\Model\Table\CommentTableInterface;
 use Pizza\Model\Table\PizzaTableInterface;
 
 /**
- * Class DbPizzaRepository
+ * Class PizzaRepository
  *
  * @package Pizza\Model\Repository
  */
-class DbPizzaRepository implements PizzaRepositoryInterface
+class PizzaRepository implements PizzaRepositoryInterface
 {
     /**
      * @var PizzaTableInterface
@@ -29,7 +29,7 @@ class DbPizzaRepository implements PizzaRepositoryInterface
     private $commentTable;
 
     /**
-     * DbPizzaRepository constructor.
+     * PizzaRepository constructor.
      *
      * @param PizzaTableInterface   $pizzaTable
      * @param CommentTableInterface $commentTable
@@ -93,25 +93,4 @@ class DbPizzaRepository implements PizzaRepositoryInterface
     {
         return $this->pizzaTable->saveVoting($id, $star);
     }
-
-    /**
-     * Save comment for a single pizza
-     *
-     * @param integer $id
-     * @param array   $data
-     *
-     * @return boolean
-     */
-    public function saveComment($id, $data)
-    {
-        $insertData = [
-            'pizza' => $id,
-            'date'  => date('Y-m-d H:i:s'),
-            'name'  => isset($data['name']) ? $data['name'] : 'unbekannt',
-            'text'  => isset($data['text']) ? $data['text'] : 'kein Kommentar',
-        ];
-
-        return $this->commentTable->insert($insertData);
-    }
-
 }
