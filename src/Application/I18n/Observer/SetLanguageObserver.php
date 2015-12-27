@@ -57,12 +57,13 @@ class SetLanguageObserver implements RouteResultObserverInterface
     public function update(RouteResult $result)
     {
         if ($result->isFailure()) {
-            return;
+            $lang = $this->default;
+        } else {
+            $matchedParams = $result->getMatchedParams();
+
+            $lang = $matchedParams['lang'] ?: $this->default;
         }
 
-        $matchedParams = $result->getMatchedParams();
-
-        $lang   = $matchedParams['lang'] ?: $this->default;
         $locale = $this->locales[$lang];
 
         Locale::setDefault($locale);
