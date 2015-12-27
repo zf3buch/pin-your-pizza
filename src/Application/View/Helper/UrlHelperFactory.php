@@ -36,7 +36,11 @@ class UrlHelperFactory
             ));
         }
 
-        return new UrlHelper($container->get(RouterInterface::class));
+        $helper = new UrlHelper($container->get(RouterInterface::class));
+        $helper->setDefaultLang('de');
+        $helper->setDefaultRoute('home');
+
+        return $helper;
     }
 
 }
