@@ -36,7 +36,13 @@ class UrlHelperFactory
             ));
         }
 
-        return new UrlHelper($container->get(RouterInterface::class));
+        $config = $container->get('config')['i18n'];
+
+        $helper = new UrlHelper($container->get(RouterInterface::class));
+        $helper->setDefaultLang($config['defaultLang']);
+        $helper->setDefaultRoute($config['defaultRoute']);
+
+        return $helper;
     }
 
 }
