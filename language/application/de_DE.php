@@ -21,6 +21,7 @@ return [
     'application_navigation_english' => 'Englisch',
 
     'application_action_toggle_navigation' => 'Navigation umschalten',
+    'application_action_back_home'         => 'Zurück zur Startseite',
 
     'application_message_soon_more'     => 'In Kürze mehr...',
     'application_message_not_found_404' => 'Die angeforderte Seite wurde nicht gefunden. Du suchst etwas, das hier nicht existiert oder verschoben wurde.',
