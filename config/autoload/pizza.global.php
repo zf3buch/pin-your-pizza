@@ -12,6 +12,8 @@ return [
         'factories' => [
             Pizza\Model\Repository\PizzaRepositoryInterface::class =>
                 Pizza\Model\Repository\StaticPizzaRepositoryFactory::class,
+            Pizza\Model\Repository\CommentRepositoryInterface::class =>
+                Pizza\Model\Repository\StaticCommentRepositoryFactory::class,
         ]
     ]
 ];
