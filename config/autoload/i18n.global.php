@@ -13,6 +13,7 @@ return [
         'allowedLocales' => [
             'de' => 'de_DE',
             'en' => 'en_US',
-        ]
-    ]
+        ],
+        'defaultRoute'   => 'home',
+    ],
 ];
