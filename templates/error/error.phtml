@@ -6,26 +6,38 @@
  * @link       https://github.com/zf3buch/pin-your-pizza
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
+
+if ($this->status == 404) {
+    $title     = $this->translate('application_title_404');
+    $header    = $this->translate('application_heading_404');
+    $subHeader = $this->translate('application_heading_awkward');
+    $message   = $this->translate('application_message_not_found_404');
+} else {
+    $title     = $this->translate('application_title_500');
+    $header    = sprintf(
+        $this->translate('application_heading_500'), $this->status
+    );
+    $subHeader = $this->translate('application_heading_awkward');
+    $message   = sprintf(
+        $this->translate('application_message_error_500'),
+        $this->status,
+        $this->reason
+    );
+}
+
+$this->headTitle($title);
 ?>
-<?php $this->headTitle(sprintf('%d %s', $this->status, $this->reason)); ?>
 
-<h1><?php echo $this->translate('application_heading_oops'); ?></h1>
-<h2><?php echo $this->translate('application_heading_awkward'); ?></h2>
+<h1><?php echo $header ?></h1>
+<div class="alert alert-danger">
+    <h3><?php echo $subHeader; ?></h3>
 
-<p>
-    <?php echo sprintf(
-        $this->translate('application_message_not_found_500'),
-        $this->escapeHtml(sprintf('%d %s', $this->status, $this->reason))
-    ); ?>
-</p>
-
-<?php if ($this->status == 404) : ?>
-    <p>
-        <?php echo sprintf(
-            $this->translate('application_message_not_found_404'),
-            $this->url('home')
-        ); ?>
+    <p><?php echo $message; ?></p>
+    <hr>
+    <p class="text-center">
+        <a class="btn btn-success"
+           href="<?php echo $this->url('home'); ?>">
+            <?php echo $this->translate('application_action_back_home'); ?>
+        </a>
     </p>
-<?php else : ?>
-    <pre><code><?php var_dump($this->error); ?></code></pre>
-<?php endif; ?>
+</div>

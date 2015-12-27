@@ -11,7 +11,7 @@ namespace Pizza\Action;
 
 use Interop\Container\ContainerInterface;
 use Pizza\Form\CommentForm;
-use Pizza\Model\Repository\PizzaRepositoryInterface;
+use Pizza\Model\Repository\CommentRepositoryInterface;
 use Zend\Expressive\Router\RouterInterface;
 
 /**
@@ -29,7 +29,7 @@ class HandleCommentFactory
     public function __invoke(ContainerInterface $container)
     {
         $router     = $container->get(RouterInterface::class);
-        $repository = $container->get(PizzaRepositoryInterface::class);
+        $repository = $container->get(CommentRepositoryInterface::class);
         $form       = $container->get(CommentForm::class);
 
         return new HandleCommentAction($router, $repository, $form);

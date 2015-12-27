@@ -8,8 +8,12 @@
  */
 
 return [
+    'application_title_404' => 'Page not found',
+    'application_title_500' => 'An Error occured',
+
     'application_heading_welcome' => 'Welcome to Pin Your Pizza!',
-    'application_heading_oops'    => 'Oops!',
+    'application_heading_404'     => '404 - Page was not found',
+    'application_heading_500'     => '%1$s - An error occured',
     'application_heading_awkward' => 'This is awkward.',
 
     'application_navigation_home'    => 'Home',
@@ -18,8 +22,7 @@ return [
 
     'application_action_toggle_navigation' => 'Toogle navigation',
 
-    'application_message_soon_more'       => 'More to come in the near future...',
-    'application_message_encountered_404' => 'We encountered a "404 Not Found" error.',
-    'application_message_encountered_500' => 'We encountered a "%1$s" Fehler error.',
-    'application_message_not_found_404'   => 'You are looking for something that doesn\'t exist or may have moved. Check out one of the links on this page or head back to <a href="%1$s">Home</a>.',
+    'application_message_soon_more'     => 'More to come in the near future...',
+    'application_message_not_found_404' => 'The requested page was not found. You are looking for something that doesn\'t exist or may have moved. ',
+    'application_message_error_500'     => 'We encountered a "%1$s %2$s" error.',
 ];

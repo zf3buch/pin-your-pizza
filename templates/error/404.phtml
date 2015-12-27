@@ -6,17 +6,24 @@
  * @link       https://github.com/zf3buch/pin-your-pizza
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
-?>
-<?php $this->headTitle('404 Not Found'); ?>
+$title     = $this->translate('application_title_404');
+$header    = $this->translate('application_heading_404');
+$subHeader = $this->translate('application_heading_awkward');
+$message   = $this->translate('application_message_not_found_404');
 
-<h1><?php echo $this->translate('application_heading_oops'); ?></h1>
-<h2><?php echo $this->translate('application_heading_awkward'); ?></h2>
-<p>
-    <?php echo $this->translate('application_message_encountered_404'); ?>
-</p>
-<p>
-    <?php echo sprintf(
-        $this->translate('application_message_not_found_404'),
-        $this->url('home')
-    ); ?>
-</p>
+$this->headTitle($title);
+?>
+
+<h1><?php echo $header ?></h1>
+<div class="alert alert-danger">
+    <h3><?php echo $subHeader; ?></h3>
+
+    <p><?php echo $message; ?></p>
+    <hr>
+    <p class="text-center">
+        <a class="btn btn-success"
+           href="<?php echo $this->url('home'); ?>">
+            <?php echo $this->translate('application_action_back_home'); ?>
+        </a>
+    </p>
+</div>
