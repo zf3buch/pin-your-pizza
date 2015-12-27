@@ -25,7 +25,9 @@ return [
                 Pizza\Model\Table\CommentTableFactory::class,
 
             Pizza\Model\Repository\PizzaRepositoryInterface::class =>
-                Pizza\Model\Repository\DbPizzaRepositoryFactory::class,
+                Pizza\Model\Repository\PizzaRepositoryFactory::class,
+            Pizza\Model\Repository\CommentRepositoryInterface::class =>
+                Pizza\Model\Repository\CommentRepositoryFactory::class,
         ]
     ],
 
