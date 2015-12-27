@@ -6,17 +6,32 @@
  * @link       https://github.com/zf3buch/pin-your-pizza
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
-?>
-<?php $this->headTitle(sprintf('%d %s', $this->status, $this->reason)); ?>
 
-<h1>Oops!</h1>
-<h2>This is awkward.</h2>
-<p>We encountered a <?php echo $this->escapeHtml(sprintf('%d %s', $this->status, $this->reason)); ?> error.</p>
-<?php if ($this->status == 404) : ?>
-    <p>
-        You are looking for something that doesn't exist or may have moved. Check out one of the links on this page
-        or head back to <a href="/">Home</a>.
+if ($this->status == 404) {
+    $title     = 'Seite nicht gefunden';
+    $header    = '404 - Seite wurde nicht gefunden';
+    $subHeader = 'Das ist uns echt unangenehm';
+    $message   = 'Die angeforderte Seite wurde nicht gefunden. Du suchst etwas, das hier nicht existiert oder verschoben wurde.';
+} else {
+    $title     = 'Fehler aufgetreten';
+    $header    = $this->status . ' - Es ist ein Fehler aufgetreten';
+    $subHeader = 'Das ist uns echt unangenehm';
+    $message   = 'Wir sind auf einen "%1$s" Fehler gestossen.';
+}
+
+$this->headTitle($title);
+?>
+
+<h1><?php echo $header ?></h1>
+<div class="alert alert-danger">
+    <h3><?php echo $subHeader; ?></h3>
+
+    <p><?php echo $message; ?></p>
+    <hr>
+    <p class="text-center">
+        <a class="btn btn-success"
+           href="<?php echo $this->url('home'); ?>">
+            Zurück zur Startseite
+        </a>
     </p>
-<?php else : ?>
-    <pre><code><?php var_dump($this->error); ?></code></pre>
-<?php endif; ?>
+</div>

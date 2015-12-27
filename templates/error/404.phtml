@@ -6,13 +6,24 @@
  * @link       https://github.com/zf3buch/pin-your-pizza
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
-?>
-<?php $this->headTitle('404 Not Found'); ?>
+$title     = 'Seite nicht gefunden';
+$header    = '404 - Seite wurde nicht gefunden';
+$subHeader = 'Das ist uns echt unangenehm';
+$message   = 'Die angeforderte Seite wurde nicht gefunden. Du suchst etwas, das hier nicht existiert oder verschoben wurde.';
 
-<h1>Oops!</h1>
-<h2>This is awkward.</h2>
-<p>We encountered a 404 Not Found error.</p>
-<p>
-    You are looking for something that doesn't exist or may have moved. Check out one of the links on this page
-    or head back to <a href="<?php echo $this->url('home') ?>">Home</a>.
-</p>
+$this->headTitle($title);
+?>
+
+<h1><?php echo $header ?></h1>
+<div class="alert alert-danger">
+    <h3><?php echo $subHeader; ?></h3>
+
+    <p><?php echo $message; ?></p>
+    <hr>
+    <p class="text-center">
+        <a class="btn btn-success"
+           href="<?php echo $this->url('home'); ?>">
+            Zurück zur Startseite
+        </a>
+    </p>
+</div>
