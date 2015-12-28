@@ -90,6 +90,17 @@ return [
                 ],
             ],
         ],
+        [
+            'name'            => 'user-handle-logout',
+            'path'            => '/:lang/user/logout',
+            'middleware'      => User\Action\HandleLogoutAction::class,
+            'allowed_methods' => ['GET'],
+            'options'         => [
+                'constraints' => [
+                    'lang' => '(de|en)',
+                ],
+            ],
+        ],
     ],
 
     'templates' => [
