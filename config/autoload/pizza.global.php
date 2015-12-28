@@ -101,7 +101,7 @@ return [
         'translation_file_patterns' => [
             [
                 'type'         => 'phpArray',
-                'base_dir'     => APPLICATION_ROOT . '/language/pizza',
+                'base_dir'     => PROJECT_ROOT . '/language/pizza',
                 'pattern'      => '%s.php',
                 'text_domain'  => 'default',
             ],

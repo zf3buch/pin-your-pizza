@@ -28,7 +28,7 @@ return [
         'translation_file_patterns' => [
             [
                 'type'         => 'phpArray',
-                'base_dir'     => APPLICATION_ROOT . '/language/application',
+                'base_dir'     => PROJECT_ROOT . '/language/application',
                 'pattern'      => '%s.php',
                 'text_domain'  => 'default',
             ],
