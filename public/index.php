@@ -10,7 +10,7 @@
 use Interop\Container\ContainerInterface;
 
 // define application root for better file path definitions
-define('APPLICATION_ROOT', realpath(__DIR__ . '/..'));
+define('PROJECT_ROOT', realpath(__DIR__ . '/..'));
 
 // define application environment, needs to be set within virtual host
 // but could be chosen by any other identifier
@@ -28,13 +28,13 @@ if (php_sapi_name() === 'cli-server'
 }
 
 // setup autoloading from composer
-require_once APPLICATION_ROOT . '/vendor/autoload.php';
+require_once PROJECT_ROOT . '/vendor/autoload.php';
 
 // change working dir
 chdir(dirname(__DIR__));
 
 /** @var ContainerInterface $container */
-$container = require APPLICATION_ROOT . '/config/container.php';
+$container = require PROJECT_ROOT . '/config/container.php';
 
 // run the application
 $app = $container->get('Zend\Expressive\Application')->run();
