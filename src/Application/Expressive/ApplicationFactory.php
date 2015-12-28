@@ -13,6 +13,7 @@ use Application\I18n\Observer\SetLanguageObserver;
 use Interop\Container\ContainerInterface;
 use Zend\Expressive\Application;
 use Zend\Expressive\Container\ApplicationFactory as ExpressiveApplicationFactory;
+use Zend\Session\Config\SessionConfig;
 
 /**
  * Class ApplicationFactory
@@ -30,6 +31,8 @@ class ApplicationFactory extends ExpressiveApplicationFactory
      */
     public function __invoke(ContainerInterface $container)
     {
+        $container->get(SessionConfig::class);
+
         $application = parent::__invoke($container);
         $application->attachRouteResultObserver(
             $container->get(SetLanguageObserver::class)
