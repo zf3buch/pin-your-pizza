@@ -10,7 +10,7 @@
 use Zend\ServiceManager\Config;
 use Zend\ServiceManager\ServiceManager;
 
-$config = require APPLICATION_ROOT . '/config/config.php';
+$config = require PROJECT_ROOT . '/config/config.php';
 
 $container = new ServiceManager(new Config($config['dependencies']));
 $container->setService('config', $config);
