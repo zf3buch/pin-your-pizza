@@ -12,6 +12,11 @@ if ($this->status == 404) {
     $header    = $this->translate('application_heading_404');
     $subHeader = $this->translate('application_heading_awkward');
     $message   = $this->translate('application_message_not_found_404');
+} elseif ($this->status == 403) {
+    $title     = $this->translate('application_title_403');
+    $header    = $this->translate('application_heading_403');
+    $subHeader = $this->translate('application_heading_awkward');
+    $message   = $this->translate('application_message_not_allowed_403');
 } else {
     $title     = $this->translate('application_title_500');
     $header    = sprintf(
