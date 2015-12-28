@@ -11,6 +11,7 @@ namespace User\Action;
 
 use Interop\Container\ContainerInterface;
 use User\Form\LoginForm;
+use Zend\Authentication\AuthenticationServiceInterface;
 use Zend\Expressive\Router\RouterInterface;
 
 /**
@@ -30,8 +31,12 @@ class HandleLoginFactory
         $router = $container->get(RouterInterface::class);
         $form   = $container->get(LoginForm::class);
 
+        $authService = $container->get(
+            AuthenticationServiceInterface::class
+        );
+
         return new HandleLoginAction(
-            $router, $form
+            $router, $form, $authService
         );
     }
 }

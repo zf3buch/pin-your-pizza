@@ -13,7 +13,7 @@ return [
             User\Permissions\Rbac::class => User\Permissions\Rbac::class,
         ],
 
-        'factories'  => [
+        'factories' => [
             User\Action\ShowIntroAction::class      =>
                 User\Action\ShowIntroFactory::class,
             User\Action\HandleLoginAction::class    =>
@@ -40,6 +40,11 @@ return [
                 User\Form\LoginFormFactory::class,
             User\Form\RegisterForm::class =>
                 User\Form\RegisterFormFactory::class,
+
+            Zend\Authentication\Adapter\AdapterInterface::class       =>
+                User\Authentication\Adapter\AdapterFactory::class,
+            Zend\Authentication\AuthenticationServiceInterface::class =>
+                User\Authentication\AuthenticationServiceFactory::class,
         ],
     ],
 
