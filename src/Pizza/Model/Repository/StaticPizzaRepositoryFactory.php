@@ -25,7 +25,7 @@ class StaticPizzaRepositoryFactory
      */
     public function __invoke(ContainerInterface $container)
     {
-        $pizzaList = include APPLICATION_ROOT . '/data/pizza-list.php';
+        $pizzaList = include PROJECT_ROOT . '/data/pizza-list.php';
 
         return new StaticPizzaRepository($pizzaList);
     }
