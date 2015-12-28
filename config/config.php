@@ -10,7 +10,7 @@
 use Zend\Stdlib\ArrayUtils;
 use Zend\Stdlib\Glob;
 
-$cachedConfigFile = APPLICATION_ROOT . '/data/cache/app_config.php';
+$cachedConfigFile = PROJECT_ROOT . '/data/cache/app_config.php';
 
 if (is_file($cachedConfigFile)) {
     $config = include $cachedConfigFile;
@@ -19,7 +19,7 @@ if (is_file($cachedConfigFile)) {
 
     $pattern = '{{,*.}global,{,*.}' . APPLICATION_ENV . ',{,*.}local}.php';
     $files = Glob::glob(
-        APPLICATION_ROOT . '/config/autoload/' . $pattern, Glob::GLOB_BRACE
+        PROJECT_ROOT . '/config/autoload/' . $pattern, Glob::GLOB_BRACE
     );
 
     foreach ($files as $file) {
