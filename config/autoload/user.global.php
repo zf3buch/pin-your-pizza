@@ -131,4 +131,11 @@ return [
             ],
         ],
     ],
+
+    'view_helpers' => [
+        'factories' => [
+            'userIdentity' => User\View\Helper\IdentityFactory::class,
+            'userAllowed'  => User\View\Helper\AllowedFactory::class,
+        ],
+    ],
 ];

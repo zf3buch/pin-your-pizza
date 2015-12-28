@@ -13,8 +13,9 @@ return [
 
     'pizza_navigation_pinboard' => 'Pizza Pinnwand',
 
-    'pizza_action_back_pinboard' => 'Zurück zur Pizza Pinnwand',
-    'pizza_action_new_comment'   => 'Neuen Kommentar speichern',
+    'pizza_action_back_pinboard'  => 'Zurück zur Pizza Pinnwand',
+    'pizza_action_new_comment'    => 'Neuen Kommentar speichern',
+    'pizza_action_delete_comment' => 'Kommentar löschen',
 
     'pizza_message_comment' => '%1$s schrieb am %2$s um %3$s',
 

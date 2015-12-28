@@ -13,8 +13,9 @@ return [
 
     'pizza_navigation_pinboard' => 'Pizza Pinboard',
 
-    'pizza_action_back_pinboard' => 'Back to pizza pinboard',
-    'pizza_action_new_comment'   => 'Write new comment',
+    'pizza_action_back_pinboard'  => 'Back to pizza pinboard',
+    'pizza_action_new_comment'    => 'Write new comment',
+    'pizza_action_delete_comment' => 'Delete comment',
 
     'pizza_message_comment' => '%1$s wrote on %2$s at %3$s',
 

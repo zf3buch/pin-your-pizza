@@ -41,6 +41,7 @@ $form->setAttribute('action', $urlComment);
 
             <div class="caption">
                 <p id="stars-<?php echo $this->pizza['id'] ?>"></p>
+
                 <p>
                     <?php echo $this->pizza['name'] ?>
                 </p>
@@ -70,48 +71,78 @@ $form->setAttribute('action', $urlComment);
                 </div>
                 <div class="panel-body">
                     <?php echo $comment['text']; ?>
+                    <?php if ($this->userAllowed(
+                        'pizza-delete-comment'
+                    )
+                    ): ?>
+                        <?php
+                        $urlDelete = $this->url(
+                            'pizza-delete-comment',
+                            [
+                                'id'        => $this->pizza['id'],
+                                'commentId' => $comment['id'],
+                            ]
+                        );
+                        ?>
+                        <p>
+                            <a href="<?php echo $urlDelete; ?>"
+                               class="btn btn-danger">
+                                <?php echo $this->translate(
+                                    'pizza_action_delete_comment'
+                                ); ?>
+                            </a>
+                        </p>
+                    <?php endif; ?>
                 </div>
             </div>
         <?php endforeach ?>
-        <div class="panel panel-success">
-            <div class="panel-heading">
-                <?php
-                echo sprintf(
-                    $this->translate('pizza_heading_new_comment'),
-                    $this->pizza['name']
-                );
-                ?>
+        <?php if ($this->userAllowed('pizza-comment')): ?>
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <?php
+                    echo sprintf(
+                        $this->translate('pizza_heading_new_comment'),
+                        $this->pizza['name']
+                    );
+                    ?>
+                </div>
+                <div class="panel-body">
+                    <?php echo $this->form()->openTag($form); ?>
+                    <div class="form-group">
+                        <?php echo $this->formLabel($form->get('name')); ?>
+                        <div class="col-sm-8">
+                            <?php
+                            echo $this->formElement($form->get('name'));
+                            echo $this->formElementErrors(
+                                $form->get('name')
+                            );
+                            ?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <?php echo $this->formLabel($form->get('text')); ?>
+                        <div class="col-sm-8">
+                            <?php
+                            echo $this->formElement($form->get('text'));
+                            echo $this->formElementErrors(
+                                $form->get('text')
+                            );
+                            ?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-8">
+                            <?php
+                            echo $this->formElement(
+                                $form->get('save_comment')
+                            );
+                            ?>
+                        </div>
+                    </div>
+                </div>
+                <?php echo $this->form()->closeTag(); ?>
             </div>
-            <div class="panel-body">
-                <?php echo $this->form()->openTag($form); ?>
-                <div class="form-group">
-                    <?php echo $this->formLabel($form->get('name')); ?>
-                    <div class="col-sm-8">
-                        <?php
-                        echo $this->formElement($form->get('name'));
-                        echo $this->formElementErrors($form->get('name'));
-                        ?>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <?php echo $this->formLabel($form->get('text')); ?>
-                    <div class="col-sm-8">
-                        <?php
-                        echo $this->formElement($form->get('text'));
-                        echo $this->formElementErrors($form->get('text'));
-                        ?>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-4 col-sm-8">
-                        <?php
-                        echo $this->formElement($form->get('save_comment'));
-                        ?>
-                    </div>
-                </div>
-            </div>
-            <?php echo $this->form()->closeTag(); ?>
-        </div>
+        <?php endif; ?>
     </div>
 </div>
 <div class="row">
