@@ -18,6 +18,8 @@ return [
                 Pizza\Action\HandleVoteFactory::class,
             Pizza\Action\HandleCommentAction::class =>
                 Pizza\Action\HandleCommentFactory::class,
+            Pizza\Action\DeleteCommentAction::class =>
+                Pizza\Action\DeleteCommentFactory::class,
 
             Pizza\Model\Table\PizzaTableInterface::class   =>
                 Pizza\Model\Table\PizzaTableFactory::class,
@@ -86,6 +88,19 @@ return [
                 'constraints' => [
                     'id'   => '[1-9][0-9]*',
                     'lang' => '(de|en)',
+                ],
+            ],
+        ],
+        [
+            'name'            => 'pizza-delete-comment',
+            'path'            => '/:lang/pizza/:id/delete-comment/:commentId',
+            'middleware'      => Pizza\Action\DeleteCommentAction::class,
+            'allowed_methods' => ['GET'],
+            'options'         => [
+                'constraints' => [
+                    'id'      => '[1-9][0-9]*',
+                    'commentId' => '[1-9][0-9]*',
+                    'lang'    => '(de|en)',
                 ],
             ],
         ],
