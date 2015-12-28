@@ -10,6 +10,7 @@
 namespace User\Action;
 
 use Interop\Container\ContainerInterface;
+use Zend\Authentication\AuthenticationServiceInterface;
 use Zend\Expressive\Router\RouterInterface;
 
 /**
@@ -28,8 +29,12 @@ class HandleLogoutFactory
     {
         $router = $container->get(RouterInterface::class);
 
+        $authenticationService = $container->get(
+            AuthenticationServiceInterface::class
+        );
+
         return new HandleLogoutAction(
-            $router
+            $router, $authenticationService
         );
     }
 }

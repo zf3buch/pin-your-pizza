@@ -11,6 +11,8 @@ namespace User\Action;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Zend\Authentication\AuthenticationService;
+use Zend\Authentication\AuthenticationServiceInterface;
 use Zend\Diactoros\Response\RedirectResponse;
 use Zend\Expressive\Router\RouterInterface;
 
@@ -27,14 +29,22 @@ class HandleLogoutAction
     private $router;
 
     /**
+     * @var AuthenticationServiceInterface|AuthenticationService
+     */
+    private $authenticationService;
+
+    /**
      * HandleLogoutAction constructor.
      *
-     * @param RouterInterface $router
+     * @param RouterInterface                $router
+     * @param AuthenticationServiceInterface $authenticationService
      */
     public function __construct(
-        RouterInterface $router
+        RouterInterface $router,
+        AuthenticationServiceInterface $authenticationService
     ) {
-        $this->router = $router;
+        $this->router                = $router;
+        $this->authenticationService = $authenticationService;
     }
 
     /**
@@ -49,6 +59,8 @@ class HandleLogoutAction
         ResponseInterface $response,
         callable $next = null
     ) {
+        $this->authenticationService->clearIdentity();
+
         $routeParams = [
             'lang' => $request->getAttribute('lang'),
         ];
