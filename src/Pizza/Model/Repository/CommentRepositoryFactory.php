@@ -11,7 +11,6 @@ namespace Pizza\Model\Repository;
 
 use Interop\Container\ContainerInterface;
 use Pizza\Model\Table\CommentTableInterface;
-use Pizza\Model\Table\PizzaTableInterface;
 
 /**
  * Class CommentRepositoryFactory
