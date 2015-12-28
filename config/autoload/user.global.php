@@ -9,6 +9,10 @@
 
 return [
     'dependencies' => [
+        'invokables' => [
+            User\Permissions\Rbac::class => User\Permissions\Rbac::class,
+        ],
+
         'factories'  => [
             User\Action\ShowIntroAction::class      =>
                 User\Action\ShowIntroFactory::class,
