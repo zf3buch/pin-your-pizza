@@ -7,4 +7,16 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
-return [];
+return [
+    'templates' => [
+        'paths' => [
+            'bootstrap' => [BOOTSTRAP_ROOT . '/templates/bootstrap'],
+        ],
+    ],
+
+    'view_helpers' => [
+        'invokables' => [
+            'bootstrapForm' => Bootstrap\View\Helper\Form::class,
+        ],
+    ],
+];

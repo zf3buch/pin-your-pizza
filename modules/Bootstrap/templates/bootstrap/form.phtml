@@ -6,4 +6,32 @@
  * @link       https://github.com/zf3buch/pin-your-pizza
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
+use Zend\Form\Element\Csrf;
+use Zend\Form\Element\Hidden;
+use Zend\Form\Element\Submit;
+use Zend\Form\FormInterface;
+
+/** @var FormInterface $form */
+$form = $this->form;
 ?>
+<?php echo $this->form()->openTag($form); ?>
+<?php foreach ($form as $element) : ?>
+    <?php if ($element instanceof Hidden || $element instanceof Csrf): ?>
+        <?php echo $this->formElement($element); ?>
+    <?php elseif ($element instanceof Submit): ?>
+        <div class="form-group">
+            <div class="col-sm-offset-4 col-sm-8">
+                <?php echo $this->formElement($element); ?>
+            </div>
+        </div>
+    <?php else: ?>
+        <div class="form-group">
+            <?php echo $this->formLabel($element); ?>
+            <div class="col-sm-8">
+                <?php echo $this->formElement($element); ?>
+                <?php echo $this->formElementErrors($element); ?>
+            </div>
+        </div>
+    <?php endif; ?>
+<?php endforeach; ?>
+<?php echo $this->form()->closeTag(); ?>
