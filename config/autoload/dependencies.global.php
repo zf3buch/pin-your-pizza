@@ -25,7 +25,7 @@ return [
                 Zend\Expressive\Container\TemplatedErrorHandlerFactory::class,
 
             Zend\Expressive\Template\TemplateRendererInterface::class =>
-                Zend\Expressive\ZendView\ZendViewRendererFactory::class,
+                Application\View\Renderer\ViewRendererFactory::class,
 
             Zend\View\HelperPluginManager::class =>
                 Application\View\HelperPluginManagerFactory::class,
