@@ -46,6 +46,9 @@ return [
             Zend\Authentication\AuthenticationServiceInterface::class =>
                 User\Authentication\AuthenticationServiceFactory::class,
 
+            User\Authorization\AuthorizationMiddleware::class =>
+                User\Authorization\AuthorizationMiddlewareFactory::class,
+
             User\Authorization\AuthorizationObserver::class =>
                 User\Authorization\AuthorizationObserverFactory::class,
         ],
@@ -117,7 +120,7 @@ return [
 
     'templates' => [
         'paths' => [
-            'user' => ['templates/user'],
+            'user' => [USER_ROOT . '/templates/user'],
         ],
     ],
 
@@ -125,7 +128,7 @@ return [
         'translation_file_patterns' => [
             [
                 'type'        => 'phpArray',
-                'base_dir'    => PROJECT_ROOT . '/language/user',
+                'base_dir'    => USER_ROOT . '/language',
                 'pattern'     => '%s.php',
                 'text_domain' => 'default',
             ],

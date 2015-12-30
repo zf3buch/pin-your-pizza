@@ -18,6 +18,7 @@ $pattern = '{{,*.}global,{,*.}' . APPLICATION_ENV . ',{,*.}local}.php';
 $configManager = new ConfigManager(
     [
         Pizza\PizzaConfig::class,
+        User\UserConfig::class,
         Bootstrap\BootstrapConfig::class,
         new PhpFileProvider('config/autoload/' . $pattern),
     ],

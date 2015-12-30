@@ -44,7 +44,7 @@
             "Application\\": "src/Application/",
             "Bootstrap\\": "modules/Bootstrap/src/",
             "Pizza\\": "modules/Pizza/src/",
-            "User\\": "src/User/"
+            "User\\": "modules/User/src"
         }
     },
     "autoload-dev": {
