@@ -19,6 +19,7 @@ $configManager = new ConfigManager(
     [
         Pizza\PizzaConfig::class,
         User\UserConfig::class,
+        I18n\I18nConfig::class,
         Bootstrap\BootstrapConfig::class,
         new PhpFileProvider('config/autoload/' . $pattern),
     ],

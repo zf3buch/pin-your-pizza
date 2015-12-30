@@ -9,7 +9,7 @@
 
 namespace Application\Expressive;
 
-use Application\I18n\Observer\SetLanguageObserver;
+use I18n\Observer\SetLanguageObserver;
 use Interop\Container\ContainerInterface;
 use Zend\Expressive\Application;
 use Zend\Expressive\Container\ApplicationFactory as ExpressiveApplicationFactory;

@@ -7,7 +7,7 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
-namespace Application\I18n\Middleware;
+namespace I18n\Middleware;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -19,7 +19,7 @@ use Zend\View\HelperPluginManager;
 /**
  * Class InjectTranslator
  *
- * @package Application\I18n\Middleware
+ * @package I18n\Middleware
  */
 class InjectTranslator
 {

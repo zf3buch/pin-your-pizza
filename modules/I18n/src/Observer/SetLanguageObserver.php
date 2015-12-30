@@ -7,7 +7,7 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
-namespace Application\I18n\Observer;
+namespace I18n\Observer;
 
 use Locale;
 use Zend\Expressive\Router\RouteResult;
@@ -17,7 +17,7 @@ use Zend\I18n\Translator\Translator;
 /**
  * Class SetLanguageObserver
  *
- * @package Application\I18n\Observer
+ * @package I18n\Observer
  */
 class SetLanguageObserver implements RouteResultObserverInterface
 {

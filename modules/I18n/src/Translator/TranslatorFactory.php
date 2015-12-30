@@ -7,14 +7,14 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
-namespace Application\I18n\Translator;
+namespace I18n\Translator;
 
 use Interop\Container\ContainerInterface;
 
 /**
  * Class TranslatorFactory
  *
- * @package Application\I18n\Translator
+ * @package I18n\Translator
  */
 class TranslatorFactory
 {
