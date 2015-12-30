@@ -7,7 +7,7 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
-namespace AppTest\Action;
+namespace ApplicationTest\Action;
 
 use Application\Action\HomePageAction;
 use Zend\Diactoros\Response;
@@ -17,7 +17,7 @@ use Zend\Expressive\Template\TemplateRendererInterface;
 /**
  * Class HomePageActionTest
  *
- * @package AppTest\Action
+ * @package ApplicationTest\Action
  */
 class HomePageActionTest extends \PHPUnit_Framework_TestCase
 {
