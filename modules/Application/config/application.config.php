@@ -10,28 +10,11 @@
 return [
     'dependencies' => [
         'factories' => [
-            Application\Action\HomePageAction::class =>
-                Application\Action\HomePageFactory::class,
-
             Zend\Db\Adapter\AdapterInterface::class =>
                 Zend\Db\Adapter\AdapterServiceFactory::class,
 
             Zend\Session\Config\SessionConfig::class =>
                 Zend\Session\Service\SessionConfigFactory::class,
-        ],
-    ],
-
-    'routes' => [
-        [
-            'name' => 'home',
-            'path' => '/:lang',
-            'middleware' => Application\Action\HomePageAction::class,
-            'allowed_methods' => ['GET'],
-            'options'         => [
-                'constraints' => [
-                    'lang' => '(de|en)',
-                ],
-            ],
         ],
     ],
 
@@ -43,7 +26,6 @@ return [
             'error/404'      => APPLICATION_ROOT . '/templates/error/404.phtml',
         ],
         'paths'  => [
-            'application' => [APPLICATION_ROOT . '/templates/application'],
             'layout'      => [APPLICATION_ROOT . '/templates/layout'],
             'error'       => [APPLICATION_ROOT . '/templates/error'],
         ]

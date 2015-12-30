@@ -20,6 +20,8 @@ return [
                 Pizza\Action\HandleCommentFactory::class,
             Pizza\Action\DeleteCommentAction::class =>
                 Pizza\Action\DeleteCommentFactory::class,
+            Pizza\Action\RedirectIntroAction::class =>
+                Pizza\Action\RedirectIntroFactory::class,
 
             Pizza\Model\Table\PizzaTableInterface::class   =>
                 Pizza\Model\Table\PizzaTableFactory::class,
@@ -41,9 +43,20 @@ return [
 
     'routes' => [
         [
+            'name'            => 'home',
+            'path'            => '/:lang',
+            'middleware'      => Pizza\Action\ShowPinboardAction::class,
+            'allowed_methods' => ['GET'],
+            'options'         => [
+                'constraints' => [
+                    'lang' => '(de|en)',
+                ],
+            ],
+        ],
+        [
             'name'            => 'pizza-pinboard',
             'path'            => '/:lang/pizza',
-            'middleware'      => Pizza\Action\ShowPinboardAction::class,
+            'middleware'      => Pizza\Action\RedirectIntroAction::class,
             'allowed_methods' => ['GET'],
             'options'         => [
                 'constraints' => [

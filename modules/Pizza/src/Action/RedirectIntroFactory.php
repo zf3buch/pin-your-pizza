@@ -7,27 +7,27 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
-namespace Application\Action;
+namespace Pizza\Action;
 
 use Interop\Container\ContainerInterface;
-use Zend\Expressive\Template\TemplateRendererInterface;
+use Zend\Expressive\Router\RouterInterface;
 
 /**
- * Class HomePageFactory
+ * Class RedirectIntroFactory
  *
- * @package Application\Action
+ * @package Pizza\Action
  */
-class HomePageFactory
+class RedirectIntroFactory
 {
     /**
      * @param ContainerInterface $container
      *
-     * @return HomePageAction
+     * @return RedirectIntroAction
      */
     public function __invoke(ContainerInterface $container)
     {
-        $template = $container->get(TemplateRendererInterface::class);
+        $router = $container->get(RouterInterface::class);
 
-        return new HomePageAction($template);
+        return new RedirectIntroAction($router);
     }
 }
