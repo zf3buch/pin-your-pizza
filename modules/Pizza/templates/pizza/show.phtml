@@ -107,40 +107,8 @@ $form->setAttribute('action', $urlComment);
                     ?>
                 </div>
                 <div class="panel-body">
-                    <?php echo $this->form()->openTag($form); ?>
-                    <div class="form-group">
-                        <?php echo $this->formLabel($form->get('name')); ?>
-                        <div class="col-sm-8">
-                            <?php
-                            echo $this->formElement($form->get('name'));
-                            echo $this->formElementErrors(
-                                $form->get('name')
-                            );
-                            ?>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <?php echo $this->formLabel($form->get('text')); ?>
-                        <div class="col-sm-8">
-                            <?php
-                            echo $this->formElement($form->get('text'));
-                            echo $this->formElementErrors(
-                                $form->get('text')
-                            );
-                            ?>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-4 col-sm-8">
-                            <?php
-                            echo $this->formElement(
-                                $form->get('save_comment')
-                            );
-                            ?>
-                        </div>
-                    </div>
+                    <?php echo $this->bootstrapForm($form); ?>
                 </div>
-                <?php echo $this->form()->closeTag(); ?>
             </div>
         <?php endif; ?>
     </div>
