@@ -43,7 +43,7 @@
         "psr-4": {
             "Application\\": "src/Application/",
             "Bootstrap\\": "modules/Bootstrap/src/",
-            "Pizza\\": "src/Pizza/",
+            "Pizza\\": "modules/Pizza/src/",
             "User\\": "src/User/"
         }
     },

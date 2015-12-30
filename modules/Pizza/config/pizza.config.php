@@ -108,7 +108,7 @@ return [
 
     'templates' => [
         'paths' => [
-            'pizza' => ['templates/pizza'],
+            'pizza' => [PIZZA_ROOT . '/templates/pizza'],
         ]
     ],
 
@@ -116,7 +116,7 @@ return [
         'translation_file_patterns' => [
             [
                 'type'         => 'phpArray',
-                'base_dir'     => PROJECT_ROOT . '/language/pizza',
+                'base_dir'     => PIZZA_ROOT . '/language',
                 'pattern'      => '%s.php',
                 'text_domain'  => 'default',
             ],
