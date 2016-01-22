@@ -46,7 +46,6 @@ class CommentInputFilter extends InputFilter
                     [
                         'name'    => 'StringLength',
                         'options' => [
-                            'encoding' => 'UTF-8',
                             'min'      => 3,
                             'max'      => 64,
                             'message'  => 'pizza_validator_name_length',
@@ -79,7 +78,6 @@ class CommentInputFilter extends InputFilter
                     [
                         'name'    => 'StringLength',
                         'options' => [
-                            'encoding' => 'UTF-8',
                             'min'      => 3,
                             'message'  => 'pizza_validator_comment_length',
                         ],
