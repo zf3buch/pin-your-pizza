@@ -48,9 +48,6 @@ return [
 
             User\Authorization\AuthorizationMiddleware::class =>
                 User\Authorization\AuthorizationMiddlewareFactory::class,
-
-            User\Authorization\AuthorizationObserver::class =>
-                User\Authorization\AuthorizationObserverFactory::class,
         ],
     ],
 

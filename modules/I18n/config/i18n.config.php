@@ -10,18 +10,18 @@
 return [
     'dependencies' => [
         'invokables' => [
-            I18n\Middleware\CheckLanguage::class =>
-                I18n\Middleware\CheckLanguage::class,
+            I18n\Middleware\CheckRootUriMiddleware::class =>
+                I18n\Middleware\CheckRootUriMiddleware::class,
         ],
         'factories' => [
             Zend\I18n\Translator\Translator::class =>
                 I18n\Translator\TranslatorFactory::class,
 
-            I18n\Observer\SetLanguageObserver::class =>
-                I18n\Observer\SetLanguageObserverFactory::class,
-
-            I18n\Middleware\InjectTranslator::class =>
+            I18n\Middleware\InjectTranslatorMiddleware::class =>
                 I18n\Middleware\InjectTranslatorFactory::class,
+
+            I18n\Middleware\LocalizationMiddleware::class =>
+                I18n\Middleware\LocalizationFactory::class,
         ],
     ],
 
