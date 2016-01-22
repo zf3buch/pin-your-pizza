@@ -9,10 +9,12 @@
 
 use Zend\ServiceManager\Config;
 use Zend\ServiceManager\ServiceManager;
+use Zend\Session\Config\SessionConfig;
 
 $config = require PROJECT_ROOT . '/config/config.php';
 
 $container = new ServiceManager(new Config($config['dependencies']));
 $container->setService('config', $config);
+$container->get(SessionConfig::class);
 
 return $container;
