@@ -14,6 +14,8 @@ return [
                 Application\I18n\Middleware\CheckRootUriMiddleware::class,
         ],
         'factories' => [
+            Application\I18n\Middleware\LocalizationMiddleware::class =>
+                Application\I18n\Middleware\LocalizationFactory::class,
             Zend\Expressive\Helper\ServerUrlMiddleware::class =>
                 Zend\Expressive\Helper\ServerUrlMiddlewareFactory::class,
             Zend\Expressive\Helper\UrlHelperMiddleware::class =>
@@ -36,6 +38,7 @@ return [
             'middleware' => [
                 Zend\Expressive\Container\ApplicationFactory::ROUTING_MIDDLEWARE,
                 Zend\Expressive\Helper\UrlHelperMiddleware::class,
+                Application\I18n\Middleware\LocalizationMiddleware::class,
                 Application\I18n\Middleware\InjectTranslatorMiddleware::class,
                 Zend\Expressive\Container\ApplicationFactory::DISPATCH_MIDDLEWARE,
             ],
