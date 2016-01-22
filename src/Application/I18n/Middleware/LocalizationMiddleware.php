@@ -91,9 +91,6 @@ class LocalizationMiddleware
 
         $this->translator->setLocale($locale);
 
-        var_dump($lang);
-        var_dump($locale);
-
         return $next($request, $response);
     }
 }
