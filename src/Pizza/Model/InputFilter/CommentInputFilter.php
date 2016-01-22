@@ -46,7 +46,6 @@ class CommentInputFilter extends InputFilter
                     [
                         'name'    => 'StringLength',
                         'options' => [
-                            'encoding' => 'UTF-8',
                             'min'      => 3,
                             'max'      => 64,
                             'message'  => 'Nur %min%-%max% Zeichen erlaubt!',
@@ -79,7 +78,6 @@ class CommentInputFilter extends InputFilter
                     [
                         'name'    => 'StringLength',
                         'options' => [
-                            'encoding' => 'UTF-8',
                             'min'      => 3,
                             'message'  => 'Mindestens %min% Zeichen eingeben!',
                         ],
