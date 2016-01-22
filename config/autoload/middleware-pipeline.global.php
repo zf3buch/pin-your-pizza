@@ -18,16 +18,28 @@ return [
     ],
 
     'middleware_pipeline' => [
-        'pre_routing' => [
-            [
-                'middleware' => [
-                    Zend\Expressive\Helper\ServerUrlMiddleware::class,
-                    Zend\Expressive\Helper\UrlHelperMiddleware::class,
-                ],
+        'always' => [
+            'middleware' => [
+                Zend\Expressive\Helper\ServerUrlMiddleware::class,
             ],
+            'priority'   => 10000,
         ],
 
-        'post_routing' => [
+        'routing' => [
+            'middleware' => [
+                Zend\Expressive\Container\ApplicationFactory::ROUTING_MIDDLEWARE,
+                Zend\Expressive\Helper\UrlHelperMiddleware::class,
+                Zend\Expressive\Container\ApplicationFactory::DISPATCH_MIDDLEWARE,
+            ],
+            'priority'   => 1,
+        ],
+
+        'error' => [
+            'middleware' => [
+                // Add error middleware here.
+            ],
+            'error'      => true,
+            'priority'   => -10000,
         ],
     ],
 ];
