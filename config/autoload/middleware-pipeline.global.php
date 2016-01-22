@@ -10,8 +10,8 @@
 return [
     'dependencies' => [
         'invokables' => [
-            Application\I18n\Middleware\CheckLanguage::class =>
-                Application\I18n\Middleware\CheckLanguage::class,
+            Application\I18n\Middleware\CheckRootUriMiddleware::class =>
+                Application\I18n\Middleware\CheckRootUriMiddleware::class,
         ],
         'factories' => [
             Zend\Expressive\Helper\ServerUrlMiddleware::class =>
@@ -22,17 +22,29 @@ return [
     ],
 
     'middleware_pipeline' => [
-        'pre_routing' => [
-            [
-                'middleware' => [
-                    Application\I18n\Middleware\CheckLanguage::class,
-                    Zend\Expressive\Helper\ServerUrlMiddleware::class,
-                    Zend\Expressive\Helper\UrlHelperMiddleware::class,
-                ],
+        'always' => [
+            'middleware' => [
+                Zend\Expressive\Helper\ServerUrlMiddleware::class,
+                Application\I18n\Middleware\CheckRootUriMiddleware::class,
             ],
+            'priority'   => 10000,
         ],
 
-        'post_routing' => [
+        'routing' => [
+            'middleware' => [
+                Zend\Expressive\Container\ApplicationFactory::ROUTING_MIDDLEWARE,
+                Zend\Expressive\Helper\UrlHelperMiddleware::class,
+                Zend\Expressive\Container\ApplicationFactory::DISPATCH_MIDDLEWARE,
+            ],
+            'priority'   => 1,
+        ],
+
+        'error' => [
+            'middleware' => [
+                // Add error middleware here.
+            ],
+            'error'      => true,
+            'priority'   => -10000,
         ],
     ],
 ];
