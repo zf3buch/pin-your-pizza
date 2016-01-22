@@ -11,7 +11,9 @@ namespace User\Authorization;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Zend\Expressive\Router\RouteResultSubjectInterface;
+use User\Permissions\Rbac;
+use Zend\Authentication\Exception\RuntimeException;
+use Zend\Expressive\Router\RouteResult;
 
 /**
  * Class AuthorizationMiddleware
@@ -21,47 +23,55 @@ use Zend\Expressive\Router\RouteResultSubjectInterface;
 class AuthorizationMiddleware
 {
     /**
-     * @var AuthorizationObserver
+     * @var string
      */
-    private $observer;
+    private $role;
 
     /**
-     * @var RouteResultSubjectInterface
+     * @var Rbac
      */
-    private $subject;
+    private $rbac;
 
     /**
-     * AuthorizationMiddleware constructor.
+     * Authorization constructor.
      *
-     * @param AuthorizationObserver $observer
-     * @param RouteResultSubjectInterface $subject
+     * @param string $role
+     * @param Rbac   $rbac
      */
-    public function __construct(
-        AuthorizationObserver $observer,
-        RouteResultSubjectInterface $subject
-    ) {
-        $this->observer = $observer;
-        $this->subject  = $subject;
+    public function __construct($role, Rbac $rbac)
+    {
+        $this->role = $role;
+        $this->rbac = $rbac;
     }
 
     /**
-     * Attach the AuthorizationObserver instance to the
-     * RouteResultSubjectInterface
+     * Check the authorization with the current route name
      *
-     * Attaches the observer, and then dispatches the next middleware.
+     * Throws an exception if the authorization failed, otherwise
+     * dispatches the next middleware.
      *
      * @param ServerRequestInterface $request
      * @param ResponseInterface      $response
      * @param callable               $next
      *
      * @return ResponseInterface
+     * @throws RuntimeException
      */
     public function __invoke(
         ServerRequestInterface $request,
         ResponseInterface $response,
         callable $next
     ) {
-        $this->subject->attachRouteResultObserver($this->observer);
+        $result = $request->getAttribute(RouteResult::class, false);
+
+        $permission = $result->getMatchedRouteName();
+
+        if (!$this->rbac->isGranted($this->role, $permission)) {
+            throw new RuntimeException(
+                'user_heading_not_allowed',
+                403
+            );
+        }
 
         return $next($request, $response);
     }
