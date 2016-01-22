@@ -45,9 +45,6 @@ return [
                 User\Authentication\Adapter\AdapterFactory::class,
             Zend\Authentication\AuthenticationServiceInterface::class =>
                 User\Authentication\AuthenticationServiceFactory::class,
-
-            User\Authorization\AuthorizationObserver::class =>
-                User\Authorization\AuthorizationObserverFactory::class,
         ],
     ],
 
