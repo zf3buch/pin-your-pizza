@@ -19,7 +19,7 @@ return [
 
         'factories' => [
             Zend\Expressive\Application::class =>
-                Application\Expressive\ApplicationFactory::class,
+                Zend\Expressive\Container\ApplicationFactory::class,
 
             'Zend\Expressive\FinalHandler' =>
                 Zend\Expressive\Container\TemplatedErrorHandlerFactory::class,

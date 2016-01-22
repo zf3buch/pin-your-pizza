@@ -10,7 +10,8 @@
 namespace User\Authorization;
 
 use Interop\Container\ContainerInterface;
-use Zend\Expressive\Application;
+use User\Permissions\Rbac;
+use Zend\Authentication\AuthenticationServiceInterface;
 
 /**
  * Class AuthorizationMiddlewareFactory
@@ -28,9 +29,19 @@ class AuthorizationMiddlewareFactory
      */
     public function __invoke(ContainerInterface $container)
     {
-        return new AuthorizationMiddleware(
-            $container->get(AuthorizationObserver::class),
-            $container->get(Application::class)
+        /** @var AuthenticationServiceInterface $authenticationService */
+        $authenticationService = $container->get(
+            AuthenticationServiceInterface::class
         );
+
+        if ($authenticationService->hasIdentity()) {
+            $role = $authenticationService->getIdentity()->role;
+        } else {
+            $role = 'guest';
+        }
+
+        $rbac = $container->get(Rbac::class);
+
+        return new AuthorizationMiddleware($role, $rbac);
     }
 }
