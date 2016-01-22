@@ -17,11 +17,11 @@ use Zend\Validator\AbstractValidator;
 use Zend\View\HelperPluginManager;
 
 /**
- * Class InjectTranslator
+ * Class InjectTranslatorMiddleware
  *
  * @package Application\I18n\Middleware
  */
-class InjectTranslator
+class InjectTranslatorMiddleware
 {
     /**
      * @var Translator
@@ -34,7 +34,7 @@ class InjectTranslator
     private $helperPluginManager;
 
     /**
-     * InjectTranslator constructor.
+     * InjectTranslatorMiddleware constructor.
      *
      * @param Translator          $translator
      * @param HelperPluginManager $helperPluginManager

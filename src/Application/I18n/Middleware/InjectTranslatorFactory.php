@@ -23,14 +23,14 @@ class InjectTranslatorFactory
     /**
      * @param ContainerInterface $container
      *
-     * @return InjectTranslator
+     * @return InjectTranslatorMiddleware
      */
     public function __invoke(ContainerInterface $container)
     {
         $translator          = $container->get(Translator::class);
         $helperPluginManager = $container->get(HelperPluginManager::class);
 
-        return new InjectTranslator(
+        return new InjectTranslatorMiddleware(
             $translator, $helperPluginManager
         );
     }
