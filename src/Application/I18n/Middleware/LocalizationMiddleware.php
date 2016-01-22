@@ -73,9 +73,6 @@ class LocalizationMiddleware
 
         Locale::setDefault($locale);
 
-        var_dump($lang);
-        var_dump($locale);
-
         return $next($request, $response);
     }
 }
