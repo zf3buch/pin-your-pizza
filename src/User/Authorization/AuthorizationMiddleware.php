@@ -64,6 +64,10 @@ class AuthorizationMiddleware
     ) {
         $result = $request->getAttribute(RouteResult::class, false);
 
+        if ($result === false) {
+            return $next($request, $response);
+        }
+
         $permission = $result->getMatchedRouteName();
 
         if (!$this->rbac->isGranted($this->role, $permission)) {
