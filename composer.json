@@ -14,9 +14,11 @@
     ],
     "require": {
         "php": "^5.5 || ^7.0",
+        "mtymek/expressive-config-manager" : "~0.2",
         "ocramius/proxy-manager": "^1.0",
         "roave/security-advisories": "dev-master",
-        "zendframework/zend-expressive": "~1.0.0@rc || ^1.0",
+        "zendframework/zend-config": "^2.5",
+        "zendframework/zend-expressive": "^1.0",
         "zendframework/zend-expressive-helpers": "^2.0",
         "zendframework/zend-expressive-zendrouter": "^1.0",
         "zendframework/zend-expressive-zendviewrenderer": "^1.0",
@@ -30,12 +32,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Application\\": "src/Application/"
+            "Application\\": "modules/Application/src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "ApplicationTest\\": "test/ApplicationTest/"
+            "ApplicationTest\\": "modules/Application/test/"
         }
     },
     "scripts": {
