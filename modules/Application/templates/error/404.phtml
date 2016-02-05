@@ -13,17 +13,14 @@ $message   = 'Die angeforderte Seite wurde nicht gefunden. Du suchst etwas, das 
 
 $this->headTitle($title);
 ?>
-
-<h1><?php echo $header ?></h1>
+<h1><?= $header ?></h1>
 <div class="alert alert-danger">
-    <h3><?php echo $subHeader; ?></h3>
-
-    <p><?php echo $message; ?></p>
-    <hr>
-    <p class="text-center">
-        <a class="btn btn-success"
-           href="<?php echo $this->url('home'); ?>">
-            Zurück zur Startseite
-        </a>
-    </p>
+  <h3><?= $subHeader; ?></h3>
+  <p><?= $message; ?></p>
+  <hr>
+  <p class="text-center">
+    <a class="btn btn-success" href="<?= $this->url('home'); ?>">
+      Zurück zur Startseite
+    </a>
+  </p>
 </div>
