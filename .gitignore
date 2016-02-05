@@ -1,6 +1,4 @@
 .idea
-composer.phar
-composer.lock
 phpunit.xml
 vendor/
 !public/assets/vendor
