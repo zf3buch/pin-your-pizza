@@ -7,4 +7,11 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
-return [];
+return [
+    'dependencies' => [
+        'invokables' => [
+            I18n\Middleware\CheckRootUriMiddleware::class =>
+                I18n\Middleware\CheckRootUriMiddleware::class,
+        ],
+    ],
+];
