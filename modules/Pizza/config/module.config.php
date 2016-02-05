@@ -7,4 +7,13 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
-return [];
+return [
+    'dependencies' => [
+        'factories' => [
+            Pizza\Model\Repository\PizzaRepositoryInterface::class =>
+                Pizza\Model\Repository\StaticPizzaRepositoryFactory::class,
+            Pizza\Model\Repository\CommentRepositoryInterface::class =>
+                Pizza\Model\Repository\StaticCommentRepositoryFactory::class,
+        ]
+    ]
+];
