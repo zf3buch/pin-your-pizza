@@ -1,0 +1,26 @@
+<?php
+/**
+ * ZF3 book Pin Your Pizza Example Application
+ *
+ * @author     Ralf Eggert <ralf@travello.de>
+ * @link       https://github.com/zf3buch/pin-your-pizza
+ * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
+ */
+$title     = 'Seite nicht gefunden';
+$header    = '404 - Seite wurde nicht gefunden';
+$subHeader = 'Das ist uns echt unangenehm';
+$message   = 'Die angeforderte Seite wurde nicht gefunden. Du suchst etwas, das hier nicht existiert oder verschoben wurde.';
+
+$this->headTitle($title);
+?>
+<h1><?= $header ?></h1>
+<div class="alert alert-danger">
+  <h3><?= $subHeader; ?></h3>
+  <p><?= $message; ?></p>
+  <hr>
+  <p class="text-center">
+    <a class="btn btn-success" href="<?= $this->url('home'); ?>">
+      Zurück zur Startseite
+    </a>
+  </p>
+</div>
