@@ -28,7 +28,7 @@ return [
                 I18n\Middleware\LocalizationFactory::class,
 
             Zend\I18n\Translator\Translator::class =>
-                Application\I18n\Translator\TranslatorFactory::class,
+                I18n\Translator\TranslatorFactory::class,
         ],
     ],
 ];
