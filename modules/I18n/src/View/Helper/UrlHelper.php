@@ -7,7 +7,7 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
-namespace Application\View\Helper;
+namespace I18n\View\Helper;
 
 use Zend\Expressive\Helper\Exception\MissingRouterException;
 use Zend\Expressive\Helper\UrlHelper as ExpressiveUrlHelper;
@@ -17,7 +17,7 @@ use Zend\Expressive\Router\RouteResult;
 /**
  * Class UrlHelper
  *
- * @package Application\View\Helper
+ * @package I18n\View\Helper
  */
 class UrlHelper extends ExpressiveUrlHelper
 {
