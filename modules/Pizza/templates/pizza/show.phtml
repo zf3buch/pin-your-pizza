@@ -1,0 +1,98 @@
+<?php
+/**
+ * ZF3 book Pin Your Pizza Example Application
+ *
+ * @author     Ralf Eggert <ralf@travello.de>
+ * @link       https://github.com/zf3buch/pin-your-pizza
+ * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
+ */
+
+use Pizza\Form\CommentForm;
+
+$urlVote    = $this->url('pizza-vote', ['id' => $this->pizza['id']]);
+$urlComment = $this->url('pizza-comment', ['id' => $this->pizza['id']]);
+
+/** @var CommentForm $form */
+$form = $this->commentForm;
+$form->setAttribute('action', $urlComment);
+
+?>
+<h1><?= $this->pizza['name']; ?></h1>
+<div class="row">
+  <?php
+  $this->inlineScript()->appendScript("
+    $('#stars-" . $this->pizza['id'] . "').raty({
+        score   : " . $this->pizza['rate'] . ",
+        half    : true,
+        starOff : '/assets/vendor/raty-2.7.0/images/star-off.png',
+        starOn  : '/assets/vendor/raty-2.7.0/images/star-on.png',
+        starHalf: '/assets/vendor/raty-2.7.0/images/star-on.png',
+        click: function(score, evt) {
+            $(location).attr('href','" . $urlVote . "?star=' + (Math.floor(score) + 1));
+        }
+    });
+    ");
+  ?>
+  <div class="col-md-6">
+    <div class="thumbnail text-center">
+      <img src="<?= $this->pizza['image'] ?>"
+           title="<?= $this->pizza['name'] ?>">
+      <div class="caption">
+        <p id="stars-<?= $this->pizza['id'] ?>"></p>
+        <p><?= $this->pizza['name'] ?></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <?php foreach ($this->pizza['comments'] as $comment) : ?>
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <?= $comment['name']; ?> schrieb am
+          <?= $comment['date']; ?> um
+          <?= $comment['date']; ?>
+        </div>
+        <div class="panel-body">
+          <?= $comment['text']; ?>
+        </div>
+      </div>
+    <?php endforeach ?>
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        Neuen Kommentar für
+        <strong><?= $this->pizza['name'] ?></strong>
+        schreiben
+      </div>
+      <div class="panel-body">
+        <?= $this->form()->openTag($form); ?>
+        <div class="form-group">
+          <?= $this->formLabel($form->get('name')); ?>
+          <div class="col-sm-8">
+            <?= $this->formElement($form->get('name')); ?>
+            <?= $this->formElementErrors($form->get('name')); ?>
+          </div>
+        </div>
+        <div class="form-group">
+          <?= $this->formLabel($form->get('text')); ?>
+          <div class="col-sm-8">
+            <?= $this->formElement($form->get('text')); ?>
+            <?= $this->formElementErrors($form->get('text')); ?>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-4 col-sm-8">
+            <?= $this->formElement($form->get('save_comment')); ?>
+          </div>
+        </div>
+        <?= $this->form()->closeTag(); ?>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <p class="text-center">
+    <a href="<?= $this->url('pizza-pinboard') ?>"
+       class="btn btn-success">
+      Zurück zur Pizza Pinnwand
+    </a>
+  </p>
+</div>
