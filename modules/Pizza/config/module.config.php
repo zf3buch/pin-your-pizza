@@ -84,8 +84,8 @@ return [
     ],
 
     'templates' => [
-        'paths' => [
-            'pizza' => ['templates/pizza'],
+        'paths'  => [
+            'pizza' => [PIZZA_ROOT . '/templates/pizza'],
         ]
     ],
 ];
