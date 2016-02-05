@@ -41,8 +41,8 @@ $urlComment = $this->url('pizza-comment', ['id' => $this->pizza['id']]);
       <div class="panel panel-success">
         <div class="panel-heading">
           <?= $comment['name']; ?> schrieb am
-          <?= date('d.m.Y', $comment['date']); ?> um
-          <?= date('H:i:s', $comment['date']); ?>
+          <?= $comment['date']; ?> um
+          <?= $comment['date']; ?>
         </div>
         <div class="panel-body">
           <?= $comment['text']; ?>
