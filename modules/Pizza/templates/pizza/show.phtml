@@ -10,7 +10,7 @@
 $urlVote    = $this->url('pizza-vote', ['id' => $this->pizza['id']]);
 $urlComment = $this->url('pizza-comment', ['id' => $this->pizza['id']]);
 ?>
-<h1><?php echo $this->pizza['name']; ?></h1>
+<h1><?= $this->pizza['name']; ?></h1>
 <div class="row">
   <?php
   $this->inlineScript()->appendScript("
@@ -28,11 +28,11 @@ $urlComment = $this->url('pizza-comment', ['id' => $this->pizza['id']]);
   ?>
   <div class="col-md-6">
     <div class="thumbnail text-center">
-      <img src="<?php echo $this->pizza['image'] ?>"
-           title="<?php echo $this->pizza['name'] ?>">
+      <img src="<?= $this->pizza['image'] ?>"
+           title="<?= $this->pizza['name'] ?>">
       <div class="caption">
-        <p id="stars-<?php echo $this->pizza['id'] ?>"></p>
-        <p><?php echo $this->pizza['name'] ?></p>
+        <p id="stars-<?= $this->pizza['id'] ?>"></p>
+        <p><?= $this->pizza['name'] ?></p>
       </div>
     </div>
   </div>
@@ -40,12 +40,12 @@ $urlComment = $this->url('pizza-comment', ['id' => $this->pizza['id']]);
     <?php foreach ($this->pizza['comments'] as $comment) : ?>
       <div class="panel panel-success">
         <div class="panel-heading">
-          <?php echo $comment['name']; ?> schrieb am
-          <?php echo date('d.m.Y', $comment['date']); ?> um
-          <?php echo date('H:i:s', $comment['date']); ?>
+          <?= $comment['name']; ?> schrieb am
+          <?= date('d.m.Y', $comment['date']); ?> um
+          <?= date('H:i:s', $comment['date']); ?>
         </div>
         <div class="panel-body">
-          <?php echo $comment['text']; ?>
+          <?= $comment['text']; ?>
         </div>
       </div>
     <?php endforeach ?>
@@ -58,7 +58,7 @@ $urlComment = $this->url('pizza-comment', ['id' => $this->pizza['id']]);
 </div>
 <div class="row">
   <p class="text-center">
-    <a href="<?php echo $this->url('pizza-pinboard') ?>"
+    <a href="<?= $this->url('pizza-pinboard') ?>"
        class="btn btn-success">
       Zurück zur Pizza Pinnwand
     </a>
