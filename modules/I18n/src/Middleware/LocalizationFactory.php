@@ -7,7 +7,7 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
-namespace Application\I18n\Middleware;
+namespace I18n\Middleware;
 
 use Interop\Container\ContainerInterface;
 use Zend\I18n\Translator\Translator;
@@ -15,7 +15,7 @@ use Zend\I18n\Translator\Translator;
 /**
  * Class LocalizationFactory
  *
- * @package Application\I18n\Middleware
+ * @package I18n\Middleware
  */
 class LocalizationFactory
 {

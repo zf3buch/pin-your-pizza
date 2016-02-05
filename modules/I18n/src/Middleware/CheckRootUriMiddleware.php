@@ -7,7 +7,7 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
-namespace Application\I18n\Middleware;
+namespace I18n\Middleware;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -16,7 +16,7 @@ use Zend\Diactoros\Response\RedirectResponse;
 /**
  * Class CheckRootUriMiddleware
  *
- * @package Application\I18n\Middleware
+ * @package I18n\Middleware
  */
 class CheckRootUriMiddleware
 {
