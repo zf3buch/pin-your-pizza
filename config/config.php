@@ -7,33 +7,23 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
+use Zend\Expressive\ConfigManager\ConfigManager;
+use Zend\Expressive\ConfigManager\PhpFileProvider;
 use Zend\Stdlib\ArrayUtils;
-use Zend\Stdlib\Glob;
 
 $cachedConfigFile = PROJECT_ROOT . '/data/cache/app_config.php';
 
-if (is_file($cachedConfigFile)) {
-    $config = include $cachedConfigFile;
-} else {
-    $config = [];
+$pattern = '{{,*.}global,{,*.}' . APPLICATION_ENV . ',{,*.}local}.php';
 
-    $pattern = '{{,*.}global,{,*.}' . APPLICATION_ENV . ',{,*.}local}.php';
-    $files = Glob::glob(
-        PROJECT_ROOT . '/config/autoload/' . $pattern, Glob::GLOB_BRACE
-    );
+$configManager = new ConfigManager(
+    [
+        Application\ApplicationConfig::class,
+        Pizza\PizzaConfig::class,
+        new PhpFileProvider(PROJECT_ROOT . '/config/autoload/' . $pattern),
+    ],
+    $cachedConfigFile
+);
 
-    foreach ($files as $file) {
-        $config = ArrayUtils::merge($config, include $file);
-    }
-
-    if (isset($config['config_cache_enabled'])
-        && $config['config_cache_enabled'] === true
-    ) {
-        file_put_contents(
-            $cachedConfigFile,
-            '<?php return ' . var_export($config, true) . ';'
-        );
-    }
-}
-
-return new ArrayObject($config, ArrayObject::ARRAY_AS_PROPS);
+return new ArrayObject(
+    $configManager->getMergedConfig(), ArrayObject::ARRAY_AS_PROPS
+);
