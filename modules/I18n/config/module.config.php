@@ -13,5 +13,10 @@ return [
             I18n\Middleware\CheckRootUriMiddleware::class =>
                 I18n\Middleware\CheckRootUriMiddleware::class,
         ],
+
+        'factories' => [
+            I18n\Middleware\LocalizationMiddleware::class =>
+                I18n\Middleware\LocalizationFactory::class,
+        ],
     ],
 ];

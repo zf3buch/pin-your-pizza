@@ -27,8 +27,6 @@ class LocalizationFactory
     {
         $config = $container->get('config')['i18n'];
 
-        var_dump($config);
-
         $middleware = new LocalizationMiddleware();
         $middleware->setDefaultLang($config['defaultLang']);
         $middleware->setAllowedLocales($config['allowedLocales']);
