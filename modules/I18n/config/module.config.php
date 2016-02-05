@@ -8,6 +8,15 @@
  */
 
 return [
+    'i18n' => [
+        'defaultLang'    => 'de',
+        'allowedLocales' => [
+            'de' => 'de_DE',
+            'en' => 'en_US',
+        ],
+        'defaultRoute'   => 'home',
+    ],
+
     'dependencies' => [
         'invokables' => [
             I18n\Middleware\CheckRootUriMiddleware::class =>
