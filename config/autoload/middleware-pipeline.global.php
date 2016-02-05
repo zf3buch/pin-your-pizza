@@ -8,15 +8,6 @@
  */
 
 return [
-    'dependencies' => [
-        'factories' => [
-            Zend\Expressive\Helper\ServerUrlMiddleware::class =>
-                Zend\Expressive\Helper\ServerUrlMiddlewareFactory::class,
-            Zend\Expressive\Helper\UrlHelperMiddleware::class =>
-                Zend\Expressive\Helper\UrlHelperMiddlewareFactory::class,
-        ],
-    ],
-
     'middleware_pipeline' => [
         'always' => [
             'middleware' => [
