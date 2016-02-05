@@ -1,0 +1,38 @@
+<?php
+/**
+ * ZF3 book Pin Your Pizza Example Application
+ *
+ * @author     Ralf Eggert <ralf@travello.de>
+ * @link       https://github.com/zf3buch/pin-your-pizza
+ * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
+ */
+?>
+<h1><?= $this->welcome; ?></h1>
+<div class="row">
+  <?php foreach ($this->pizzaList as $pizza) : ?>
+    <?php
+      $this->inlineScript()->appendScript("
+    $('#stars-" . $pizza['id'] . "').raty({
+        readOnly: true,
+        score   : " . $pizza['rate'] . ",
+        half    : true,
+        starOff : '/assets/vendor/raty-2.7.0/images/star-off.png',
+        starOn  : '/assets/vendor/raty-2.7.0/images/star-on.png',
+        starHalf: '/assets/vendor/raty-2.7.0/images/star-on.png'
+    });
+    "); ?>
+    <div class="col-md-4">
+      <div class="thumbnail text-center">
+        <img src="<?= $pizza['image'] ?>" title="<?= $pizza['name'] ?>">
+        <div class="caption">
+          <p id="stars-<?= $pizza['id'] ?>"></p>
+          <p class="small"><?= $pizza['name'] ?></p>
+          <p class="label label-success">
+            <i class="fa fa-comment-o"></i>
+            <?= count($pizza['comments']) ?>
+          </p>
+        </div>
+      </div>
+    </div>
+  <?php endforeach; ?>
+</div>
