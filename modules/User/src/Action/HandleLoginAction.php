@@ -98,14 +98,14 @@ class HandleLoginAction
                 case Result::FAILURE_CREDENTIAL_INVALID:
                     $request = $request->withAttribute(
                         'auth_error',
-                        'user_auth_password_invalid'
+                        'user_authentication_password_invalid'
                     );
                     break;
 
                 case Result::FAILURE_IDENTITY_NOT_FOUND:
                     $request = $request->withAttribute(
                         'auth_error',
-                        'user_auth_email_unknown'
+                        'user_authentication_email_unknown'
                     );
                     break;
             }
