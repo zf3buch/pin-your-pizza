@@ -12,27 +12,33 @@ namespace User\Permissions;
 use Zend\Permissions\Rbac\AbstractRole;
 
 /**
- * Class MemberRole
+ * Class GuestRole
  *
  * @package User\Permissions
  */
-class MemberRole extends AbstractRole
+class GuestRole extends AbstractRole
 {
+    /**
+     * @var string name of role
+     */
+    const NAME = 'guest';
+
     /**
      * @var string
      */
-    protected $name = 'member';
+    protected $name = self::NAME;
 
     /**
-     * MemberRole constructor.
+     * GuestRole constructor.
      */
     public function __construct()
     {
         $this->addPermission('home');
         $this->addPermission('pizza-pinboard');
         $this->addPermission('pizza-show');
-        $this->addPermission('pizza-vote');
-        $this->addPermission('pizza-comment');
-        $this->addPermission('user-handle-logout');
+        $this->addPermission('user-intro');
+        $this->addPermission('user-handle-login');
+        $this->addPermission('user-handle-register');
+        $this->addPermission('user-registered');
     }
 }
