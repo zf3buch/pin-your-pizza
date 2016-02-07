@@ -41,22 +41,22 @@ class HandleLoginAction
     /**
      * @var AuthenticationServiceInterface|AuthenticationService
      */
-    private $authService;
+    private $authenticationService;
 
     /**
      * HandleLoginAction constructor.
      * @param RouterInterface                $router
      * @param LoginForm                      $loginForm
-     * @param AuthenticationServiceInterface $authService
+     * @param AuthenticationServiceInterface $authenticationService
      */
     public function __construct(
         RouterInterface $router,
         LoginForm $loginForm,
-        AuthenticationServiceInterface $authService
+        AuthenticationServiceInterface $authenticationService
     ) {
-        $this->router      = $router;
-        $this->loginForm   = $loginForm;
-        $this->authService = $authService;
+        $this->router                = $router;
+        $this->loginForm             = $loginForm;
+        $this->authenticationService = $authenticationService;
     }
 
     /**
@@ -79,14 +79,16 @@ class HandleLoginAction
             return $next($request, $response);
         }
 
-        /** @var ValidatableAdapterInterface|AbstractAdapter $authAdapter */
-        $authAdapter = $this->authService->getAdapter();
+        $validData = $this->loginForm->getData();
 
-        $authAdapter->setIdentity($postData['email']);
-        $authAdapter->setCredential($postData['password']);
+        /** @var ValidatableAdapterInterface|AbstractAdapter $authAdapter */
+        $authAdapter = $this->authenticationService->getAdapter();
+
+        $authAdapter->setIdentity($validData['email']);
+        $authAdapter->setCredential($validData['password']);
 
         try {
-            $result = $this->authService->authenticate();
+            $result = $this->authenticationService->authenticate();
         } catch (RuntimeException $e) {
             return $next($request, $response);
         }
@@ -111,7 +113,7 @@ class HandleLoginAction
             return $next($request, $response);
         }
 
-        $this->authService->getStorage()->write(
+        $this->authenticationService->getStorage()->write(
             $authAdapter->getResultRowObject(null, ['password'])
         );
 
