@@ -14,7 +14,7 @@ namespace User\Form;
  *
  * @package User\Form
  */
-class LoginFormAwareTrait
+trait LoginFormAwareTrait
 {
     /**
      * @var LoginForm

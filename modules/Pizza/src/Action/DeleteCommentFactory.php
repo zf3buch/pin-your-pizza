@@ -30,8 +30,10 @@ class DeleteCommentFactory
         $router     = $container->get(RouterInterface::class);
         $repository = $container->get(CommentRepositoryInterface::class);
 
-        return new DeleteCommentAction(
-            $router, $repository
-        );
+        $action = new DeleteCommentAction();
+        $action->setRouter($router);
+        $action->setCommentRepository($repository);
+
+        return $action;
     }
 }

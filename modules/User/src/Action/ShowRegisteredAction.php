@@ -9,9 +9,11 @@
 
 namespace User\Action;
 
+use Application\Template\TemplateRendererAwareTrait;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use User\Form\LoginForm;
+use User\Form\LoginFormAwareTrait;
 use Zend\Diactoros\Response\HtmlResponse;
 use Zend\Expressive\Template\TemplateRendererInterface;
 
@@ -23,28 +25,10 @@ use Zend\Expressive\Template\TemplateRendererInterface;
 class ShowRegisteredAction
 {
     /**
-     * @var TemplateRendererInterface
+     * use traits
      */
-    private $template;
-
-    /**
-     * @var LoginForm
-     */
-    private $loginForm;
-
-    /**
-     * ShowRegisteredAction constructor.
-     *
-     * @param TemplateRendererInterface $template
-     * @param LoginForm                 $loginForm
-     */
-    public function __construct(
-        TemplateRendererInterface $template,
-        LoginForm $loginForm
-    ) {
-        $this->template  = $template;
-        $this->loginForm = $loginForm;
-    }
+    use TemplateRendererAwareTrait;
+    use LoginFormAwareTrait;
 
     /**
      * @param ServerRequestInterface $request

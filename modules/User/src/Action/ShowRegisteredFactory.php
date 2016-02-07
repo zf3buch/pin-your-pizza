@@ -30,6 +30,10 @@ class ShowRegisteredFactory
         $template  = $container->get(TemplateRendererInterface::class);
         $loginForm = $container->get(LoginForm::class);
 
-        return new ShowRegisteredAction($template, $loginForm);
+        $action = new ShowRegisteredAction();
+        $action->setTemplateRenderer($template);
+        $action->setLoginForm($loginForm);
+
+        return $action;
     }
 }

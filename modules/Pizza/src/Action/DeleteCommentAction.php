@@ -9,12 +9,12 @@
 
 namespace Pizza\Action;
 
-use Pizza\Model\Repository\CommentRepositoryInterface;
+use Application\Router\RouterAwareTrait;
+use Pizza\Model\Repository\CommentRepositoryAwareTrait;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\HtmlResponse;
 use Zend\Diactoros\Response\RedirectResponse;
-use Zend\Expressive\Router\RouterInterface;
 
 /**
  * Class DeleteCommentAction
@@ -24,28 +24,10 @@ use Zend\Expressive\Router\RouterInterface;
 class DeleteCommentAction
 {
     /**
-     * @var RouterInterface
+     * use traits
      */
-    private $router;
-
-    /**
-     * @var CommentRepositoryInterface
-     */
-    private $commentRepository;
-
-    /**
-     * DeleteCommentAction constructor.
-     *
-     * @param RouterInterface            $router
-     * @param CommentRepositoryInterface $commentRepository
-     */
-    public function __construct(
-        RouterInterface $router,
-        CommentRepositoryInterface $commentRepository
-    ) {
-        $this->router            = $router;
-        $this->commentRepository = $commentRepository;
-    }
+    use RouterAwareTrait;
+    use CommentRepositoryAwareTrait;
 
     /**
      * @param ServerRequestInterface $request

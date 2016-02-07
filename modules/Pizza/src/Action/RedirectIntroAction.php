@@ -9,10 +9,10 @@
 
 namespace Pizza\Action;
 
+use Application\Router\RouterAwareTrait;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\RedirectResponse;
-use Zend\Expressive\Router\RouterInterface;
 
 /**
  * Class RedirectIntroAction
@@ -22,20 +22,9 @@ use Zend\Expressive\Router\RouterInterface;
 class RedirectIntroAction
 {
     /**
-     * @var RouterInterface
+     * use traits
      */
-    private $router;
-
-    /**
-     * RedirectIntroAction constructor.
-     *
-     * @param RouterInterface $router
-     */
-    public function __construct(
-        RouterInterface $router
-    ) {
-        $this->router = $router;
-    }
+    use RouterAwareTrait;
 
     /**
      * @param ServerRequestInterface $request

@@ -9,11 +9,11 @@
 
 namespace Pizza\Action;
 
-use Pizza\Model\Repository\PizzaRepositoryInterface;
+use Application\Template\TemplateRendererAwareTrait;
+use Pizza\Model\Repository\PizzaRepositoryAwareTrait;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\HtmlResponse;
-use Zend\Expressive\Template\TemplateRendererInterface;
 
 /**
  * Class ShowPinboardAction
@@ -23,28 +23,10 @@ use Zend\Expressive\Template\TemplateRendererInterface;
 class ShowPinboardAction
 {
     /**
-     * @var TemplateRendererInterface
+     * use traits
      */
-    private $template;
-
-    /**
-     * @var PizzaRepositoryInterface
-     */
-    private $pizzaRepository;
-
-    /**
-     * ShowPinboardAction constructor.
-     *
-     * @param TemplateRendererInterface $template
-     * @param PizzaRepositoryInterface     $pizzaRepository
-     */
-    public function __construct(
-        TemplateRendererInterface $template,
-        PizzaRepositoryInterface $pizzaRepository
-    ) {
-        $this->template     = $template;
-        $this->pizzaRepository = $pizzaRepository;
-    }
+    use TemplateRendererAwareTrait;
+    use PizzaRepositoryAwareTrait;
 
     /**
      * @param ServerRequestInterface $request

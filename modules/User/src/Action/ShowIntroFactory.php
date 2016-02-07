@@ -32,6 +32,11 @@ class ShowIntroFactory
         $loginForm    = $container->get(LoginForm::class);
         $registerForm = $container->get(RegisterForm::class);
 
-        return new ShowIntroAction($template, $loginForm, $registerForm);
+        $action = new ShowIntroAction();
+        $action->setTemplateRenderer($template);
+        $action->setLoginForm($loginForm);
+        $action->setRegisterForm($registerForm);
+
+        return $action;
     }
 }

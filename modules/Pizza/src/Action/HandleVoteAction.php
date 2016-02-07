@@ -9,6 +9,8 @@
 
 namespace Pizza\Action;
 
+use Application\Router\RouterAwareTrait;
+use Pizza\Model\Repository\PizzaRepositoryAwareTrait;
 use Pizza\Model\Repository\PizzaRepositoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -24,28 +26,10 @@ use Zend\Expressive\Router\RouterInterface;
 class HandleVoteAction
 {
     /**
-     * @var RouterInterface
+     * use traits
      */
-    private $router;
-
-    /**
-     * @var PizzaRepositoryInterface
-     */
-    private $pizzaRepository;
-
-    /**
-     * HandleVoteAction constructor.
-     *
-     * @param RouterInterface       $router
-     * @param PizzaRepositoryInterface $pizzaRepository
-     */
-    public function __construct(
-        RouterInterface $router,
-        PizzaRepositoryInterface $pizzaRepository
-    ) {
-        $this->router       = $router;
-        $this->pizzaRepository = $pizzaRepository;
-    }
+    use RouterAwareTrait;
+    use PizzaRepositoryAwareTrait;
 
     /**
      * @param ServerRequestInterface $request

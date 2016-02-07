@@ -28,6 +28,9 @@ class RedirectIntroFactory
     {
         $router = $container->get(RouterInterface::class);
 
-        return new RedirectIntroAction($router);
+        $action = new RedirectIntroAction();
+        $action->setRouter($router);
+
+        return $action;
     }
 }

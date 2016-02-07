@@ -9,13 +9,13 @@
 
 namespace Pizza\Action;
 
-use Pizza\Form\CommentForm;
-use Pizza\Model\Repository\CommentRepositoryInterface;
+use Application\Router\RouterAwareTrait;
+use Pizza\Form\CommentFormAwareTrait;
+use Pizza\Model\Repository\CommentRepositoryAwareTrait;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\HtmlResponse;
 use Zend\Diactoros\Response\RedirectResponse;
-use Zend\Expressive\Router\RouterInterface;
 
 /**
  * Class HandleCommentAction
@@ -25,36 +25,11 @@ use Zend\Expressive\Router\RouterInterface;
 class HandleCommentAction
 {
     /**
-     * @var RouterInterface
+     * use traits
      */
-    private $router;
-
-    /**
-     * @var CommentRepositoryInterface
-     */
-    private $commentRepository;
-
-    /**
-     * @var CommentForm
-     */
-    private $commentForm;
-
-    /**
-     * HandleCommentAction constructor.
-     *
-     * @param RouterInterface            $router
-     * @param CommentRepositoryInterface $commentRepository
-     * @param CommentForm              $commentForm
-     */
-    public function __construct(
-        RouterInterface $router,
-        CommentRepositoryInterface $commentRepository,
-        CommentForm $commentForm
-    ) {
-        $this->router            = $router;
-        $this->commentRepository = $commentRepository;
-        $this->commentForm     = $commentForm;
-    }
+    use RouterAwareTrait;
+    use CommentRepositoryAwareTrait;
+    use CommentFormAwareTrait;
 
     /**
      * @param ServerRequestInterface $request

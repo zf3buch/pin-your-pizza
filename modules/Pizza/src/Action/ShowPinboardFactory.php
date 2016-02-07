@@ -30,6 +30,10 @@ class ShowPinboardFactory
         $template   = $container->get(TemplateRendererInterface::class);
         $repository = $container->get(PizzaRepositoryInterface::class);
 
-        return new ShowPinboardAction($template, $repository);
+        $action = new ShowPinboardAction();
+        $action->setTemplateRenderer($template);
+        $action->setPizzaRepository($repository);
+
+        return $action;
     }
 }

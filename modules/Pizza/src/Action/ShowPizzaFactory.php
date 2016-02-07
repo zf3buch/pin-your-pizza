@@ -32,6 +32,11 @@ class ShowPizzaFactory
         $repository = $container->get(PizzaRepositoryInterface::class);
         $form       = $container->get(CommentForm::class);
 
-        return new ShowPizzaAction($template, $repository, $form);
+        $action = new ShowPizzaAction();
+        $action->setTemplateRenderer($template);
+        $action->setPizzaRepository($repository);
+        $action->setCommentForm($form);
+
+        return $action;
     }
 }

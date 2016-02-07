@@ -9,13 +9,13 @@
 
 namespace User\Action;
 
+use Application\Router\RouterAwareTrait;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use User\Form\RegisterForm;
-use User\Model\Repository\UserRepositoryInterface;
+use User\Form\RegisterFormAwareTrait;
+use User\Model\Repository\UserRepositoryAwareTrait;
 use Zend\Diactoros\Response\HtmlResponse;
 use Zend\Diactoros\Response\RedirectResponse;
-use Zend\Expressive\Router\RouterInterface;
 
 /**
  * Class HandleRegisterAction
@@ -25,36 +25,11 @@ use Zend\Expressive\Router\RouterInterface;
 class HandleRegisterAction
 {
     /**
-     * @var RouterInterface
+     * use traits
      */
-    private $router;
-
-    /**
-     * @var UserRepositoryInterface
-     */
-    private $userRepository;
-
-    /**
-     * @var RegisterForm
-     */
-    private $registerForm;
-
-    /**
-     * HandleRegisterAction constructor.
-     *
-     * @param RouterInterface         $router
-     * @param UserRepositoryInterface $userRepository
-     * @param RegisterForm            $registerForm
-     */
-    public function __construct(
-        RouterInterface $router,
-        UserRepositoryInterface $userRepository,
-        RegisterForm $registerForm
-    ) {
-        $this->router         = $router;
-        $this->userRepository = $userRepository;
-        $this->registerForm   = $registerForm;
-    }
+    use RouterAwareTrait;
+    use UserRepositoryAwareTrait;
+    use RegisterFormAwareTrait;
 
     /**
      * @param ServerRequestInterface $request

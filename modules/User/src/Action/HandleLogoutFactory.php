@@ -33,8 +33,10 @@ class HandleLogoutFactory
             AuthenticationServiceInterface::class
         );
 
-        return new HandleLogoutAction(
-            $router, $authenticationService
-        );
+        $action = new HandleLogoutAction();
+        $action->setRouter($router);
+        $action->setAuthenticationService($authenticationService);
+
+        return $action;
     }
 }

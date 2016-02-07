@@ -14,7 +14,7 @@ namespace Pizza\Form;
  *
  * @package Pizza\Form
  */
-class CommentFormAwareTrait
+trait CommentFormAwareTrait
 {
     /**
      * @var CommentForm

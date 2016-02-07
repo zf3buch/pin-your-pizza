@@ -32,6 +32,11 @@ class HandleCommentFactory
         $repository = $container->get(CommentRepositoryInterface::class);
         $form       = $container->get(CommentForm::class);
 
-        return new HandleCommentAction($router, $repository, $form);
+        $action = new HandleCommentAction();
+        $action->setRouter($router);
+        $action->setCommentRepository($repository);
+        $action->setCommentForm($form);
+
+        return $action;
     }
 }

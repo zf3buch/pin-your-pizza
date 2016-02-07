@@ -30,6 +30,10 @@ class HandleVoteFactory
         $router     = $container->get(RouterInterface::class);
         $repository = $container->get(PizzaRepositoryInterface::class);
 
-        return new HandleVoteAction($router, $repository);
+        $action = new HandleVoteAction();
+        $action->setRouter($router);
+        $action->setPizzaRepository($repository);
+
+        return $action;
     }
 }

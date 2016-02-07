@@ -9,17 +9,16 @@
 
 namespace User\Action;
 
+use Application\Router\RouterAwareTrait;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use User\Form\LoginForm;
+use User\Authentication\AuthenticationServiceAwareTrait;
+use User\Form\LoginFormAwareTrait;
 use Zend\Authentication\Adapter\DbTable\AbstractAdapter;
 use Zend\Authentication\Adapter\DbTable\Exception\RuntimeException;
 use Zend\Authentication\Adapter\ValidatableAdapterInterface;
-use Zend\Authentication\AuthenticationService;
-use Zend\Authentication\AuthenticationServiceInterface;
 use Zend\Authentication\Result;
 use Zend\Diactoros\Response\RedirectResponse;
-use Zend\Expressive\Router\RouterInterface;
 
 /**
  * Class HandleLoginAction
@@ -29,35 +28,11 @@ use Zend\Expressive\Router\RouterInterface;
 class HandleLoginAction
 {
     /**
-     * @var RouterInterface
+     * use traits
      */
-    private $router;
-
-    /**
-     * @var LoginForm
-     */
-    private $loginForm;
-
-    /**
-     * @var AuthenticationServiceInterface|AuthenticationService
-     */
-    private $authenticationService;
-
-    /**
-     * HandleLoginAction constructor.
-     * @param RouterInterface                $router
-     * @param LoginForm                      $loginForm
-     * @param AuthenticationServiceInterface $authenticationService
-     */
-    public function __construct(
-        RouterInterface $router,
-        LoginForm $loginForm,
-        AuthenticationServiceInterface $authenticationService
-    ) {
-        $this->router                = $router;
-        $this->loginForm             = $loginForm;
-        $this->authenticationService = $authenticationService;
-    }
+    use RouterAwareTrait;
+    use LoginFormAwareTrait;
+    use AuthenticationServiceAwareTrait;
 
     /**
      * @param ServerRequestInterface $request

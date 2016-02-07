@@ -32,8 +32,11 @@ class HandleRegisterFactory
         $repository = $container->get(UserRepositoryInterface::class);
         $form       = $container->get(RegisterForm::class);
 
-        return new HandleRegisterAction(
-            $router, $repository, $form
-        );
+        $action = new HandleRegisterAction();
+        $action->setRouter($router);
+        $action->setUserRepository($repository);
+        $action->setRegisterForm($form);
+
+        return $action;
     }
 }

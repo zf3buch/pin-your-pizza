@@ -9,12 +9,12 @@
 
 namespace Pizza\Action;
 
-use Pizza\Form\CommentForm;
-use Pizza\Model\Repository\PizzaRepositoryInterface;
+use Application\Template\TemplateRendererAwareTrait;
+use Pizza\Form\CommentFormAwareTrait;
+use Pizza\Model\Repository\PizzaRepositoryAwareTrait;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\HtmlResponse;
-use Zend\Expressive\Template\TemplateRendererInterface;
 
 /**
  * Class ShowPizzaAction
@@ -24,36 +24,11 @@ use Zend\Expressive\Template\TemplateRendererInterface;
 class ShowPizzaAction
 {
     /**
-     * @var TemplateRendererInterface
+     * use traits
      */
-    private $template;
-
-    /**
-     * @var PizzaRepositoryInterface
-     */
-    private $pizzaRepository;
-
-    /**
-     * @var CommentForm
-     */
-    private $commentForm;
-
-    /**
-     * ShowPizzaAction constructor.
-     *
-     * @param TemplateRendererInterface $template
-     * @param PizzaRepositoryInterface  $pizzaRepository
-     * @param CommentForm               $commentForm
-     */
-    public function __construct(
-        TemplateRendererInterface $template,
-        PizzaRepositoryInterface $pizzaRepository,
-        CommentForm $commentForm
-    ) {
-        $this->template        = $template;
-        $this->pizzaRepository = $pizzaRepository;
-        $this->commentForm     = $commentForm;
-    }
+    use TemplateRendererAwareTrait;
+    use PizzaRepositoryAwareTrait;
+    use CommentFormAwareTrait;
 
     /**
      * @param ServerRequestInterface $request
