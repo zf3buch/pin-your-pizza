@@ -14,11 +14,13 @@
     ],
     "require": {
         "php": "^5.5 || ^7.0",
+        "mtymek/expressive-config-manager" : "~0.2",
         "ocramius/proxy-manager": "^1.0",
         "roave/security-advisories": "dev-master",
         "zendframework/zend-authentication": "^2.5",
+        "zendframework/zend-config": "^2.5",
         "zendframework/zend-db": "^2.5",
-        "zendframework/zend-expressive": "~1.0.0@rc || ^1.0",
+        "zendframework/zend-expressive": "^1.0",
         "zendframework/zend-expressive-helpers": "^2.0",
         "zendframework/zend-expressive-zendrouter": "^1.0",
         "zendframework/zend-expressive-zendviewrenderer": "^1.0",
@@ -28,8 +30,8 @@
         "zendframework/zend-inputfilter": "^2.5",
         "zendframework/zend-permissions-rbac": "^2.5",
         "zendframework/zend-session": "^2.5",
+        "zendframework/zend-servicemanager": "^2.7.3 || ^3.0",
         "zendframework/zend-stdlib": "^2.7",
-        "zendframework/zend-servicemanager": "^2.5",
         "zendframework/zend-validator": "^2.5"
     },
     "require-dev": {
@@ -39,14 +41,15 @@
     },
     "autoload": {
         "psr-4": {
-            "Application\\": "src/Application/",
-            "Pizza\\": "src/Pizza/",
-            "User\\": "src/User/"
+            "Application\\": "modules/Application/src/",
+            "I18n\\": "modules/I18n/src/",
+            "Pizza\\": "modules/Pizza/src/",
+            "User\\": "modules/User/src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "ApplicationTest\\": "test/ApplicationTest/"
+            "ApplicationTest\\": "modules/Application/test/"
         }
     },
     "scripts": {
