@@ -9,11 +9,13 @@
 
 return [
     'application_title_404' => 'Page not found',
+    'application_title_401' => 'Not authorized',
     'application_title_403' => 'Forbidden',
     'application_title_500' => 'An Error occured',
 
     'application_heading_welcome' => 'Welcome to Pin Your Pizza!',
     'application_heading_404'     => '404 - Page was not found',
+    'application_heading_401'     => '401 - Not authorized',
     'application_heading_403'     => '403 - Access is forbidden',
     'application_heading_500'     => '%1$s - An error occured',
     'application_heading_awkward' => 'This is awkward.',
@@ -27,6 +29,7 @@ return [
 
     'application_message_soon_more'       => 'More to come in the near future...',
     'application_message_not_found_404'   => 'The requested page was not found. You are looking for something that doesn\'t exist or may have moved. ',
+    'application_message_not_auth_401'    => 'You are not authorized.',
     'application_message_not_allowed_403' => 'You are not allowed to access the requested page.',
     'application_message_error_500'       => 'We encountered a "%1$s %2$s" error.',
 ];
