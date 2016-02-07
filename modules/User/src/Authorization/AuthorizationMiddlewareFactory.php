@@ -10,6 +10,7 @@
 namespace User\Authorization;
 
 use Interop\Container\ContainerInterface;
+use User\Permissions\GuestRole;
 use User\Permissions\Rbac;
 use Zend\Authentication\AuthenticationServiceInterface;
 
@@ -37,7 +38,7 @@ class AuthorizationMiddlewareFactory
         if ($authenticationService->hasIdentity()) {
             $role = $authenticationService->getIdentity()->role;
         } else {
-            $role = 'guest';
+            $role = GuestRole::NAME;
         }
 
         $rbac = $container->get(Rbac::class);

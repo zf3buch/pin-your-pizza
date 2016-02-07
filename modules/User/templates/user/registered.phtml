@@ -13,39 +13,33 @@ $loginForm = $this->loginForm;
 $loginForm->setAttribute('action', $this->url('user-handle-login'));
 
 ?>
-<h1><?php echo $this->translate('user_heading_registered'); ?></h1>
+<h1><?= $this->translate('user_heading_registered'); ?></h1>
 <div class="row">
-    <div class="col-md-6">
-        <div class="panel panel-success">
-            <div class="panel-heading">
-                <?php echo $this->translate(
-                    'user_heading_registration_done'
-                ); ?>
-            </div>
-            <div class="panel-body">
-                <p>
-                    <?php echo $this->translate(
-                        'user_message_login'
-                    ) ?>
-                </p>
-            </div>
-        </div>
+  <div class="col-md-6">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <?= $this->translate('user_heading_registration_done'); ?>
+      </div>
+      <div class="panel-body">
+        <p><?= $this->translate('user_message_login') ?></p>
+      </div>
     </div>
-    <div class="col-md-6">
-        <div class="panel panel-success">
-            <div class="panel-heading">
-                <?php echo $this->translate('user_heading_login_now'); ?>
-            </div>
-            <div class="panel-body">
-                <?php echo $this->bootstrapForm($loginForm); ?>
-            </div>
-        </div>
+  </div>
+  <div class="col-md-6">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <?= $this->translate('user_heading_login_now'); ?>
+      </div>
+      <div class="panel-body">
+        <?= $this->bootstrapForm($loginForm); ?>
+      </div>
     </div>
+  </div>
 </div>
 <div class="row">
-    <p class="text-center">
-        <a href="<?php echo $this->url('home') ?>" class="btn btn-success">
-            <?php echo $this->translate('application_action_back_home'); ?>
-        </a>
-    </p>
+  <p class="text-center">
+    <a href="<?= $this->url('home') ?>" class="btn btn-success">
+      <?= $this->translate('application_action_back_home'); ?>
+    </a>
+  </p>
 </div>

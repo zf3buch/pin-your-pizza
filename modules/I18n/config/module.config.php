@@ -8,23 +8,6 @@
  */
 
 return [
-    'dependencies' => [
-        'invokables' => [
-            I18n\Middleware\CheckRootUriMiddleware::class =>
-                I18n\Middleware\CheckRootUriMiddleware::class,
-        ],
-        'factories' => [
-            Zend\I18n\Translator\Translator::class =>
-                I18n\Translator\TranslatorFactory::class,
-
-            I18n\Middleware\InjectTranslatorMiddleware::class =>
-                I18n\Middleware\InjectTranslatorFactory::class,
-
-            I18n\Middleware\LocalizationMiddleware::class =>
-                I18n\Middleware\LocalizationFactory::class,
-        ],
-    ],
-
     'i18n' => [
         'defaultLang'    => 'de',
         'allowedLocales' => [
@@ -32,5 +15,23 @@ return [
             'en' => 'en_US',
         ],
         'defaultRoute'   => 'home',
+    ],
+
+    'dependencies' => [
+        'invokables' => [
+            I18n\Middleware\CheckRootUriMiddleware::class =>
+                I18n\Middleware\CheckRootUriMiddleware::class,
+        ],
+
+        'factories' => [
+            I18n\Middleware\LocalizationMiddleware::class =>
+                I18n\Middleware\LocalizationFactory::class,
+
+            Zend\I18n\Translator\Translator::class =>
+                I18n\Translator\TranslatorFactory::class,
+
+            I18n\Middleware\InjectTranslatorMiddleware::class =>
+                I18n\Middleware\InjectTranslatorFactory::class,
+        ],
     ],
 ];

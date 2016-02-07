@@ -28,17 +28,24 @@ return [
             'layout/footer',
         ],
         'map'    => [
-            'layout/default' => APPLICATION_ROOT . '/templates/layout/default.phtml',
-            'layout/header'  => APPLICATION_ROOT . '/templates/layout/header.phtml',
-            'layout/footer'  => APPLICATION_ROOT . '/templates/layout/footer.phtml',
-            'error/error'    => APPLICATION_ROOT . '/templates/error/error.phtml',
-            'error/404'      => APPLICATION_ROOT . '/templates/error/404.phtml',
+            'layout/default' => APPLICATION_ROOT
+                . '/templates/layout/default.phtml',
+            'layout/header'  => APPLICATION_ROOT
+                . '/templates/layout/header.phtml',
+            'layout/footer'  => APPLICATION_ROOT
+                . '/templates/layout/footer.phtml',
+            'error/error'    => APPLICATION_ROOT
+                . '/templates/error/error.phtml',
+            'error/404'      => APPLICATION_ROOT
+                . '/templates/error/404.phtml',
         ],
         'paths'  => [
             'layout'      => [APPLICATION_ROOT . '/templates/layout'],
             'error'       => [APPLICATION_ROOT . '/templates/error'],
-        ]
+        ],
     ],
+
+    'view_helpers' => [],
 
     'translate' => [
         'translation_file_patterns' => [

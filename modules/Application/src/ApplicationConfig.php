@@ -9,6 +9,7 @@
 
 namespace Application;
 
+use Zend\Config\Config;
 use Zend\Config\Factory;
 
 /**
@@ -29,12 +30,12 @@ class ApplicationConfig
     /**
      * Read configuration
      *
-     * @return array|\Zend\Config\Config
+     * @return array|Config
      */
     public function __invoke()
     {
         return Factory::fromFile(
-            APPLICATION_ROOT . '/config/application.config.php'
+            APPLICATION_ROOT . '/config/module.config.php'
         );
     }
 }

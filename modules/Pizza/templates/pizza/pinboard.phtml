@@ -6,17 +6,15 @@
  * @link       https://github.com/zf3buch/pin-your-pizza
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
-
 ?>
-<h1><?php echo $this->translate($this->welcome); ?></h1>
+<h1><?= $this->translate($this->welcome); ?></h1>
 <div class="row">
-    <?php foreach ($this->pizzaList as $pizza) : ?>
-        <?php
-        $urlShow = $this->url('pizza-show', ['id' => $pizza['id']]);
-        $urlVote = $this->url('pizza-vote', ['id' => $pizza['id']]);
+  <?php foreach ($this->pizzaList as $pizza) : ?>
+    <?php
+    $urlShow = $this->url('pizza-show', ['id' => $pizza['id']]);
+    $urlVote = $this->url('pizza-vote', ['id' => $pizza['id']]);
 
-        $this->inlineScript()->appendScript(
-            "
+    $this->inlineScript()->appendScript("
     $('#stars-" . $pizza['id'] . "').raty({
         score   : " . $pizza['rate'] . ",
         half    : true,
@@ -27,26 +25,22 @@
             $(location).attr('href','" . $urlVote . "?star=' + (Math.floor(score) + 1));
         }
     });
-    "
-        ); ?>
-        <div class="col-md-4">
-            <div class="thumbnail text-center">
-                <a href="<?php echo $urlShow ?>">
-                    <img src="<?php echo $pizza['image'] ?>"
-                         title="<?php echo $pizza['name'] ?>">
-                </a>
-
-                <div class="caption">
-                    <p id="stars-<?php echo $pizza['id'] ?>"></p>
-                    <p class="small">
-                        <?php echo $pizza['name'] ?>
-                    </p>
-                    <p class="label label-success">
-                        <i class="fa fa-comment-o"></i>
-                        <?php echo count($pizza['comments']) ?>
-                    </p>
-                </div>
-            </div>
+    ");
+    ?>
+    <div class="col-md-4">
+      <div class="thumbnail text-center">
+        <a href="<?= $urlShow ?>">
+          <img src="<?= $pizza['image'] ?>" title="<?= $pizza['name'] ?>">
+        </a>
+        <div class="caption">
+          <p id="stars-<?= $pizza['id'] ?>"></p>
+          <p class="small"><?= $pizza['name'] ?></p>
+          <p class="label label-success">
+            <i class="fa fa-comment-o"></i>
+            <?= count($pizza['comments']) ?>
+          </p>
         </div>
-    <?php endforeach; ?>
+      </div>
+    </div>
+  <?php endforeach; ?>
 </div>

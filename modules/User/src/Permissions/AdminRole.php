@@ -19,6 +19,16 @@ use Zend\Permissions\Rbac\AbstractRole;
 class AdminRole extends AbstractRole
 {
     /**
+     * @var string name of role
+     */
+    const NAME = 'admin';
+
+    /**
+     * @var string
+     */
+    protected $name = self::NAME;
+
+    /**
      * AdminRole constructor.
      */
     public function __construct()
@@ -27,8 +37,4 @@ class AdminRole extends AbstractRole
 
         $this->addPermission('pizza-delete-comment');
     }
-    /**
-     * @var string
-     */
-    protected $name = 'admin';
 }

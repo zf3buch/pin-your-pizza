@@ -9,53 +9,47 @@
 use User\Form\LoginForm;
 use User\Form\RegisterForm;
 
-/** @var RegisterForm $registerForm */
-$registerForm = $this->registerForm;
-$registerForm->setAttribute('action', $this->url('user-handle-register'));
+/** @var RegisterForm $createForm */
+$createForm = $this->registerForm;
+$createForm->setAttribute('action', $this->url('user-handle-register'));
 
 /** @var LoginForm $loginForm */
 $loginForm = $this->loginForm;
 $loginForm->setAttribute('action', $this->url('user-handle-login'));
 
 ?>
-<h1><?php echo $this->translate('user_heading_intro'); ?></h1>
+<h1><?= $this->translate('user_heading_intro'); ?></h1>
 <div class="row">
-    <div class="col-md-6">
-        <div class="panel panel-success">
-            <div class="panel-heading">
-                <?php echo $this->translate(
-                    'user_heading_register_now'
-                ); ?>
-            </div>
-            <div class="panel-body">
-                <?php echo $this->bootstrapForm($registerForm); ?>
-            </div>
-        </div>
+  <div class="col-md-6">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <?= $this->translate('user_heading_register_now'); ?>
+      </div>
+      <div class="panel-body">
+          <?= $this->bootstrapForm($createForm); ?>
+      </div>
     </div>
-    <div class="col-md-6">
-        <div class="panel panel-success">
-            <div class="panel-heading">
-                <?php echo $this->translate('user_heading_login_now'); ?>
-            </div>
-            <div class="panel-body">
-                <?php if ($this->authError) : ?>
-                    <div class="alert alert-danger">
-                        <p>
-                            <?php echo $this->translate(
-                                $this->authError
-                            ); ?>
-                        </p>
-                    </div>
-                <?php endif; ?>
-                <?php echo $this->bootstrapForm($loginForm); ?>
-            </div>
-        </div>
+  </div>
+  <div class="col-md-6">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <?= $this->translate('user_heading_login_now'); ?>
+      </div>
+      <div class="panel-body">
+        <?php if ($this->authError) : ?>
+          <div class="alert alert-danger">
+            <p><?= $this->translate($this->authError); ?></p>
+          </div>
+        <?php endif; ?>
+          <?= $this->bootstrapForm($loginForm); ?>
+      </div>
     </div>
+  </div>
 </div>
 <div class="row">
-    <p class="text-center">
-        <a href="<?php echo $this->url('home') ?>" class="btn btn-success">
-            <?php echo $this->translate('application_action_back_home'); ?>
-        </a>
-    </p>
+  <p class="text-center">
+    <a href="<?= $this->url('home') ?>" class="btn btn-success">
+      <?= $this->translate('application_action_back_home'); ?>
+    </a>
+  </p>
 </div>

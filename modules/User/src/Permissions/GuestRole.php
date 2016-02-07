@@ -19,9 +19,14 @@ use Zend\Permissions\Rbac\AbstractRole;
 class GuestRole extends AbstractRole
 {
     /**
+     * @var string name of role
+     */
+    const NAME = 'guest';
+
+    /**
      * @var string
      */
-    protected $name = 'guest';
+    protected $name = self::NAME;
 
     /**
      * GuestRole constructor.
