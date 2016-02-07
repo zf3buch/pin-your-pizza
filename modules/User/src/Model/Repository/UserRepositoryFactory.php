@@ -13,21 +13,21 @@ use Interop\Container\ContainerInterface;
 use User\Model\Table\UserTableInterface;
 
 /**
- * Class DbUserRepositoryFactory
+ * Class UserRepositoryFactory
  *
  * @package User\Model\Repository
  */
-class DbUserRepositoryFactory
+class UserRepositoryFactory
 {
     /**
      * @param ContainerInterface $container
      *
-     * @return DbUserRepository
+     * @return UserRepository
      */
     public function __invoke(ContainerInterface $container)
     {
         $userTable = $container->get(UserTableInterface::class);
 
-        return new DbUserRepository($userTable);
+        return new UserRepository($userTable);
     }
 }
