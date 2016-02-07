@@ -62,6 +62,8 @@ class AuthorizationMiddleware
         ResponseInterface $response,
         callable $next
     ) {
+        var_dump(__METHOD__);
+
         $result = $request->getAttribute(RouteResult::class, false);
 
         if ($result === false) {
