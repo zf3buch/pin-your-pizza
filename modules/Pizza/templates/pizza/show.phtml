@@ -77,11 +77,8 @@ $form->setAttribute('action', $urlComment);
             );
             ?>
             <p>
-              <a href="<?php echo $urlDelete; ?>"
-                 class="btn btn-danger">
-                <?php echo $this->translate(
-                    'pizza_action_delete_comment'
-                ); ?>
+              <a href="<?= $urlDelete; ?>" class="btn btn-danger">
+                <?= $this->translate('pizza_action_delete_comment'); ?>
               </a>
             </p>
           <?php endif; ?>
