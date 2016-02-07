@@ -1,0 +1,65 @@
+<?php
+/**
+ * ZF3 book Pin Your Pizza Example Application
+ *
+ * @author     Ralf Eggert <ralf@travello.de>
+ * @link       https://github.com/zf3buch/pin-your-pizza
+ * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
+ */
+use User\Form\LoginForm;
+
+/** @var LoginForm $loginForm */
+$loginForm = $this->loginForm;
+$loginForm->setAttribute('action', $this->url('user-handle-login'));
+
+?>
+<h1><?= $this->translate('user_heading_registered'); ?></h1>
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <?= $this->translate('user_heading_registration_done'); ?>
+      </div>
+      <div class="panel-body">
+        <p><?= $this->translate('user_message_login') ?></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <?= $this->translate('user_heading_login_now'); ?>
+      </div>
+      <div class="panel-body">
+        <?= $this->form()->openTag($loginForm); ?>
+        <div class="form-group">
+          <?= $this->formLabel($loginForm->get('email')); ?>
+          <div class="col-sm-8">
+            <?= $this->formElement($loginForm->get('email')) ?>
+            <?= $this->formElementErrors($loginForm->get('email')) ?>
+          </div>
+        </div>
+        <div class="form-group">
+          <?= $this->formLabel($loginForm->get('password')); ?>
+          <div class="col-sm-8">
+            <?= $this->formElement($loginForm->get('password')) ?>
+            <?= $this->formElementErrors($loginForm->get('password')) ?>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-4 col-sm-8">
+            <?= $this->formElement($loginForm->get('login_user')) ?>
+          </div>
+        </div>
+        <?= $this->form()->closeTag(); ?>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <p class="text-center">
+    <a href="<?= $this->url('home') ?>" class="btn btn-success">
+      <?= $this->translate('application_action_back_home'); ?>
+    </a>
+  </p>
+</div>

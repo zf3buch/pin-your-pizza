@@ -1,0 +1,109 @@
+<?php
+/**
+ * ZF3 book Pin Your Pizza Example Application
+ *
+ * @author     Ralf Eggert <ralf@travello.de>
+ * @link       https://github.com/zf3buch/pin-your-pizza
+ * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
+ */
+use User\Form\LoginForm;
+use User\Form\RegisterForm;
+
+/** @var RegisterForm $createForm */
+$createForm = $this->registerForm;
+$createForm->setAttribute('action', $this->url('user-handle-register'));
+
+/** @var LoginForm $loginForm */
+$loginForm = $this->loginForm;
+$loginForm->setAttribute('action', $this->url('user-handle-login'));
+
+?>
+<h1><?= $this->translate('user_heading_intro'); ?></h1>
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <?= $this->translate('user_heading_register_now'); ?>
+      </div>
+      <div class="panel-body">
+        <?= $this->form()->openTag($createForm); ?>
+        <div class="form-group">
+          <?= $this->formLabel($createForm->get('email')); ?>
+          <div class="col-sm-8">
+            <?= $this->formElement($createForm->get('email')) ?>
+            <?= $this->formElementErrors($createForm->get('email')) ?>
+          </div>
+        </div>
+        <div class="form-group">
+          <?= $this->formLabel($createForm->get('password')); ?>
+          <div class="col-sm-8">
+            <?= $this->formElement($createForm->get('password')) ?>
+            <?= $this->formElementErrors($createForm->get('password')) ?>
+          </div>
+        </div>
+        <div class="form-group">
+          <?= $this->formLabel($createForm->get('first_name')); ?>
+          <div class="col-sm-8">
+            <?= $this->formElement($createForm->get('first_name')) ?>
+            <?= $this->formElementErrors($createForm->get('first_name')) ?>
+          </div>
+        </div>
+        <div class="form-group">
+          <?= $this->formLabel($createForm->get('last_name')); ?>
+          <div class="col-sm-8">
+            <?= $this->formElement($createForm->get('last_name')) ?>
+            <?= $this->formElementErrors($createForm->get('last_name')) ?>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-4 col-sm-8">
+            <?= $this->formElement($createForm->get('register_user')) ?>
+          </div>
+        </div>
+        <?= $this->form()->closeTag(); ?>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <?= $this->translate('user_heading_login_now'); ?>
+      </div>
+      <div class="panel-body">
+        <?php if ($this->authError) : ?>
+          <div class="alert alert-danger">
+            <p><?= $this->translate($this->authError); ?></p>
+          </div>
+        <?php endif; ?>
+        <?= $this->form()->openTag($loginForm); ?>
+        <div class="form-group">
+        <?= $this->formLabel($loginForm->get('email')); ?>
+          <div class="col-sm-8">
+            <?= $this->formElement($loginForm->get('email')) ?>
+            <?= $this->formElementErrors($loginForm->get('email')) ?>
+          </div>
+        </div>
+        <div class="form-group">
+          <?= $this->formLabel($loginForm->get('password')); ?>
+          <div class="col-sm-8">
+            <?= $this->formElement($loginForm->get('password')) ?>
+            <?= $this->formElementErrors($loginForm->get('password')) ?>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-4 col-sm-8">
+            <?= $this->formElement($loginForm->get('login_user')) ?>
+          </div>
+        </div>
+        <?= $this->form()->closeTag(); ?>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <p class="text-center">
+    <a href="<?= $this->url('home') ?>" class="btn btn-success">
+      <?= $this->translate('application_action_back_home'); ?>
+    </a>
+  </p>
+</div>
