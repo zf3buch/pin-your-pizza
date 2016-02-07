@@ -18,6 +18,9 @@ use Zend\Permissions\Rbac\Rbac as ZendRbac;
  */
 class Rbac extends ZendRbac
 {
+    /**
+     * Rbac constructor.
+     */
     public function __construct()
     {
         $this->addRole(new GuestRole());

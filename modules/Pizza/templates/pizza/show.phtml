@@ -17,11 +17,10 @@ $form = $this->commentForm;
 $form->setAttribute('action', $urlComment);
 
 ?>
-<h1><?php echo $this->pizza['name']; ?></h1>
+<h1><?= $this->pizza['name']; ?></h1>
 <div class="row">
-    <?php
-    $this->inlineScript()->appendScript(
-        "
+  <?php
+  $this->inlineScript()->appendScript("
     $('#stars-" . $this->pizza['id'] . "').raty({
         score   : " . $this->pizza['rate'] . ",
         half    : true,
@@ -32,124 +31,102 @@ $form->setAttribute('action', $urlComment);
             $(location).attr('href','" . $urlVote . "?star=' + (Math.floor(score) + 1));
         }
     });
-    "
-    ); ?>
-    <div class="col-md-6">
-        <div class="thumbnail text-center">
-            <img src="<?php echo $this->pizza['image'] ?>"
-                 title="<?php echo $this->pizza['name'] ?>">
-
-            <div class="caption">
-                <p id="stars-<?php echo $this->pizza['id'] ?>"></p>
-
-                <p>
-                    <?php echo $this->pizza['name'] ?>
-                </p>
-            </div>
+    ");
+  ?>
+  <div class="col-md-6">
+    <div class="thumbnail text-center">
+      <img src="<?= $this->pizza['image'] ?>"
+           title="<?= $this->pizza['name'] ?>">
+      <div class="caption">
+        <p id="stars-<?= $this->pizza['id'] ?>"></p>
+        <p><?= $this->pizza['name'] ?></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <?php foreach ($this->pizza['comments'] as $comment) : ?>
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <?php
+          echo sprintf(
+              $this->translate('pizza_message_comment'),
+              $comment['name'],
+              $this->dateFormat(
+                  strtotime($comment['date']),
+                  IntlDateFormatter::LONG,
+                  IntlDateFormatter::NONE
+              ),
+              $this->dateFormat(
+                  strtotime($comment['date']),
+                  IntlDateFormatter::NONE,
+                  IntlDateFormatter::LONG
+              )
+          );
+          ?>
         </div>
-    </div>
-    <div class="col-md-6">
-        <?php foreach ($this->pizza['comments'] as $comment) : ?>
-            <div class="panel panel-success">
-                <div class="panel-heading">
-                    <?php
-                    echo sprintf(
-                        $this->translate('pizza_message_comment'),
-                        $comment['name'],
-                        $this->dateFormat(
-                            strtotime($comment['date']),
-                            IntlDateFormatter::LONG,
-                            IntlDateFormatter::NONE
-                        ),
-                        $this->dateFormat(
-                            strtotime($comment['date']),
-                            IntlDateFormatter::NONE,
-                            IntlDateFormatter::LONG
-                        )
-                    );
-                    ?>
-                </div>
-                <div class="panel-body">
-                    <?php echo $comment['text']; ?>
-                    <?php if ($this->userAllowed(
-                        'pizza-delete-comment'
-                    )
-                    ): ?>
-                        <?php
-                        $urlDelete = $this->url(
-                            'pizza-delete-comment',
-                            [
-                                'id'        => $this->pizza['id'],
-                                'commentId' => $comment['id'],
-                            ]
-                        );
-                        ?>
-                        <p>
-                            <a href="<?php echo $urlDelete; ?>"
-                               class="btn btn-danger">
-                                <?php echo $this->translate(
-                                    'pizza_action_delete_comment'
-                                ); ?>
-                            </a>
-                        </p>
-                    <?php endif; ?>
-                </div>
+        <div class="panel-body">
+          <?= $comment['text']; ?>
+          <?php if ($this->userAllowed('pizza-delete-comment')): ?>
+            <?php
+            $urlDelete = $this->url(
+                'pizza-delete-comment',
+                [
+                    'id'        => $this->pizza['id'],
+                    'commentId' => $comment['id'],
+                ]
+            );
+            ?>
+            <p>
+              <a href="<?= $urlDelete; ?>" class="btn btn-danger">
+                <?= $this->translate('pizza_action_delete_comment'); ?>
+              </a>
+            </p>
+          <?php endif; ?>
+        </div>
+      </div>
+    <?php endforeach ?>
+    <?php if ($this->userAllowed('pizza-comment')): ?>
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <?php
+          echo sprintf(
+              $this->translate('pizza_heading_new_comment'),
+              $this->pizza['name']
+          );
+          ?>
+        </div>
+        <div class="panel-body">
+          <?= $this->form()->openTag($form); ?>
+          <div class="form-group">
+            <?= $this->formLabel($form->get('name')); ?>
+            <div class="col-sm-8">
+              <?= $this->formElement($form->get('name')); ?>
+              <?= $this->formElementErrors($form->get('name')); ?>
             </div>
-        <?php endforeach ?>
-        <?php if ($this->userAllowed('pizza-comment')): ?>
-            <div class="panel panel-success">
-                <div class="panel-heading">
-                    <?php
-                    echo sprintf(
-                        $this->translate('pizza_heading_new_comment'),
-                        $this->pizza['name']
-                    );
-                    ?>
-                </div>
-                <div class="panel-body">
-                    <?php echo $this->form()->openTag($form); ?>
-                    <div class="form-group">
-                        <?php echo $this->formLabel($form->get('name')); ?>
-                        <div class="col-sm-8">
-                            <?php
-                            echo $this->formElement($form->get('name'));
-                            echo $this->formElementErrors(
-                                $form->get('name')
-                            );
-                            ?>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <?php echo $this->formLabel($form->get('text')); ?>
-                        <div class="col-sm-8">
-                            <?php
-                            echo $this->formElement($form->get('text'));
-                            echo $this->formElementErrors(
-                                $form->get('text')
-                            );
-                            ?>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-4 col-sm-8">
-                            <?php
-                            echo $this->formElement(
-                                $form->get('save_comment')
-                            );
-                            ?>
-                        </div>
-                    </div>
-                </div>
-                <?php echo $this->form()->closeTag(); ?>
+          </div>
+          <div class="form-group">
+            <?= $this->formLabel($form->get('text')); ?>
+            <div class="col-sm-8">
+              <?= $this->formElement($form->get('text')); ?>
+              <?= $this->formElementErrors($form->get('text')); ?>
             </div>
-        <?php endif; ?>
-    </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-4 col-sm-8">
+              <?= $this->formElement($form->get('save_comment')); ?>
+            </div>
+          </div>
+          <?= $this->form()->closeTag(); ?>
+        </div>
+      </div>
+    <?php endif; ?>
+  </div>
 </div>
 <div class="row">
-    <p class="text-center">
-        <a href="<?php echo $this->url('home') ?>"
-           class="btn btn-success">
-            <?php echo $this->translate('pizza_action_back_pinboard'); ?>
-        </a>
-    </p>
+  <p class="text-center">
+    <a href="<?= $this->url('pizza-pinboard') ?>"
+       class="btn btn-success">
+      <?= $this->translate('pizza_action_back_pinboard'); ?>
+    </a>
+  </p>
 </div>

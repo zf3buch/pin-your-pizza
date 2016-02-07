@@ -43,21 +43,21 @@ $this->inlineScript()->prependFile(
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8"/>
-    <?php echo $this->headTitle() . "\n"; ?>
-    <?php echo $this->headMeta() . "\n"; ?>
-    <?php echo $this->headLink() . "\n"; ?>
-    <?php echo $this->headScript() . "\n"; ?>
-    <?php echo $this->headStyle() . "\n"; ?>
+  <meta charset="utf-8"/>
+  <?= $this->headTitle() . "\n"; ?>
+  <?= $this->headMeta() . "\n"; ?>
+  <?= $this->headLink() . "\n"; ?>
+  <?= $this->headScript() . "\n"; ?>
+  <?= $this->headStyle() . "\n"; ?>
 </head>
 <body>
-<?php echo $this->header ?>
+<?= $this->header ?>
 <div>
-    <main class="container">
-        <?php echo $this->content ?>
-    </main>
+  <main class="container">
+    <?= $this->content ?>
+  </main>
 </div>
-<?php echo $this->footer ?>
-<?php echo $this->inlineScript(); ?>
+<?= $this->footer ?>
+<?= $this->inlineScript(); ?>
 </body>
 </html>

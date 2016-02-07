@@ -7,7 +7,7 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
-namespace Application\View\Helper;
+namespace I18n\View\Helper;
 
 use Interop\Container\ContainerInterface;
 use Zend\Expressive\Helper\Exception\MissingRouterException;
@@ -16,7 +16,7 @@ use Zend\Expressive\Router\RouterInterface;
 /**
  * Class UrlHelperFactory
  *
- * @package Application\View\Helper
+ * @package I18n\View\Helper
  */
 class UrlHelperFactory
 {

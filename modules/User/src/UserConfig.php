@@ -9,6 +9,7 @@
 
 namespace User;
 
+use Zend\Config\Config;
 use Zend\Config\Factory;
 
 /**
@@ -29,12 +30,12 @@ class UserConfig
     /**
      * Read configuration
      *
-     * @return array|\Zend\Config\Config
+     * @return array|Config
      */
     public function __invoke()
     {
         return Factory::fromFile(
-            USER_ROOT . '/config/user.config.php'
+            USER_ROOT . '/config/module.config.php'
         );
     }
 }
