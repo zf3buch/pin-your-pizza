@@ -1,0 +1,40 @@
+<?php
+/**
+ * ZF3 book Pin Your Pizza Example Application
+ *
+ * @author     Ralf Eggert <ralf@travello.de>
+ * @link       https://github.com/zf3buch/pin-your-pizza
+ * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
+ */
+
+if ($this->status == 404) {
+    $title     = $this->translate('application_title_404');
+    $header    = $this->translate('application_heading_404');
+    $subHeader = $this->translate('application_heading_awkward');
+    $message   = $this->translate('application_message_not_found_404');
+} else {
+    $title     = $this->translate('application_title_500');
+    $header    = sprintf(
+        $this->translate('application_heading_500'), $this->status
+    );
+    $subHeader = $this->translate('application_heading_awkward');
+    $message   = sprintf(
+        $this->translate('application_message_error_500'),
+        $this->status,
+        $this->reason
+    );
+}
+
+$this->headTitle($title);
+?>
+<h1><?= $header ?></h1>
+<div class="alert alert-danger">
+  <h3><?= $subHeader; ?></h3>
+  <p><?= $message; ?></p>
+  <hr>
+  <p class="text-center">
+    <a class="btn btn-success" href="<?= $this->url('home'); ?>">
+      <?= $this->translate('application_action_back_home'); ?>
+    </a>
+  </p>
+</div>
