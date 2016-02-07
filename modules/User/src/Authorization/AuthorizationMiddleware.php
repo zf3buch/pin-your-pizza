@@ -11,6 +11,7 @@ namespace User\Authorization;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use User\Permissions\GuestRole;
 use User\Permissions\Rbac;
 use Zend\Authentication\Exception\RuntimeException;
 use Zend\Expressive\Router\RouteResult;
@@ -71,10 +72,17 @@ class AuthorizationMiddleware
         $permission = $result->getMatchedRouteName();
 
         if (!$this->rbac->isGranted($this->role, $permission)) {
-            throw new RuntimeException(
-                'user_heading_not_allowed',
-                403
-            );
+            if ($this->role == GuestRole::NAME) {
+                throw new RuntimeException(
+                    'user_heading_unauthorized',
+                    401
+                );
+            } else {
+                throw new RuntimeException(
+                    'user_heading_forbidden',
+                    403
+                );
+            }
         }
 
         return $next($request, $response);

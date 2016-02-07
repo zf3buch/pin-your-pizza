@@ -9,6 +9,7 @@
 
 namespace I18n;
 
+use Zend\Config\Config;
 use Zend\Config\Factory;
 
 /**
@@ -29,12 +30,12 @@ class I18nConfig
     /**
      * Read configuration
      *
-     * @return array|\Zend\Config\Config
+     * @return array|Config
      */
     public function __invoke()
     {
         return Factory::fromFile(
-            I18N_ROOT . '/config/i18n.config.php'
+            I18N_ROOT . '/config/module.config.php'
         );
     }
 }

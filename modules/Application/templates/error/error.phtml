@@ -12,6 +12,11 @@ if ($this->status == 404) {
     $header    = $this->translate('application_heading_404');
     $subHeader = $this->translate('application_heading_awkward');
     $message   = $this->translate('application_message_not_found_404');
+} elseif ($this->status == 401) {
+    $title     = $this->translate('application_title_401');
+    $header    = $this->translate('application_heading_401');
+    $subHeader = $this->translate('application_heading_awkward');
+    $message   = $this->translate('application_message_not_auth_401');
 } elseif ($this->status == 403) {
     $title     = $this->translate('application_title_403');
     $header    = $this->translate('application_heading_403');
@@ -32,17 +37,14 @@ if ($this->status == 404) {
 
 $this->headTitle($title);
 ?>
-
-<h1><?php echo $header ?></h1>
+<h1><?= $header ?></h1>
 <div class="alert alert-danger">
-    <h3><?php echo $subHeader; ?></h3>
-
-    <p><?php echo $message; ?></p>
-    <hr>
-    <p class="text-center">
-        <a class="btn btn-success"
-           href="<?php echo $this->url('home'); ?>">
-            <?php echo $this->translate('application_action_back_home'); ?>
-        </a>
-    </p>
+  <h3><?= $subHeader; ?></h3>
+  <p><?= $message; ?></p>
+  <hr>
+  <p class="text-center">
+    <a class="btn btn-success" href="<?= $this->url('home'); ?>">
+      <?= $this->translate('application_action_back_home'); ?>
+    </a>
+  </p>
 </div>

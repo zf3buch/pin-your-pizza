@@ -19,9 +19,14 @@ use Zend\Permissions\Rbac\AbstractRole;
 class MemberRole extends AbstractRole
 {
     /**
+     * @var string name of role
+     */
+    const NAME = 'member';
+
+    /**
      * @var string
      */
-    protected $name = 'member';
+    protected $name = self::NAME;
 
     /**
      * MemberRole constructor.

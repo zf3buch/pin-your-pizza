@@ -13,7 +13,8 @@ return [
     'user_heading_register_now'      => 'Jetzt registrieren!',
     'user_heading_registered'        => 'Sie haben Sie erfolgreich bei Pin Your Pizza registriert!',
     'user_heading_registration_done' => 'Registrierung abgeschlossen!',
-    'user_heading_not_allowed'       => 'Sie dürfen auf diese Seite nicht zugreifen!',
+    'user_heading_unauthorized'      => 'Sie sind nicht angemeldet!',
+    'user_heading_forbidden'         => 'Sie dürfen auf diese Seite nicht zugreifen!',
 
     'user_navigation_intro'  => 'Anmelden',
     'user_navigation_logout' => 'Abmelden',
