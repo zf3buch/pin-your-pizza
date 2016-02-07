@@ -29,7 +29,7 @@ return [
                 User\Model\Table\UserTableFactory::class,
 
             User\Model\Repository\UserRepositoryInterface::class =>
-                User\Model\Repository\DbUserRepositoryFactory::class,
+                User\Model\Repository\UserRepositoryFactory::class,
 
             User\Model\InputFilter\LoginInputFilter::class    =>
                 User\Model\InputFilter\LoginInputFilterFactory::class,

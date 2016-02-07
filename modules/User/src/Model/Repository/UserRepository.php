@@ -12,11 +12,11 @@ namespace User\Model\Repository;
 use User\Model\Table\UserTableInterface;
 
 /**
- * Class DbUserRepository
+ * Class UserRepository
  *
  * @package User\Model\Repository
  */
-class DbUserRepository implements UserRepositoryInterface
+class UserRepository implements UserRepositoryInterface
 {
     /**
      * @var UserTableInterface
@@ -24,7 +24,7 @@ class DbUserRepository implements UserRepositoryInterface
     private $userTable;
 
     /**
-     * DbUserRepository constructor.
+     * UserRepository constructor.
      *
      * @param UserTableInterface $userTable
      */
