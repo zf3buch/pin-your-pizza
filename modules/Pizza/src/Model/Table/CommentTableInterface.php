@@ -9,14 +9,12 @@
 
 namespace Pizza\Model\Table;
 
-use Zend\Db\TableGateway\TableGatewayInterface;
-
 /**
  * Interface CommentTableInterface
  *
  * @package Pizza\Model\Table
  */
-interface CommentTableInterface extends TableGatewayInterface
+interface CommentTableInterface
 {
     /**
      * Fetch comments by pizza id
@@ -26,4 +24,22 @@ interface CommentTableInterface extends TableGatewayInterface
      * @return array
      */
     public function fetchCommentsByPizza($pizzaId);
+
+    /**
+     * Save a comment
+     *
+     * @param array $data
+     *
+     * @return mixed
+     */
+    public function saveComment(array $data = array());
+
+    /**
+     * Delete a comment
+     *
+     * @param integer $id
+     *
+     * @return mixed
+     */
+    public function deleteComment($id);
 }

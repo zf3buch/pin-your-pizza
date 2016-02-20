@@ -51,7 +51,7 @@ class CommentRepository implements CommentRepositoryInterface
             'text'  => isset($data['text']) ? $data['text'] : 'kein Kommentar',
         ];
 
-        return $this->commentTable->insert($insertData);
+        return $this->commentTable->saveComment($insertData);
     }
 
     /**
@@ -63,6 +63,6 @@ class CommentRepository implements CommentRepositoryInterface
      */
     public function deleteComment($id)
     {
-        return $this->commentTable->delete(['id' => $id]);
+        return $this->commentTable->deleteComment($id);
     }
 }
