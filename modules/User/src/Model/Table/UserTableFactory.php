@@ -11,6 +11,8 @@ namespace User\Model\Table;
 
 use Interop\Container\ContainerInterface;
 use Zend\Db\Adapter\AdapterInterface;
+use Zend\Db\ResultSet\ResultSet;
+use Zend\Db\TableGateway\TableGateway;
 
 /**
  * Class UserTableFactory
@@ -28,6 +30,12 @@ class UserTableFactory
     {
         $adapter = $container->get(AdapterInterface::class);
 
-        return new UserTable($adapter);
+        $resultSet = new ResultSet(ResultSet::TYPE_ARRAY);
+
+        $tableGateway = new TableGateway(
+            'user', $adapter, null, $resultSet
+        );
+
+        return new UserTable($tableGateway);
     }
 }

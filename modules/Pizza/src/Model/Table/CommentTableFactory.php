@@ -11,6 +11,8 @@ namespace Pizza\Model\Table;
 
 use Interop\Container\ContainerInterface;
 use Zend\Db\Adapter\AdapterInterface;
+use Zend\Db\ResultSet\ResultSet;
+use Zend\Db\TableGateway\TableGateway;
 
 /**
  * Class CommentTableFactory
@@ -28,6 +30,12 @@ class CommentTableFactory
     {
         $adapter = $container->get(AdapterInterface::class);
 
-        return new CommentTable($adapter);
+        $resultSet = new ResultSet(ResultSet::TYPE_ARRAY);
+
+        $tableGateway = new TableGateway(
+            'comment', $adapter, null, $resultSet
+        );
+
+        return new CommentTable($tableGateway);
     }
 }
