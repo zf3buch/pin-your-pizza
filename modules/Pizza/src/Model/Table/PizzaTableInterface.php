@@ -9,14 +9,12 @@
 
 namespace Pizza\Model\Table;
 
-use Zend\Db\TableGateway\TableGatewayInterface;
-
 /**
  * Interface PizzaTableInterface
  *
  * @package Pizza\Model\Table
  */
-interface PizzaTableInterface extends TableGatewayInterface
+interface PizzaTableInterface
 {
     /**
      * Fetch all pizzas
