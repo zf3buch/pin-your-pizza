@@ -69,6 +69,6 @@ class UserRepository implements UserRepositoryInterface
             $data['password'], PASSWORD_BCRYPT
         );
 
-        return $this->userTable->insert($data);
+        return $this->userTable->insertUser($data);
     }
 }

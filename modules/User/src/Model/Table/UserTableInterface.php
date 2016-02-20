@@ -9,14 +9,12 @@
 
 namespace User\Model\Table;
 
-use Zend\Db\TableGateway\TableGatewayInterface;
-
 /**
  * Interface UserTableInterface
  *
  * @package User\Model\Table
  */
-interface UserTableInterface extends TableGatewayInterface
+interface UserTableInterface
 {
     /**
      * Fetch user by id
@@ -26,4 +24,13 @@ interface UserTableInterface extends TableGatewayInterface
      * @return array
      */
     public function fetchUserById($id);
+
+    /**
+     * Insert a user
+     *
+     * @param array $data
+     *
+     * @return mixed
+     */
+    public function insertUser(array $data = array());
 }
