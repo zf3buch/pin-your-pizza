@@ -9,27 +9,30 @@
 
 namespace User\Model\Table;
 
-use Zend\Db\Adapter\AdapterInterface;
 use Zend\Db\ResultSet\ResultSet;
-use Zend\Db\TableGateway\TableGateway;
+use Zend\Db\TableGateway\AbstractTableGateway;
+use Zend\Db\TableGateway\TableGatewayInterface;
 
 /**
  * Class UserTable
  *
  * @package User\Model\Table
  */
-class UserTable extends TableGateway implements UserTableInterface
+class UserTable implements UserTableInterface
 {
+    /**
+     * @var TableGatewayInterface|AbstractTableGateway
+     */
+    private $tableGateway;
+
     /**
      * UserTable constructor.
      *
-     * @param AdapterInterface $adapter
+     * @param TableGatewayInterface $tableGateway
      */
-    public function __construct(AdapterInterface $adapter)
+    public function __construct($tableGateway)
     {
-        $resultSet = new ResultSet(ResultSet::TYPE_ARRAY);
-
-        parent::__construct('user', $adapter, null, $resultSet);
+        $this->tableGateway = $tableGateway;
     }
 
     /**
@@ -42,13 +45,25 @@ class UserTable extends TableGateway implements UserTableInterface
     public function fetchUserById($id)
     {
         // select users
-        $select = $this->getSql()->select();
+        $select = $this->tableGateway->getSql()->select();
         $select->where->equalTo('id', $id);
 
         /** @var ResultSet $resultSet */
-        $resultSet = $this->selectWith($select);
+        $resultSet = $this->tableGateway->selectWith($select);
 
         // return data
         return $resultSet->current();
+    }
+
+    /**
+     * Insert a user
+     *
+     * @param array $data
+     *
+     * @return mixed
+     */
+    public function insertUser(array $data = [])
+    {
+        return $this->tableGateway->insert($data);
     }
 }
