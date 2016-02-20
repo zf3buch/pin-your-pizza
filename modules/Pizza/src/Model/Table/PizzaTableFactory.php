@@ -11,6 +11,8 @@ namespace Pizza\Model\Table;
 
 use Interop\Container\ContainerInterface;
 use Zend\Db\Adapter\AdapterInterface;
+use Zend\Db\ResultSet\ResultSet;
+use Zend\Db\TableGateway\TableGateway;
 
 /**
  * Class PizzaTableFactory
@@ -28,6 +30,12 @@ class PizzaTableFactory
     {
         $adapter = $container->get(AdapterInterface::class);
 
-        return new PizzaTable($adapter);
+        $resultSet = new ResultSet(ResultSet::TYPE_ARRAY);
+
+        $tableGateway = new TableGateway(
+            'pizza', $adapter, null, $resultSet
+        );
+
+        return new PizzaTable($tableGateway);
     }
 }
