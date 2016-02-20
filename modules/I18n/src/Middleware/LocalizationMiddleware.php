@@ -13,6 +13,7 @@ use Locale;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Expressive\Router\RouteResult;
+use Zend\I18n\Translator\Translator;
 
 /**
  * Class LocalizationMiddleware
@@ -22,6 +23,11 @@ use Zend\Expressive\Router\RouteResult;
 class LocalizationMiddleware
 {
     /**
+     * @var Translator
+     */
+    private $translator;
+
+    /**
      * @var string
      */
     private $defaultLang;
@@ -30,6 +36,16 @@ class LocalizationMiddleware
      * @var array
      */
     private $allowedLocales;
+
+    /**
+     * LocalizationMiddleware constructor.
+     *
+     * @param Translator $translator
+     */
+    public function __construct(Translator $translator)
+    {
+        $this->translator = $translator;
+    }
 
     /**
      * @param string $defaultLang
@@ -72,6 +88,8 @@ class LocalizationMiddleware
         $locale = $this->allowedLocales[$lang];
 
         Locale::setDefault($locale);
+
+        $this->translator->setLocale($locale);
 
         return $next($request, $response);
     }
