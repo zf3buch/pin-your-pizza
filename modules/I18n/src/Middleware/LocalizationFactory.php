@@ -10,7 +10,6 @@
 namespace I18n\Middleware;
 
 use Interop\Container\ContainerInterface;
-use Zend\I18n\Translator\Translator;
 
 /**
  * Class LocalizationFactory
@@ -26,10 +25,9 @@ class LocalizationFactory
      */
     public function __invoke(ContainerInterface $container)
     {
-        $translator = $container->get(Translator::class);
-        $config     = $container->get('config')['i18n'];
+        $config = $container->get('config')['i18n'];
 
-        $middleware = new LocalizationMiddleware($translator);
+        $middleware = new LocalizationMiddleware();
         $middleware->setDefaultLang($config['defaultLang']);
         $middleware->setAllowedLocales($config['allowedLocales']);
 

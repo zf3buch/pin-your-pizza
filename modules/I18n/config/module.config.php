@@ -26,9 +26,6 @@ return [
         'factories' => [
             I18n\Middleware\LocalizationMiddleware::class =>
                 I18n\Middleware\LocalizationFactory::class,
-
-            Zend\I18n\Translator\Translator::class =>
-                I18n\Translator\TranslatorFactory::class,
         ],
     ],
 ];

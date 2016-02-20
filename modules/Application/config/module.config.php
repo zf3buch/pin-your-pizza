@@ -50,15 +50,4 @@ return [
     ],
 
     'view_helpers' => [],
-
-    'translate' => [
-        'translation_file_patterns' => [
-            [
-                'type'         => 'phpArray',
-                'base_dir'     => APPLICATION_ROOT . '/application',
-                'pattern'      => '%s.php',
-                'text_domain'  => 'default',
-            ],
-        ],
-    ],
 ];
