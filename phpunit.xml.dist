@@ -3,6 +3,18 @@
         <testsuite name="Application\\Tests">
             <directory>./modules/Application/test</directory>
         </testsuite>
+        <testsuite name="I18n\\Tests">
+            <directory>./modules/I18n/test</directory>
+        </testsuite>
+        <testsuite name="Bootstrap\\Tests">
+            <directory>./modules/Bootstrap/test</directory>
+        </testsuite>
+        <testsuite name="Pizza\\Tests">
+            <directory>./modules/Pizza/test</directory>
+        </testsuite>
+        <testsuite name="User\\Tests">
+            <directory>./modules/User/test</directory>
+        </testsuite>
     </testsuites>
 
     <filter>

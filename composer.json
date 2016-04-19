@@ -36,6 +36,7 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8",
+        "phpunit/dbunit": "^2.0",
         "squizlabs/php_codesniffer": "^2.3",
         "filp/whoops": "^1.1"
     },
@@ -50,7 +51,11 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "ApplicationTest\\": "modules/Application/test/"
+            "ApplicationTest\\": "modules/Application/test/",
+            "I18nTest\\": "modules/I18n/test/",
+            "BootstrapTest\\": "modules/Bootstrap/test/",
+            "PizzaTest\\": "modules/Pizza/test/",
+            "UserTest\\": "modules/User/test/"
         }
     },
     "scripts": {
