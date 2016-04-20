@@ -7,19 +7,19 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
-namespace Pizza;
+namespace Application;
 
 use Zend\Config\Config;
 use Zend\Config\Factory;
 
-define('PIZZA_ROOT', __DIR__ . '/..');
+define('APPLICATION_ROOT', __DIR__ . '/..');
 
 /**
- * Class PizzaConfig
+ * Class ConfigProvider
  *
- * @package Pizza
+ * @package Application
  */
-class PizzaConfig
+class ConfigProvider
 {
     /**
      * Read configuration
@@ -29,7 +29,7 @@ class PizzaConfig
     public function __invoke()
     {
         return Factory::fromFile(
-            PIZZA_ROOT . '/config/module.config.php'
+            APPLICATION_ROOT . '/config/module.config.php'
         );
     }
 }
