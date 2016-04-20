@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<dataset>
+    <table name="user">
+        <column>id</column>
+        <column>date</column>
+        <column>email</column>
+        <column>password</column>
+        <column>role</column>
+        <column>first_name</column>
+        <column>last_name</column>
+        <row>
+            <value>1</value>
+            <value>2015-12-25 06:33:06</value>
+            <value>member@vote-my-pizza.de</value>
+            <value>$2y$10$LgI03AFI.lu5lB1t4Rfpy.ipppiAE79Xz1Dk6pi1RVIAW2./5at2.</value>
+            <value>member</value>
+            <value>Michael</value>
+            <value>Mitglied</value>
+        </row>
+        <row>
+            <value>2</value>
+            <value>2015-12-25 06:35:39</value>
+            <value>admin@vote-my-pizza.de</value>
+            <value>$2y$10$MNLzqwHkE4HNbjWIiF7i3e8aKvrBsPm8CRUF3aFbT9f1nAMeOmPDO</value>
+            <value>admin</value>
+            <value>Adonis</value>
+            <value>Admin</value>
+        </row>
+    </table>
+</dataset>
