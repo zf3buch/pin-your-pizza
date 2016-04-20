@@ -7,26 +7,20 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
-namespace I18n;
+namespace Application;
 
 use Zend\Config\Config;
 use Zend\Config\Factory;
 
-/**
- * Class I18nConfig
- *
- * @package I18n
- */
-class I18nConfig
-{
-    /**
-     * Define constant
-     */
-    public function __construct()
-    {
-        define('I18N_ROOT', __DIR__ . '/..');
-    }
+define('APPLICATION_ROOT', __DIR__ . '/..');
 
+/**
+ * Class ConfigProvider
+ *
+ * @package Application
+ */
+class ConfigProvider
+{
     /**
      * Read configuration
      *
@@ -35,7 +29,7 @@ class I18nConfig
     public function __invoke()
     {
         return Factory::fromFile(
-            I18N_ROOT . '/config/module.config.php'
+            APPLICATION_ROOT . '/config/module.config.php'
         );
     }
 }
