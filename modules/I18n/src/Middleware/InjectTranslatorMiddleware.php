@@ -71,7 +71,10 @@ class InjectTranslatorMiddleware
         $formLabelHelper = $this->helperPluginManager->get('formElementErrors');
         $formLabelHelper->setTranslator($this->translator);
 
-        AbstractValidator::setDefaultTranslator($this->translator);
+        try {
+            AbstractValidator::setDefaultTranslator($this->translator);
+        } catch (\Exception $e) {
+        }
 
         return $next($request, $response);
     }
