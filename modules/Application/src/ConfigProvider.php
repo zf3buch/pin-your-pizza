@@ -15,11 +15,11 @@ use Zend\Config\Factory;
 define('APPLICATION_ROOT', __DIR__ . '/..');
 
 /**
- * Class ApplicationConfig
+ * Class ConfigProvider
  *
  * @package Application
  */
-class ApplicationConfig
+class ConfigProvider
 {
     /**
      * Read configuration
