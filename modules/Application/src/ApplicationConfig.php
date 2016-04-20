@@ -12,6 +12,8 @@ namespace Application;
 use Zend\Config\Config;
 use Zend\Config\Factory;
 
+define('APPLICATION_ROOT', __DIR__ . '/..');
+
 /**
  * Class ApplicationConfig
  *
@@ -19,14 +21,6 @@ use Zend\Config\Factory;
  */
 class ApplicationConfig
 {
-    /**
-     * Define constant
-     */
-    public function __construct()
-    {
-        define('APPLICATION_ROOT', __DIR__ . '/..');
-    }
-
     /**
      * Read configuration
      *
