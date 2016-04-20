@@ -7,26 +7,20 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
-namespace User;
+namespace Pizza;
 
 use Zend\Config\Config;
 use Zend\Config\Factory;
 
-/**
- * Class UserConfig
- *
- * @package User
- */
-class UserConfig
-{
-    /**
-     * Define constant
-     */
-    public function __construct()
-    {
-        define('USER_ROOT', __DIR__ . '/..');
-    }
+define('PIZZA_ROOT', __DIR__ . '/..');
 
+/**
+ * Class ConfigProvider
+ *
+ * @package Pizza
+ */
+class ConfigProvider
+{
     /**
      * Read configuration
      *
@@ -35,7 +29,7 @@ class UserConfig
     public function __invoke()
     {
         return Factory::fromFile(
-            USER_ROOT . '/config/module.config.php'
+            PIZZA_ROOT . '/config/module.config.php'
         );
     }
 }

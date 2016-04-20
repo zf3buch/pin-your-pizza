@@ -22,16 +22,14 @@ use Zend\View\HelperPluginManager;
 class AllowedFactory
 {
     /**
-     * @param ContainerInterface|HelperPluginManager $viewHelperManager
+     * @param ContainerInterface $container
      *
      * @return Allowed
      */
-    public function __invoke(ContainerInterface $viewHelperManager)
+    public function __invoke(ContainerInterface $container)
     {
-        $diContainer = $viewHelperManager->getServiceLocator();
-
         /** @var AuthenticationServiceInterface $authenticationService */
-        $authenticationService = $diContainer->get(
+        $authenticationService = $container->get(
             AuthenticationServiceInterface::class
         );
 
@@ -41,7 +39,7 @@ class AllowedFactory
             $role = 'guest';
         }
 
-        $rbac = $diContainer->get(Rbac::class);
+        $rbac = $container->get(Rbac::class);
 
         $viewHelper = new Allowed($role, $rbac);
 
