@@ -50,7 +50,7 @@ return [
     'translate' => [
         'translation_file_patterns' => [
             [
-                'type'         => 'phpArray',
+                'type'         => 'phparray',
                 'base_dir'     => APPLICATION_ROOT . '/language',
                 'pattern'      => '%s.php',
                 'text_domain'  => 'default',
