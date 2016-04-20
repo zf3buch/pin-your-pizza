@@ -7,20 +7,26 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
-namespace Pizza;
+namespace I18n;
 
 use Zend\Config\Config;
 use Zend\Config\Factory;
 
-define('PIZZA_ROOT', __DIR__ . '/..');
-
 /**
- * Class PizzaConfig
+ * Class ConfigProvider
  *
- * @package Pizza
+ * @package I18n
  */
-class PizzaConfig
+class ConfigProvider
 {
+    /**
+     * Define constant
+     */
+    public function __construct()
+    {
+        define('I18N_ROOT', __DIR__ . '/..');
+    }
+
     /**
      * Read configuration
      *
@@ -29,7 +35,7 @@ class PizzaConfig
     public function __invoke()
     {
         return Factory::fromFile(
-            PIZZA_ROOT . '/config/module.config.php'
+            I18N_ROOT . '/config/module.config.php'
         );
     }
 }
