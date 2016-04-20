@@ -12,7 +12,7 @@ namespace Pizza\Form;
 use Zend\Form\Form;
 
 /**
- * Class CommentPriceForm
+ * Class CommentForm
  *
  * @package Pizza\Form
  */
