@@ -1,0 +1,123 @@
+<?xml version="1.0" ?>
+<dataset>
+    <table name="pizza">
+        <column>id</column>
+        <column>name</column>
+        <column>image</column>
+        <column>stars1</column>
+        <column>stars2</column>
+        <column>stars3</column>
+        <column>stars4</column>
+        <column>stars5</column>
+        <column>total</column>
+        <column>rate</column>
+        <row>
+            <value>1</value>
+            <value>Pizza Mista</value>
+            <value>/assets/custom/pizza/001.jpg</value>
+            <value>0</value>
+            <value>0</value>
+            <value>0</value>
+            <value>1</value>
+            <value>1</value>
+            <value>2</value>
+            <value>4.5000</value>
+        </row>
+        <row>
+            <value>2</value>
+            <value>Pizza Oliva</value>
+            <value>/assets/custom/pizza/002.jpg</value>
+            <value>0</value>
+            <value>0</value>
+            <value>0</value>
+            <value>0</value>
+            <value>2</value>
+            <value>2</value>
+            <value>5.0000</value>
+        </row>
+        <row>
+            <value>3</value>
+            <value>Pizza Margherita</value>
+            <value>/assets/custom/pizza/003.jpg</value>
+            <value>0</value>
+            <value>2</value>
+            <value>0</value>
+            <value>0</value>
+            <value>0</value>
+            <value>2</value>
+            <value>2.0000</value>
+        </row>
+        <row>
+            <value>4</value>
+            <value>Pizza Gambero</value>
+            <value>/assets/custom/pizza/004.jpg</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0</value>
+            <value>0</value>
+            <value>2</value>
+            <value>1.5000</value>
+        </row>
+        <row>
+            <value>5</value>
+            <value>Pizza Verdura</value>
+            <value>/assets/custom/pizza/005.jpg</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0</value>
+            <value>1</value>
+            <value>0</value>
+            <value>2</value>
+            <value>2.5000</value>
+        </row>
+        <row>
+            <value>6</value>
+            <value>Pizza Peperone</value>
+            <value>/assets/custom/pizza/006.jpg</value>
+            <value>0</value>
+            <value>0</value>
+            <value>2</value>
+            <value>0</value>
+            <value>0</value>
+            <value>2</value>
+            <value>3.0000</value>
+        </row>
+        <row>
+            <value>7</value>
+            <value>Pizza Vegetariana</value>
+            <value>/assets/custom/pizza/007.jpg</value>
+            <value>1</value>
+            <value>0</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0</value>
+            <value>2</value>
+            <value>2.0000</value>
+        </row>
+        <row>
+            <value>8</value>
+            <value>Pizza Salame</value>
+            <value>/assets/custom/pizza/008.jpg</value>
+            <value>0</value>
+            <value>0</value>
+            <value>0</value>
+            <value>0</value>
+            <value>2</value>
+            <value>2</value>
+            <value>5.0000</value>
+        </row>
+        <row>
+            <value>9</value>
+            <value>Pizza Funghi e Oliva</value>
+            <value>/assets/custom/pizza/009.jpg</value>
+            <value>0</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0</value>
+            <value>2</value>
+            <value>2.5000</value>
+        </row>
+    </table>
+</dataset>
