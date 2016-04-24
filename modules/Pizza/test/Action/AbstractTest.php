@@ -93,7 +93,7 @@ abstract class AbstractTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Mock restaurant repository
+     * Mock comment repository
      */
     protected function mockCommentRepository()
     {
@@ -103,7 +103,7 @@ abstract class AbstractTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Mock restaurant price form
+     * Mock comment price form
      */
     protected function mockCommentForm()
     {
