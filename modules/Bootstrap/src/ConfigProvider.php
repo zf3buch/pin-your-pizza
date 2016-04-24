@@ -11,6 +11,8 @@ namespace Bootstrap;
 
 use Zend\Config\Factory;
 
+define('BOOTSTRAP_ROOT', __DIR__ . '/..');
+
 /**
  * Class ConfigProvider
  *
@@ -19,14 +21,6 @@ use Zend\Config\Factory;
 class ConfigProvider
 {
     /**
-     * Define constant
-     */
-    public function __construct()
-    {
-        define('BOOTSTRAP_ROOT', __DIR__ . '/..');
-    }
-
-    /**
      * Read configuration
      *
      * @return array|\Zend\Config\Config
@@ -34,7 +28,7 @@ class ConfigProvider
     public function __invoke()
     {
         return Factory::fromFile(
-            BOOTSTRAP_ROOT . '/config/bootstrap.config.php'
+            BOOTSTRAP_ROOT . '/config/module.config.php'
         );
     }
 }
