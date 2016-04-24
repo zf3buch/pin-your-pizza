@@ -12,6 +12,8 @@ namespace I18n;
 use Zend\Config\Config;
 use Zend\Config\Factory;
 
+define('I18N_ROOT', __DIR__ . '/..');
+
 /**
  * Class ConfigProvider
  *
@@ -19,14 +21,6 @@ use Zend\Config\Factory;
  */
 class ConfigProvider
 {
-    /**
-     * Define constant
-     */
-    public function __construct()
-    {
-        define('I18N_ROOT', __DIR__ . '/..');
-    }
-
     /**
      * Read configuration
      *
