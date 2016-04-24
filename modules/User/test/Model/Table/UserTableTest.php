@@ -56,7 +56,7 @@ class UserTableTest extends PHPUnit_Extensions_Database_TestCase
             $this->connection = $this->createDefaultDBConnection(
                 $this->adapter->getDriver()->getConnection()->getResource(
                 ),
-                'vote-my-pizza-test'
+                'pin-your-pizza-test'
             );
         }
 
