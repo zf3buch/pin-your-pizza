@@ -153,11 +153,9 @@ class AuthorizationMiddlewareTest extends PHPUnit_Framework_TestCase
             );
         };
 
-        $this->setExpectedException(
-            RuntimeException::class,
-            'user_heading_unauthorized',
-            401
-        );
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage('user_heading_unauthorized');
+        $this->expectExceptionCode(401);
 
         /** @var RedirectResponse $response */
         $response = $middleware($serverRequest, $serverResponse, $next);
@@ -203,11 +201,9 @@ class AuthorizationMiddlewareTest extends PHPUnit_Framework_TestCase
             );
         };
 
-        $this->setExpectedException(
-            RuntimeException::class,
-            'user_heading_forbidden',
-            403
-        );
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage('user_heading_forbidden');
+        $this->expectExceptionCode(403);
 
         /** @var RedirectResponse $response */
         $response = $middleware($serverRequest, $serverResponse, $next);
