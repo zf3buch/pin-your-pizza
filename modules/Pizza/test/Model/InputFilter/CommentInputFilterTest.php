@@ -11,7 +11,6 @@ namespace PizzaTest\Model\InputFilter;
 
 use PHPUnit_Framework_TestCase;
 use Pizza\Model\InputFilter\CommentInputFilter;
-use Zend\I18n\Validator\IsFloat;
 use Zend\Validator\NotEmpty;
 use Zend\Validator\StringLength;
 
@@ -22,6 +21,31 @@ use Zend\Validator\StringLength;
  */
 class CommentInputFilterTest extends PHPUnit_Framework_TestCase
 {
+    /**
+     * Do the input filter test
+     *
+     * @param $inputData
+     * @param $expectedResult
+     * @param $expectedValues
+     * @param $expectedMessages
+     */
+    protected function doInputFilterTest(
+        $inputData, $expectedResult, $expectedValues, $expectedMessages
+    ) {
+        $inputFilter = new CommentInputFilter();
+        $inputFilter->init();
+
+        $inputFilter->setData($inputData);
+
+        $result = $inputFilter->isValid();
+
+        $this->assertEquals($expectedResult, $result);
+        $this->assertEquals($expectedValues, $inputFilter->getValues());
+        $this->assertEquals(
+            $expectedMessages, $inputFilter->getMessages()
+        );
+    }
+
     /**
      * Test input filter with empty data
      */
@@ -40,18 +64,10 @@ class CommentInputFilterTest extends PHPUnit_Framework_TestCase
                 NotEmpty::IS_EMPTY => 'pizza_validator_comment_notempty',
             ],
         ];
+        $expectedResult   = false;
 
-        $inputFilter = new CommentInputFilter();
-        $inputFilter->init();
-
-        $inputFilter->setData($inputData);
-
-        $result = $inputFilter->isValid();
-
-        $this->assertFalse($result);
-        $this->assertEquals($expectedValues, $inputFilter->getValues());
-        $this->assertEquals(
-            $expectedMessages, $inputFilter->getMessages()
+        $this->doInputFilterTest(
+            $inputData, $expectedResult, $expectedValues, $expectedMessages
         );
     }
 
@@ -76,18 +92,10 @@ class CommentInputFilterTest extends PHPUnit_Framework_TestCase
                 NotEmpty::IS_EMPTY => 'pizza_validator_comment_notempty',
             ],
         ];
+        $expectedResult   = false;
 
-        $inputFilter = new CommentInputFilter();
-        $inputFilter->init();
-
-        $inputFilter->setData($inputData);
-
-        $result = $inputFilter->isValid();
-
-        $this->assertFalse($result);
-        $this->assertEquals($expectedValues, $inputFilter->getValues());
-        $this->assertEquals(
-            $expectedMessages, $inputFilter->getMessages()
+        $this->doInputFilterTest(
+            $inputData, $expectedResult, $expectedValues, $expectedMessages
         );
     }
 
@@ -112,18 +120,10 @@ class CommentInputFilterTest extends PHPUnit_Framework_TestCase
                 StringLength::TOO_SHORT => 'pizza_validator_comment_length',
             ],
         ];
+        $expectedResult   = false;
 
-        $inputFilter = new CommentInputFilter();
-        $inputFilter->init();
-
-        $inputFilter->setData($inputData);
-
-        $result = $inputFilter->isValid();
-
-        $this->assertFalse($result);
-        $this->assertEquals($expectedValues, $inputFilter->getValues());
-        $this->assertEquals(
-            $expectedMessages, $inputFilter->getMessages()
+        $this->doInputFilterTest(
+            $inputData, $expectedResult, $expectedValues, $expectedMessages
         );
     }
 
@@ -141,18 +141,10 @@ class CommentInputFilterTest extends PHPUnit_Framework_TestCase
             'text' => 'Text',
         ];
         $expectedMessages = [];
+        $expectedResult   = true;
 
-        $inputFilter = new CommentInputFilter();
-        $inputFilter->init();
-
-        $inputFilter->setData($inputData);
-
-        $result = $inputFilter->isValid();
-
-        $this->assertTrue($result);
-        $this->assertEquals($expectedValues, $inputFilter->getValues());
-        $this->assertEquals(
-            $expectedMessages, $inputFilter->getMessages()
+        $this->doInputFilterTest(
+            $inputData, $expectedResult, $expectedValues, $expectedMessages
         );
     }
 
@@ -170,18 +162,10 @@ class CommentInputFilterTest extends PHPUnit_Framework_TestCase
             'text' => 2.99,
         ];
         $expectedMessages = [];
+        $expectedResult   = true;
 
-        $inputFilter = new CommentInputFilter();
-        $inputFilter->init();
-
-        $inputFilter->setData($inputData);
-
-        $result = $inputFilter->isValid();
-
-        $this->assertTrue($result);
-        $this->assertEquals($expectedValues, $inputFilter->getValues());
-        $this->assertEquals(
-            $expectedMessages, $inputFilter->getMessages()
+        $this->doInputFilterTest(
+            $inputData, $expectedResult, $expectedValues, $expectedMessages
         );
     }
 }
