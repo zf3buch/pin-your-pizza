@@ -11,7 +11,6 @@ namespace UserTest\Model\InputFilter;
 
 use PHPUnit_Framework_TestCase;
 use User\Model\InputFilter\LoginInputFilter;
-use Zend\I18n\Validator\IsFloat;
 use Zend\Validator\EmailAddress;
 use Zend\Validator\NotEmpty;
 use Zend\Validator\StringLength;
@@ -23,6 +22,31 @@ use Zend\Validator\StringLength;
  */
 class LoginInputFilterTest extends PHPUnit_Framework_TestCase
 {
+    /**
+     * Do the input filter test
+     *
+     * @param $inputData
+     * @param $expectedResult
+     * @param $expectedValues
+     * @param $expectedMessages
+     */
+    protected function doInputFilterTest(
+        $inputData, $expectedResult, $expectedValues, $expectedMessages
+    ) {
+        $inputFilter = new LoginInputFilter();
+        $inputFilter->init();
+
+        $inputFilter->setData($inputData);
+
+        $result = $inputFilter->isValid();
+
+        $this->assertEquals($expectedResult, $result);
+        $this->assertEquals($expectedValues, $inputFilter->getValues());
+        $this->assertEquals(
+            $expectedMessages, $inputFilter->getMessages()
+        );
+    }
+
     /**
      * Test input filter with empty data
      */
@@ -41,18 +65,10 @@ class LoginInputFilterTest extends PHPUnit_Framework_TestCase
                 NotEmpty::IS_EMPTY => 'user_validator_password_notempty',
             ],
         ];
+        $expectedResult   = false;
 
-        $inputFilter = new LoginInputFilter();
-        $inputFilter->init();
-
-        $inputFilter->setData($inputData);
-
-        $result = $inputFilter->isValid();
-
-        $this->assertFalse($result);
-        $this->assertEquals($expectedValues, $inputFilter->getValues());
-        $this->assertEquals(
-            $expectedMessages, $inputFilter->getMessages()
+        $this->doInputFilterTest(
+            $inputData, $expectedResult, $expectedValues, $expectedMessages
         );
     }
 
@@ -77,18 +93,10 @@ class LoginInputFilterTest extends PHPUnit_Framework_TestCase
                 NotEmpty::IS_EMPTY => 'user_validator_password_notempty',
             ],
         ];
+        $expectedResult   = false;
 
-        $inputFilter = new LoginInputFilter();
-        $inputFilter->init();
-
-        $inputFilter->setData($inputData);
-
-        $result = $inputFilter->isValid();
-
-        $this->assertFalse($result);
-        $this->assertEquals($expectedValues, $inputFilter->getValues());
-        $this->assertEquals(
-            $expectedMessages, $inputFilter->getMessages()
+        $this->doInputFilterTest(
+            $inputData, $expectedResult, $expectedValues, $expectedMessages
         );
     }
 
@@ -106,25 +114,17 @@ class LoginInputFilterTest extends PHPUnit_Framework_TestCase
             'password' => 'zwei',
         ];
         $expectedMessages = [
-            'email'      => [
+            'email'    => [
                 EmailAddress::INVALID_FORMAT => 'user_validator_email_format',
             ],
-            'password'   => [
+            'password' => [
                 StringLength::TOO_SHORT => 'user_validator_password_length',
             ],
         ];
+        $expectedResult   = false;
 
-        $inputFilter = new LoginInputFilter();
-        $inputFilter->init();
-
-        $inputFilter->setData($inputData);
-
-        $result = $inputFilter->isValid();
-
-        $this->assertFalse($result);
-        $this->assertEquals($expectedValues, $inputFilter->getValues());
-        $this->assertEquals(
-            $expectedMessages, $inputFilter->getMessages()
+        $this->doInputFilterTest(
+            $inputData, $expectedResult, $expectedValues, $expectedMessages
         );
     }
 
@@ -142,18 +142,10 @@ class LoginInputFilterTest extends PHPUnit_Framework_TestCase
             'password' => 'Test1234',
         ];
         $expectedMessages = [];
+        $expectedResult   = true;
 
-        $inputFilter = new LoginInputFilter();
-        $inputFilter->init();
-
-        $inputFilter->setData($inputData);
-
-        $result = $inputFilter->isValid();
-
-        $this->assertTrue($result);
-        $this->assertEquals($expectedValues, $inputFilter->getValues());
-        $this->assertEquals(
-            $expectedMessages, $inputFilter->getMessages()
+        $this->doInputFilterTest(
+            $inputData, $expectedResult, $expectedValues, $expectedMessages
         );
     }
 
@@ -171,18 +163,10 @@ class LoginInputFilterTest extends PHPUnit_Framework_TestCase
             'password' => 'Test1234',
         ];
         $expectedMessages = [];
+        $expectedResult   = true;
 
-        $inputFilter = new LoginInputFilter();
-        $inputFilter->init();
-
-        $inputFilter->setData($inputData);
-
-        $result = $inputFilter->isValid();
-
-        $this->assertTrue($result);
-        $this->assertEquals($expectedValues, $inputFilter->getValues());
-        $this->assertEquals(
-            $expectedMessages, $inputFilter->getMessages()
+        $this->doInputFilterTest(
+            $inputData, $expectedResult, $expectedValues, $expectedMessages
         );
     }
 }
