@@ -42,6 +42,29 @@ class CommentTableTest extends PHPUnit_Extensions_Database_TestCase
     private $connection = null;
 
     /**
+     * Sets up the test
+     */
+    protected function setUp()
+    {
+        if (!$this->commentTable) {
+            $dbConfig = include __DIR__
+                . '/../../../../../config/autoload/database.test.php';
+
+            $this->adapter = new Adapter($dbConfig['db']);
+
+            $resultSet = new ResultSet(ResultSet::TYPE_ARRAY);
+
+            $tableGateway = new TableGateway(
+                'comment', $this->adapter, null, $resultSet
+            );
+
+            $this->commentTable = new CommentTable($tableGateway);
+        }
+
+        parent::setUp();
+    }
+
+    /**
      * Returns the test database connection.
      *
      * @return PHPUnit_Extensions_Database_DB_IDatabaseConnection
@@ -49,10 +72,6 @@ class CommentTableTest extends PHPUnit_Extensions_Database_TestCase
     protected function getConnection()
     {
         if (!$this->connection) {
-            $dbConfig = include __DIR__
-                . '/../../../../../config/autoload/database.test.php';
-
-            $this->adapter    = new Adapter($dbConfig['db']);
             $this->connection = $this->createDefaultDBConnection(
                 $this->adapter->getDriver()->getConnection()->getResource(
                 ),
@@ -76,20 +95,6 @@ class CommentTableTest extends PHPUnit_Extensions_Database_TestCase
     }
 
     /**
-     * Sets up the test
-     */
-    protected function setUpCommentTable()
-    {
-        $resultSet = new ResultSet(ResultSet::TYPE_ARRAY);
-
-        $tableGateway = new TableGateway(
-            'comment', $this->adapter, null, $resultSet
-        );
-
-        $this->commentTable = new CommentTable($tableGateway);
-    }
-
-    /**
      * Test fetch comments by pizza
      *
      * @param $pizzaId
@@ -98,8 +103,6 @@ class CommentTableTest extends PHPUnit_Extensions_Database_TestCase
      */
     public function testFetchCommentsByPizza($pizzaId)
     {
-        $this->setUpCommentTable();
-
         $comments = $this->commentTable->fetchCommentsByPizza(
             $pizzaId
         );
@@ -147,8 +150,6 @@ class CommentTableTest extends PHPUnit_Extensions_Database_TestCase
      */
     public function testSaveComment($data)
     {
-        $this->setUpCommentTable();
-
         $result = $this->commentTable->saveComment($data);
 
         $queryTable = $this->getConnection()->createQueryTable(
@@ -200,8 +201,6 @@ class CommentTableTest extends PHPUnit_Extensions_Database_TestCase
      */
     public function testDeleteComment($id)
     {
-        $this->setUpCommentTable();
-
         $queryTable = $this->getConnection()->createQueryTable(
             'fetchPizzaById',
             'SELECT * FROM comment WHERE id = "' . $id . '";'

@@ -42,6 +42,29 @@ class UserTableTest extends PHPUnit_Extensions_Database_TestCase
     private $connection = null;
 
     /**
+     * Sets up the test
+     */
+    protected function setUp()
+    {
+        if (!$this->userTable) {
+            $dbConfig = include __DIR__
+                . '/../../../../../config/autoload/database.test.php';
+
+            $this->adapter = new Adapter($dbConfig['db']);
+
+            $resultSet = new ResultSet(ResultSet::TYPE_ARRAY);
+
+            $tableGateway = new TableGateway(
+                'user', $this->adapter, null, $resultSet
+            );
+
+            $this->userTable = new UserTable($tableGateway);
+        }
+
+        parent::setUp();
+    }
+
+    /**
      * Returns the test database connection.
      *
      * @return PHPUnit_Extensions_Database_DB_IDatabaseConnection
@@ -49,10 +72,6 @@ class UserTableTest extends PHPUnit_Extensions_Database_TestCase
     protected function getConnection()
     {
         if (!$this->connection) {
-            $dbConfig = include __DIR__
-                . '/../../../../../config/autoload/database.test.php';
-
-            $this->adapter    = new Adapter($dbConfig['db']);
             $this->connection = $this->createDefaultDBConnection(
                 $this->adapter->getDriver()->getConnection()->getResource(
                 ),
@@ -76,20 +95,6 @@ class UserTableTest extends PHPUnit_Extensions_Database_TestCase
     }
 
     /**
-     * Sets up the test
-     */
-    protected function setUpUserTable()
-    {
-        $resultSet = new ResultSet(ResultSet::TYPE_ARRAY);
-
-        $tableGateway = new TableGateway(
-            'user', $this->adapter, null, $resultSet
-        );
-
-        $this->userTable = new UserTable($tableGateway);
-    }
-
-    /**
      * Test fetch user by id
      *
      * @param $id
@@ -98,8 +103,6 @@ class UserTableTest extends PHPUnit_Extensions_Database_TestCase
      */
     public function testFetchUserById($id)
     {
-        $this->setUpUserTable();
-
         $userById = $this->userTable->fetchUserById($id);
 
         $queryTable = $this->getConnection()->createQueryTable(
@@ -132,8 +135,6 @@ class UserTableTest extends PHPUnit_Extensions_Database_TestCase
      */
     public function testInsertUser($data)
     {
-        $this->setUpUserTable();
-
         $result = $this->userTable->insertUser($data);
 
         $queryTable = $this->getConnection()->createQueryTable(
@@ -183,6 +184,4 @@ class UserTableTest extends PHPUnit_Extensions_Database_TestCase
             ],
         ];
     }
-
-
 }
