@@ -7,14 +7,14 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
-namespace Pizza\Model\Table;
+namespace Pizza\Model\Storage;
 
 /**
- * Interface CommentTableInterface
+ * Interface CommentStorageInterface
  *
- * @package Pizza\Model\Table
+ * @package Pizza\Model\Storage
  */
-interface CommentTableInterface
+interface CommentStorageInterface
 {
     /**
      * Fetch comments by pizza id
