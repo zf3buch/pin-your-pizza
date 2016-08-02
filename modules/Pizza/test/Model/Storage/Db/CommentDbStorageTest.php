@@ -7,29 +7,29 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
-namespace PizzaTest\Model\Table;
+namespace PizzaTest\Model\Storage\Db;
 
 use PHPUnit_Extensions_Database_DataSet_IDataSet;
 use PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection;
 use PHPUnit_Extensions_Database_DB_IDatabaseConnection;
 use PHPUnit_Extensions_Database_TestCase;
-use Pizza\Model\Table\CommentTable;
-use Pizza\Model\Table\CommentTableInterface;
+use Pizza\Model\Storage\Db\CommentDbStorage;
+use Pizza\Model\Storage\CommentStorageInterface;
 use Zend\Db\Adapter\Adapter;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 
 /**
- * Class CommentTableTest
+ * Class CommentStorageTest
  *
- * @package PizzaTest\Model\Table
+ * @package PizzaTest\Model\Storage\Db
  */
-class CommentTableTest extends PHPUnit_Extensions_Database_TestCase
+class CommentStorageTest extends PHPUnit_Extensions_Database_TestCase
 {
     /**
-     * @var CommentTableInterface
+     * @var CommentStorageInterface
      */
-    private $commentTable;
+    private $commentStorage;
 
     /**
      * @var Adapter
@@ -46,9 +46,9 @@ class CommentTableTest extends PHPUnit_Extensions_Database_TestCase
      */
     protected function setUp()
     {
-        if (!$this->commentTable) {
+        if (!$this->commentStorage) {
             $dbConfig = include __DIR__
-                . '/../../../../../config/autoload/database.test.php';
+                . '/../../../../../../config/autoload/database.test.php';
 
             $this->adapter = new Adapter($dbConfig['db']);
 
@@ -58,7 +58,7 @@ class CommentTableTest extends PHPUnit_Extensions_Database_TestCase
                 'comment', $this->adapter, null, $resultSet
             );
 
-            $this->commentTable = new CommentTable($tableGateway);
+            $this->commentStorage = new CommentDbStorage($tableGateway);
         }
 
         parent::setUp();
@@ -103,19 +103,20 @@ class CommentTableTest extends PHPUnit_Extensions_Database_TestCase
      */
     public function testFetchCommentsByPizza($pizzaId)
     {
-        $comments = $this->commentTable->fetchCommentsByPizza(
+        $comments = $this->commentStorage->fetchCommentsByPizza(
             $pizzaId
         );
 
-        $queryTable = $this->getConnection()->createQueryTable(
+        $queryStorage = $this->getConnection()->createQueryTable(
             'fetchAllComments',
-            'SELECT * FROM comment WHERE pizza = "' . $pizzaId . '" ORDER BY date ASC;'
+            'SELECT * FROM comment WHERE pizza = "' . $pizzaId
+            . '" ORDER BY date ASC;'
         );
 
         $allComments = [];
 
-        for ($key = 0; $key < $queryTable->getRowCount(); $key++) {
-            $comment = $queryTable->getRow($key);
+        for ($key = 0; $key < $queryStorage->getRowCount(); $key++) {
+            $comment = $queryStorage->getRow($key);
 
             $allComments[] = $comment;
         }
@@ -150,14 +151,14 @@ class CommentTableTest extends PHPUnit_Extensions_Database_TestCase
      */
     public function testSaveComment($data)
     {
-        $result = $this->commentTable->saveComment($data);
+        $result = $this->commentStorage->saveComment($data);
 
-        $queryTable = $this->getConnection()->createQueryTable(
+        $queryStorage = $this->getConnection()->createQueryTable(
             'fetchPizzaById',
             'SELECT * FROM comment WHERE id = "' . $data['id'] . '";'
         );
 
-        $expectedData = $queryTable->getRow(0);
+        $expectedData = $queryStorage->getRow(0);
 
         $this->assertEquals(1, $result);
         $this->assertEquals($expectedData, $data);
@@ -201,23 +202,23 @@ class CommentTableTest extends PHPUnit_Extensions_Database_TestCase
      */
     public function testDeleteComment($id)
     {
-        $queryTable = $this->getConnection()->createQueryTable(
+        $queryStorage = $this->getConnection()->createQueryTable(
             'fetchPizzaById',
             'SELECT * FROM comment WHERE id = "' . $id . '";'
         );
 
-        $this->assertEquals(1, $queryTable->getRowCount());
+        $this->assertEquals(1, $queryStorage->getRowCount());
 
-        $result = $this->commentTable->deleteComment($id);
+        $result = $this->commentStorage->deleteComment($id);
 
         $this->assertEquals(1, $result);
 
-        $queryTable = $this->getConnection()->createQueryTable(
+        $queryStorage = $this->getConnection()->createQueryTable(
             'fetchPizzaById',
             'SELECT * FROM comment WHERE id = "' . $id . '";'
         );
 
-        $this->assertEquals(0, $queryTable->getRowCount());
+        $this->assertEquals(0, $queryStorage->getRowCount());
     }
 
     /**
