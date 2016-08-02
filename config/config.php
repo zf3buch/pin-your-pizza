@@ -9,17 +9,18 @@
 
 use Zend\Expressive\ConfigManager\ConfigManager;
 use Zend\Expressive\ConfigManager\PhpFileProvider;
-use Zend\Stdlib\ArrayUtils;
 
 $cachedConfigFile = PROJECT_ROOT . '/data/cache/app_config.php';
 
-$pattern = '{{,*.}global,{,*.}' . APPLICATION_ENV . ',{,*.}local}.php';
+$pattern = PROJECT_ROOT . '/config/autoload/{{,*.}global,{,*.}'
+    . APPLICATION_ENV . ',{,*.}local}.php';
 
 $configManager = new ConfigManager(
     [
+        Zend\Db\ConfigProvider::class,
         Application\ConfigProvider::class,
         Pizza\ConfigProvider::class,
-        new PhpFileProvider(PROJECT_ROOT . '/config/autoload/' . $pattern),
+        new PhpFileProvider($pattern),
     ],
     $cachedConfigFile
 );
