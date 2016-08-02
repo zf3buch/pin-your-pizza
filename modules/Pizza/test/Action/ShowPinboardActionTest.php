@@ -29,10 +29,8 @@ class ShowPinboardActionTest extends AbstractTest
      */
     protected function preparePizzaRepository($pizzaPinboard)
     {
-        /** @var MethodProphecy $method */
-        $method = $this->pizzaRepository->getPizzaPinboard();
-        $method->willReturn($pizzaPinboard);
-        $method->shouldBeCalled();
+        $this->pizzaRepository->getPizzaPinboard()
+            ->willReturn($pizzaPinboard)->shouldBeCalled();
     }
 
     /**

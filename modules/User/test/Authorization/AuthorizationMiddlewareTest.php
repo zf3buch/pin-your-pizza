@@ -75,11 +75,8 @@ class AuthorizationMiddlewareTest extends PHPUnit_Framework_TestCase
 
         /** @var Rbac $rbac */
         $rbac = $this->prophesize(Rbac::class);
-
-        /** @var MethodProphecy $method */
-        $method = $rbac->isGranted($role, $routeName);
-        $method->willReturn(true);
-        $method->shouldBeCalled();
+        $rbac->isGranted($role, $routeName)->willReturn(true)
+            ->shouldBeCalled();
 
         $middleware = new AuthorizationMiddleware(
             $role, $rbac->reveal()
@@ -123,11 +120,8 @@ class AuthorizationMiddlewareTest extends PHPUnit_Framework_TestCase
 
         /** @var Rbac $rbac */
         $rbac = $this->prophesize(Rbac::class);
-
-        /** @var MethodProphecy $method */
-        $method = $rbac->isGranted($role, $routeName);
-        $method->willReturn(false);
-        $method->shouldBeCalled();
+        $rbac->isGranted($role, $routeName)->willReturn(false)
+            ->shouldBeCalled();
 
         $middleware = new AuthorizationMiddleware(
             $role, $rbac->reveal()
@@ -171,11 +165,8 @@ class AuthorizationMiddlewareTest extends PHPUnit_Framework_TestCase
 
         /** @var Rbac $rbac */
         $rbac = $this->prophesize(Rbac::class);
-
-        /** @var MethodProphecy $method */
-        $method = $rbac->isGranted($role, $routeName);
-        $method->willReturn(false);
-        $method->shouldBeCalled();
+        $rbac->isGranted($role, $routeName)->willReturn(false)
+            ->shouldBeCalled();
 
         $middleware = new AuthorizationMiddleware(
             $role, $rbac->reveal()

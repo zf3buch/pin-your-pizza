@@ -12,10 +12,9 @@ namespace PizzaTest\Action;
 use Interop\Container\ContainerInterface;
 use PHPUnit_Framework_TestCase;
 use Pizza\Form\CommentForm;
-use Pizza\Model\Repository\PizzaRepositoryInterface;
 use Pizza\Model\Repository\CommentRepositoryInterface;
+use Pizza\Model\Repository\PizzaRepositoryInterface;
 use Prophecy\Prophecy\MethodProphecy;
-use Zend\Diactoros\Response;
 use Zend\Expressive\Router\RouterInterface;
 use Zend\Expressive\Template\TemplateRendererInterface;
 
@@ -122,44 +121,28 @@ abstract class AbstractTest extends PHPUnit_Framework_TestCase
         $this->container = $this->prophesize(ContainerInterface::class);
 
         if (in_array('router', $map)) {
-            /** @var MethodProphecy $method */
-            $method = $this->container->get(RouterInterface::class);
-            $method->willReturn($this->router);
-            $method->shouldBeCalled();
+            $this->container->get(RouterInterface::class)
+                ->willReturn($this->router)->shouldBeCalled();
         }
 
         if (in_array('template', $map)) {
-            /** @var MethodProphecy $method */
-            $method = $this->container->get(
-                TemplateRendererInterface::class
-            );
-            $method->willReturn($this->template);
-            $method->shouldBeCalled();
+            $this->container->get(TemplateRendererInterface::class)
+                ->willReturn($this->template)->shouldBeCalled();
         }
 
         if (in_array('pizzaRepository', $map)) {
-            /** @var MethodProphecy $method */
-            $method = $this->container->get(
-                PizzaRepositoryInterface::class
-            );
-            $method->willReturn($this->pizzaRepository);
-            $method->shouldBeCalled();
+            $this->container->get(PizzaRepositoryInterface::class)
+                ->willReturn($this->pizzaRepository)->shouldBeCalled();
         }
 
         if (in_array('commentRepository', $map)) {
-            /** @var MethodProphecy $method */
-            $method = $this->container->get(
-                CommentRepositoryInterface::class
-            );
-            $method->willReturn($this->commentRepository);
-            $method->shouldBeCalled();
+            $this->container->get(CommentRepositoryInterface::class)
+                ->willReturn($this->commentRepository)->shouldBeCalled();
         }
 
         if (in_array('commentForm', $map)) {
-            /** @var MethodProphecy $method */
-            $method = $this->container->get(CommentForm::class);
-            $method->willReturn($this->commentForm);
-            $method->shouldBeCalled();
+            $this->container->get(CommentForm::class)
+                ->willReturn($this->commentForm)->shouldBeCalled();
         }
     }
 
@@ -171,10 +154,8 @@ abstract class AbstractTest extends PHPUnit_Framework_TestCase
      */
     protected function prepareRenderer($templateName, $templateVars)
     {
-        /** @var MethodProphecy $method */
-        $method = $this->template->render($templateName, $templateVars);
-        $method->willReturn('Whatever');
-        $method->shouldBeCalled();
+        $this->template->render($templateName, $templateVars)
+            ->willReturn('Whatever')->shouldBeCalled();
     }
 
     /**

@@ -11,7 +11,6 @@ namespace UserTest\Authentication;
 
 use Interop\Container\ContainerInterface;
 use PHPUnit_Framework_TestCase;
-use Prophecy\Prophecy\MethodProphecy;
 use User\Authentication\AuthenticationServiceFactory;
 use Zend\Authentication\Adapter\AdapterInterface;
 use Zend\Authentication\AuthenticationService;
@@ -41,11 +40,8 @@ class AuthenticationServiceFactoryTest extends PHPUnit_Framework_TestCase
         $this->adapter = $this->prophesize(AdapterInterface::class);
 
         $this->container = $this->prophesize(ContainerInterface::class);
-
-        /** @var MethodProphecy $method */
-        $method = $this->container->get(AdapterInterface::class);
-        $method->willReturn($this->adapter);
-        $method->shouldBeCalled();
+        $this->container->get(AdapterInterface::class)
+            ->willReturn($this->adapter)->shouldBeCalled();
     }
 
     /**
@@ -54,10 +50,6 @@ class AuthenticationServiceFactoryTest extends PHPUnit_Framework_TestCase
     public function testFactory()
     {
         $factory = new AuthenticationServiceFactory();
-
-        $this->assertTrue(
-            $factory instanceof AuthenticationServiceFactory
-        );
 
         /** @var AuthenticationService $authService */
         $authService = $factory($this->container->reveal());

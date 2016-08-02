@@ -41,8 +41,6 @@ class HandleLoginFactoryTest extends AbstractTest
 
         $factory = new HandleLoginFactory();
 
-        $this->assertTrue($factory instanceof HandleLoginFactory);
-
         /** @var HandleLoginAction $action */
         $action = $factory($this->container->reveal());
 

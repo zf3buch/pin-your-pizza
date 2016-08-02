@@ -41,8 +41,6 @@ class ShowIntroFactoryTest extends AbstractTest
 
         $factory = new ShowIntroFactory();
 
-        $this->assertTrue($factory instanceof ShowIntroFactory);
-
         /** @var ShowIntroAction $action */
         $action = $factory($this->container->reveal());
 
