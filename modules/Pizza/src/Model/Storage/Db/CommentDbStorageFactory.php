@@ -7,7 +7,7 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
-namespace Pizza\Model\Table;
+namespace Pizza\Model\Storage\Db;
 
 use Interop\Container\ContainerInterface;
 use Zend\Db\Adapter\AdapterInterface;
@@ -15,16 +15,16 @@ use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 
 /**
- * Class CommentTableFactory
+ * Class CommentDbStorageFactory
  *
- * @package Pizza\Model\Table
+ * @package Pizza\Model\Storage\Db
  */
-class CommentTableFactory
+class CommentDbStorageFactory
 {
     /**
      * @param ContainerInterface $container
      *
-     * @return CommentTable
+     * @return CommentDbStorage
      */
     public function __invoke(ContainerInterface $container)
     {
@@ -32,10 +32,10 @@ class CommentTableFactory
 
         $resultSet = new ResultSet(ResultSet::TYPE_ARRAY);
 
-        $tableGateway = new TableGateway(
+        $storageGateway = new TableGateway(
             'comment', $adapter, null, $resultSet
         );
 
-        return new CommentTable($tableGateway);
+        return new CommentDbStorage($storageGateway);
     }
 }
