@@ -25,8 +25,8 @@ return [
             User\Action\HandleLogoutAction::class   =>
                 User\Action\HandleLogoutFactory::class,
 
-            User\Model\Table\UserTableInterface::class =>
-                User\Model\Table\UserTableFactory::class,
+            User\Model\Storage\UserStorageInterface::class =>
+                User\Model\Storage\Db\UserDbStorageFactory::class,
 
             User\Model\Repository\UserRepositoryInterface::class =>
                 User\Model\Repository\UserRepositoryFactory::class,
