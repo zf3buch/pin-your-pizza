@@ -21,10 +21,10 @@ return [
             Pizza\Action\DeleteCommentAction::class =>
                 Pizza\Action\DeleteCommentFactory::class,
 
-            Pizza\Model\Table\PizzaTableInterface::class   =>
-                Pizza\Model\Table\PizzaTableFactory::class,
-            Pizza\Model\Table\CommentTableInterface::class =>
-                Pizza\Model\Table\CommentTableFactory::class,
+            Pizza\Model\Storage\PizzaStorageInterface::class =>
+                Pizza\Model\Storage\Db\PizzaDbStorageFactory::class,
+            Pizza\Model\Storage\CommentStorageInterface::class =>
+                Pizza\Model\Storage\Db\CommentDbStorageFactory::class,
 
             Pizza\Model\Repository\PizzaRepositoryInterface::class =>
                 Pizza\Model\Repository\PizzaRepositoryFactory::class,
