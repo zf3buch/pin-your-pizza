@@ -10,7 +10,7 @@
 namespace Pizza\Model\Repository;
 
 use Interop\Container\ContainerInterface;
-use Pizza\Model\Table\CommentTableInterface;
+use Pizza\Model\Storage\CommentStorageInterface;
 
 /**
  * Class CommentRepositoryFactory
@@ -26,8 +26,8 @@ class CommentRepositoryFactory
      */
     public function __invoke(ContainerInterface $container)
     {
-        $commentTable = $container->get(CommentTableInterface::class);
+        $commentStorage = $container->get(CommentStorageInterface::class);
 
-        return new CommentRepository($commentTable);
+        return new CommentRepository($commentStorage);
     }
 }
