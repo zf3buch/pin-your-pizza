@@ -59,19 +59,13 @@ class InjectTranslatorFactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testTranslatorInjection()
     {
-        /** @var MethodProphecy $method */
-        $method = $this->container->get(Translator::class);
-        $method->willReturn($this->translator);
-        $method->shouldBeCalled();
+        $this->container->get(Translator::class)
+            ->willReturn($this->translator)->shouldBeCalled();
 
-        /** @var MethodProphecy $method */
-        $method = $this->container->get(HelperPluginManager::class);
-        $method->willReturn($this->helperPluginManager);
-        $method->shouldBeCalled();
+        $this->container->get(HelperPluginManager::class)
+            ->willReturn($this->helperPluginManager)->shouldBeCalled();
 
         $factory = new InjectTranslatorFactory();
-
-        $this->assertTrue($factory instanceof InjectTranslatorFactory);
 
         /** @var InjectTranslatorMiddleware $middleware */
         $middleware = $factory($this->container->reveal());

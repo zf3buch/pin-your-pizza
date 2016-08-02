@@ -92,10 +92,7 @@ class InjectTranslatorMiddlewareTest extends PHPUnit_Framework_TestCase
     {
         /** @var Translate $translatorHelper */
         $translatorHelper = $this->prophesize(Translate::class);
-
-        /** @var MethodProphecy $method */
-        $method = $translatorHelper->setTranslator($translator);
-        $method->shouldBeCalled();
+        $translatorHelper->setTranslator($translator)->shouldBeCalled();
 
         return $translatorHelper;
     }
@@ -109,10 +106,7 @@ class InjectTranslatorMiddlewareTest extends PHPUnit_Framework_TestCase
     {
         /** @var FormSubmit $formSubmitHelper */
         $formSubmitHelper = $this->prophesize(FormSubmit::class);
-
-        /** @var MethodProphecy $method */
-        $method = $formSubmitHelper->setTranslator($translator);
-        $method->shouldBeCalled();
+        $formSubmitHelper->setTranslator($translator)->shouldBeCalled();
 
         return $formSubmitHelper;
     }
@@ -126,10 +120,7 @@ class InjectTranslatorMiddlewareTest extends PHPUnit_Framework_TestCase
     {
         /** @var FormLabel $formLabelHelper */
         $formLabelHelper = $this->prophesize(FormLabel::class);
-
-        /** @var MethodProphecy $method */
-        $method = $formLabelHelper->setTranslator($translator);
-        $method->shouldBeCalled();
+        $formLabelHelper->setTranslator($translator)->shouldBeCalled();
 
         return $formLabelHelper;
     }
@@ -145,10 +136,8 @@ class InjectTranslatorMiddlewareTest extends PHPUnit_Framework_TestCase
         $formElementErrorsHelper = $this->prophesize(
             FormElementErrors::class
         );
-
-        /** @var MethodProphecy $method */
-        $method = $formElementErrorsHelper->setTranslator($translator);
-        $method->shouldBeCalled();
+        $formElementErrorsHelper->setTranslator($translator)
+            ->shouldBeCalled();
 
         return $formElementErrorsHelper;
     }
@@ -172,25 +161,17 @@ class InjectTranslatorMiddlewareTest extends PHPUnit_Framework_TestCase
             HelperPluginManager::class
         );
 
-        /** @var MethodProphecy $method */
-        $method = $helperPluginManager->get('translate');
-        $method->willReturn($translatorHelper);
-        $method->shouldBeCalled();
+        $helperPluginManager->get('translate')
+            ->willReturn($translatorHelper)->shouldBeCalled();
 
-        /** @var MethodProphecy $method */
-        $method = $helperPluginManager->get('formSubmit');
-        $method->willReturn($formSubmitHelper);
-        $method->shouldBeCalled();
+        $helperPluginManager->get('formSubmit')
+            ->willReturn($formSubmitHelper)->shouldBeCalled();
 
-        /** @var MethodProphecy $method */
-        $method = $helperPluginManager->get('formLabel');
-        $method->willReturn($formLabelHelper);
-        $method->shouldBeCalled();
+        $helperPluginManager->get('formLabel')
+            ->willReturn($formLabelHelper)->shouldBeCalled();
 
-        /** @var MethodProphecy $method */
-        $method = $helperPluginManager->get('formElementErrors');
-        $method->willReturn($formElementErrorsHelper);
-        $method->shouldBeCalled();
+        $helperPluginManager->get('formElementErrors')
+            ->willReturn($formElementErrorsHelper)->shouldBeCalled();
 
         return $helperPluginManager;
     }
