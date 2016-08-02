@@ -28,7 +28,7 @@ return [
                 Application\View\Renderer\ViewRendererFactory::class,
 
             Zend\View\HelperPluginManager::class =>
-                Application\View\HelperPluginManagerFactory::class,
+                Zend\Expressive\ZendView\HelperPluginManagerFactory::class,
 
             Zend\Expressive\Helper\UrlHelper::class =>
                 I18n\View\Helper\UrlHelperFactory::class,
