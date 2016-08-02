@@ -32,10 +32,6 @@ class CommentInputFilterFactoryTest extends PHPUnit_Framework_TestCase
 
         $factory = new CommentInputFilterFactory();
 
-        $this->assertTrue(
-            $factory instanceof CommentInputFilterFactory
-        );
-
         /** @var CommentInputFilter $inputFilter */
         $inputFilter = $factory($container->reveal());
 

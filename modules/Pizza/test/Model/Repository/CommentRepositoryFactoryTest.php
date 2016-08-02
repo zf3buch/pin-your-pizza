@@ -39,10 +39,6 @@ class CommentRepositoryFactoryTest extends PHPUnit_Framework_TestCase
 
         $factory = new CommentRepositoryFactory();
 
-        $this->assertTrue(
-            $factory instanceof CommentRepositoryFactory
-        );
-
         /** @var CommentRepository $repository */
         $repository = $factory($container->reveal());
 

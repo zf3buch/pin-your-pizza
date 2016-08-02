@@ -45,10 +45,6 @@ class PizzaRepositoryFactoryTest extends PHPUnit_Framework_TestCase
 
         $factory = new PizzaRepositoryFactory();
 
-        $this->assertTrue(
-            $factory instanceof PizzaRepositoryFactory
-        );
-
         /** @var PizzaRepository $repository */
         $repository = $factory($container->reveal());
 

@@ -38,10 +38,6 @@ class CommentFormFactoryTest extends PHPUnit_Framework_TestCase
 
         $factory = new CommentFormFactory();
 
-        $this->assertTrue(
-            $factory instanceof CommentFormFactory
-        );
-
         /** @var CommentForm $form */
         $form = $factory($container->reveal());
 
