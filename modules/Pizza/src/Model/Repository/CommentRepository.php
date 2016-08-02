@@ -8,8 +8,8 @@
  */
 
 namespace Pizza\Model\Repository;
-use Pizza\Model\Table\CommentTableInterface;
-use Pizza\Model\Table\PizzaTableInterface;
+
+use Pizza\Model\Storage\CommentStorageInterface;
 
 /**
  * Class CommentRepository
@@ -19,19 +19,19 @@ use Pizza\Model\Table\PizzaTableInterface;
 class CommentRepository implements CommentRepositoryInterface
 {
     /**
-     * @var CommentTableInterface
+     * @var CommentStorageInterface
      */
-    private $commentTable;
+    private $commentStorage;
 
     /**
      * CommentRepository constructor.
      *
-     * @param CommentTableInterface $commentTable
+     * @param CommentStorageInterface $commentStorage
      */
     public function __construct(
-        CommentTableInterface $commentTable
+        CommentStorageInterface $commentStorage
     ) {
-        $this->commentTable = $commentTable;
+        $this->commentStorage = $commentStorage;
     }
 
     /**
@@ -48,10 +48,11 @@ class CommentRepository implements CommentRepositoryInterface
             'pizza' => $id,
             'date'  => date('Y-m-d H:i:s'),
             'name'  => isset($data['name']) ? $data['name'] : 'unbekannt',
-            'text'  => isset($data['text']) ? $data['text'] : 'kein Kommentar',
+            'text'  => isset($data['text']) ? $data['text']
+                : 'kein Kommentar',
         ];
 
-        return $this->commentTable->saveComment($insertData);
+        return $this->commentStorage->saveComment($insertData);
     }
 
     /**
@@ -63,6 +64,6 @@ class CommentRepository implements CommentRepositoryInterface
      */
     public function deleteComment($id)
     {
-        return $this->commentTable->deleteComment($id);
+        return $this->commentStorage->deleteComment($id);
     }
 }
