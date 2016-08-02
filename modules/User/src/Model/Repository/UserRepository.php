@@ -9,7 +9,7 @@
 
 namespace User\Model\Repository;
 
-use User\Model\Table\UserTableInterface;
+use User\Model\Storage\UserStorageInterface;
 
 /**
  * Class UserRepository
@@ -19,18 +19,18 @@ use User\Model\Table\UserTableInterface;
 class UserRepository implements UserRepositoryInterface
 {
     /**
-     * @var UserTableInterface
+     * @var UserStorageInterface
      */
-    private $userTable;
+    private $userStorage;
 
     /**
      * UserRepository constructor.
      *
-     * @param UserTableInterface $userTable
+     * @param UserStorageInterface $userStorage
      */
-    public function __construct(UserTableInterface $userTable)
+    public function __construct(UserStorageInterface $userStorage)
     {
-        $this->userTable = $userTable;
+        $this->userStorage = $userStorage;
     }
 
     /**
@@ -42,7 +42,7 @@ class UserRepository implements UserRepositoryInterface
      */
     public function getSingleUser($id)
     {
-        $user = $this->userTable->fetchUserById($id);
+        $user = $this->userStorage->fetchUserById($id);
 
         if (!$user) {
             return false;
@@ -69,6 +69,6 @@ class UserRepository implements UserRepositoryInterface
             $data['password'], PASSWORD_BCRYPT
         );
 
-        return $this->userTable->insertUser($data);
+        return $this->userStorage->insertUser($data);
     }
 }
