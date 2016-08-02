@@ -13,7 +13,7 @@ use Interop\Container\ContainerInterface;
 use PHPUnit_Framework_TestCase;
 use User\Model\Repository\UserRepository;
 use User\Model\Repository\UserRepositoryFactory;
-use User\Model\Table\UserTableInterface;
+use User\Model\Storage\UserStorageInterface;
 use Prophecy\Prophecy\MethodProphecy;
 
 /**
@@ -31,12 +31,12 @@ class UserRepositoryFactoryTest extends PHPUnit_Framework_TestCase
         /** @var ContainerInterface $container */
         $container = $this->prophesize(ContainerInterface::class);
 
-        /** @var UserTableInterface $userTable */
-        $userTable = $this->prophesize(UserTableInterface::class);
+        /** @var UserStorageInterface $userStorage */
+        $userStorage = $this->prophesize(UserStorageInterface::class);
 
         /** @var MethodProphecy $method */
-        $method = $container->get(UserTableInterface::class);
-        $method->willReturn($userTable);
+        $method = $container->get(UserStorageInterface::class);
+        $method->willReturn($userStorage);
         $method->shouldBeCalled();
 
         $factory = new UserRepositoryFactory();
