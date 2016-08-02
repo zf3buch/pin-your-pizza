@@ -40,8 +40,6 @@ class HandleLogoutFactoryTest extends AbstractTest
 
         $factory = new HandleLogoutFactory();
 
-        $this->assertTrue($factory instanceof HandleLogoutFactory);
-
         /** @var HandleLogoutAction $action */
         $action = $factory($this->container->reveal());
 

@@ -32,10 +32,6 @@ class LoginInputFilterFactoryTest extends PHPUnit_Framework_TestCase
 
         $factory = new LoginInputFilterFactory();
 
-        $this->assertTrue(
-            $factory instanceof LoginInputFilterFactory
-        );
-
         /** @var LoginInputFilter $inputFilter */
         $inputFilter = $factory($container->reveal());
 

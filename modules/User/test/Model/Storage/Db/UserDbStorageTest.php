@@ -7,29 +7,29 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
-namespace UserTest\Model\Table;
+namespace UserTest\Model\Storage\Db;
 
 use PHPUnit_Extensions_Database_DataSet_IDataSet;
 use PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection;
 use PHPUnit_Extensions_Database_DB_IDatabaseConnection;
 use PHPUnit_Extensions_Database_TestCase;
-use User\Model\Table\UserTable;
-use User\Model\Table\UserTableInterface;
+use User\Model\Storage\Db\UserDbStorage;
+use User\Model\Storage\UserStorageInterface;
 use Zend\Db\Adapter\Adapter;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 
 /**
- * Class UserTableTest
+ * Class UserDbStorageTest
  *
- * @package UserTest\Model\Table
+ * @package UserTest\Model\Storage\Db
  */
-class UserTableTest extends PHPUnit_Extensions_Database_TestCase
+class UserDbStorageTest extends PHPUnit_Extensions_Database_TestCase
 {
     /**
-     * @var UserTableInterface
+     * @var UserStorageInterface
      */
-    private $userTable;
+    private $userStorage;
 
     /**
      * @var Adapter
@@ -46,9 +46,9 @@ class UserTableTest extends PHPUnit_Extensions_Database_TestCase
      */
     protected function setUp()
     {
-        if (!$this->userTable) {
+        if (!$this->userStorage) {
             $dbConfig = include __DIR__
-                . '/../../../../../config/autoload/database.test.php';
+                . '/../../../../../../config/autoload/database.test.php';
 
             $this->adapter = new Adapter($dbConfig['db']);
 
@@ -58,7 +58,7 @@ class UserTableTest extends PHPUnit_Extensions_Database_TestCase
                 'user', $this->adapter, null, $resultSet
             );
 
-            $this->userTable = new UserTable($tableGateway);
+            $this->userStorage = new UserDbStorage($tableGateway);
         }
 
         parent::setUp();
@@ -103,14 +103,14 @@ class UserTableTest extends PHPUnit_Extensions_Database_TestCase
      */
     public function testFetchUserById($id)
     {
-        $userById = $this->userTable->fetchUserById($id);
+        $userById = $this->userStorage->fetchUserById($id);
 
-        $queryTable = $this->getConnection()->createQueryTable(
+        $queryStorage = $this->getConnection()->createQueryTable(
             'fetchUserById',
             'SELECT * FROM user WHERE id = "' . $id . '";'
         );
 
-        $this->assertEquals($queryTable->getRow(0), $userById);
+        $this->assertEquals($queryStorage->getRow(0), $userById);
     }
 
     /**
@@ -135,14 +135,14 @@ class UserTableTest extends PHPUnit_Extensions_Database_TestCase
      */
     public function testInsertUser($data)
     {
-        $result = $this->userTable->insertUser($data);
+        $result = $this->userStorage->insertUser($data);
 
-        $queryTable = $this->getConnection()->createQueryTable(
+        $queryStorage = $this->getConnection()->createQueryTable(
             'fetchUserById',
             'SELECT * FROM user WHERE id = "' . $data['id'] . '";'
         );
 
-        $expectedData = $queryTable->getRow(0);
+        $expectedData = $queryStorage->getRow(0);
 
         $this->assertEquals(1, $result);
         $this->assertEquals($expectedData, $data);

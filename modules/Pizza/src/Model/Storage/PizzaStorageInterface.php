@@ -7,14 +7,14 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
-namespace Pizza\Model\Table;
+namespace Pizza\Model\Storage;
 
 /**
- * Interface PizzaTableInterface
+ * Interface PizzaStorageInterface
  *
- * @package Pizza\Model\Table
+ * @package Pizza\Model\Storage
  */
-interface PizzaTableInterface
+interface PizzaStorageInterface
 {
     /**
      * Fetch all pizzas

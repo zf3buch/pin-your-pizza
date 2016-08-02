@@ -13,7 +13,6 @@ use I18n\View\Helper\UrlHelper;
 use I18n\View\Helper\UrlHelperFactory;
 use Interop\Container\ContainerInterface;
 use PHPUnit_Framework_TestCase;
-use Prophecy\Prophecy\MethodProphecy;
 use Zend\Expressive\Router\RouterInterface;
 
 /**
@@ -57,20 +56,14 @@ class UrlHelperFactoryTest extends PHPUnit_Framework_TestCase
 
         $this->container = $this->prophesize(ContainerInterface::class);
 
-        /** @var MethodProphecy $method */
-        $method = $this->container->has(RouterInterface::class);
-        $method->willReturn(true);
-        $method->shouldBeCalled();
+        $this->container->has(RouterInterface::class)->willReturn(true)
+            ->shouldBeCalled();
 
-        /** @var MethodProphecy $method */
-        $method = $this->container->get(RouterInterface::class);
-        $method->willReturn($this->router);
-        $method->shouldBeCalled();
+        $this->container->get(RouterInterface::class)
+            ->willReturn($this->router)->shouldBeCalled();
 
-        /** @var MethodProphecy $method */
-        $method = $this->container->get('config');
-        $method->willReturn($this->config);
-        $method->shouldBeCalled();
+        $this->container->get('config')->willReturn($this->config)
+            ->shouldBeCalled();
     }
 
     /**
@@ -79,10 +72,6 @@ class UrlHelperFactoryTest extends PHPUnit_Framework_TestCase
     public function testFactory()
     {
         $factory = new UrlHelperFactory();
-
-        $this->assertTrue(
-            $factory instanceof UrlHelperFactory
-        );
 
         /** @var UrlHelper $viewHelper */
         $viewHelper = $factory($this->container->reveal());

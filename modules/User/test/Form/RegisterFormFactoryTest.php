@@ -11,7 +11,6 @@ namespace UserTest\Form;
 
 use Interop\Container\ContainerInterface;
 use PHPUnit_Framework_TestCase;
-use Prophecy\Prophecy\MethodProphecy;
 use User\Form\RegisterForm;
 use User\Form\RegisterFormFactory;
 use User\Model\InputFilter\RegisterInputFilter;
@@ -28,15 +27,12 @@ class RegisterFormFactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testFactory()
     {
-        $container = $this->prophesize(ContainerInterface::class);
-
         /** @var RegisterInputFilter $inputFilter */
         $inputFilter = $this->prophesize(RegisterInputFilter::class);
 
-        /** @var MethodProphecy $method */
-        $method = $container->get(RegisterInputFilter::class);
-        $method->willReturn($inputFilter);
-        $method->shouldBeCalled();
+        $container = $this->prophesize(ContainerInterface::class);
+        $container->get(RegisterInputFilter::class)
+            ->willReturn($inputFilter)->shouldBeCalled();
 
         $expectedElementKeys = [
             'email',
@@ -47,10 +43,6 @@ class RegisterFormFactoryTest extends PHPUnit_Framework_TestCase
         ];
 
         $factory = new RegisterFormFactory();
-
-        $this->assertTrue(
-            $factory instanceof RegisterFormFactory
-        );
 
         /** @var RegisterForm $form */
         $form = $factory($container->reveal());
