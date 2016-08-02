@@ -63,20 +63,14 @@ class HandleLoginActionTest extends AbstractTest
      */
     protected function prepareLoginForm($postData, $isValid = true, $getData = false)
     {
-        /** @var MethodProphecy $method */
-        $method = $this->loginForm->setData($postData);
-        $method->shouldBeCalled();
+        $this->loginForm->setData($postData)->shouldBeCalled();
 
-        /** @var MethodProphecy $method */
-        $method = $this->loginForm->isValid();
-        $method->willReturn($isValid);
-        $method->shouldBeCalled();
+        $this->loginForm->isValid()->willReturn($isValid)
+            ->shouldBeCalled();
 
         if ($getData) {
-            /** @var MethodProphecy $method */
-            $method = $this->loginForm->getData();
-            $method->willReturn($postData);
-            $method->shouldBeCalled();
+            $this->loginForm->getData()->willReturn($postData)
+                ->shouldBeCalled();
         }
     }
 
@@ -196,14 +190,10 @@ class HandleLoginActionTest extends AbstractTest
         }
 
         if ($isValid === false) {
-            /** @var MethodProphecy $method */
-            $method = $this->authResult->getCode();
-            $method->willReturn($code);
-            $method->shouldBeCalled();
+            $this->authResult->getCode()->willReturn($code)
+                ->shouldBeCalled();
         } else {
-            /** @var MethodProphecy $method */
-            $method = $this->authResult->getCode();
-            $method->shouldNotBeCalled();
+            $this->authResult->getCode()->shouldNotBeCalled();
         }
     }
 

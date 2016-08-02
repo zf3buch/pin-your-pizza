@@ -27,9 +27,7 @@ class HandleLogoutActionTest extends AbstractTest
      */
     protected function prepareAuthService()
     {
-        /** @var MethodProphecy $method */
-        $method = $this->authService->clearIdentity();
-        $method->shouldBeCalled();
+        $this->authService->clearIdentity()->shouldBeCalled();
     }
 
     /**

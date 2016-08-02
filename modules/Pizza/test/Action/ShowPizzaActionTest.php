@@ -30,10 +30,8 @@ class ShowPizzaActionTest extends AbstractTest
      */
     protected function preparePizzaRepository($id, $pizza)
     {
-        /** @var MethodProphecy $method */
-        $method = $this->pizzaRepository->getSinglePizza($id);
-        $method->willReturn($pizza);
-        $method->shouldBeCalled();
+        $this->pizzaRepository->getSinglePizza($id)->willReturn($pizza)
+            ->shouldBeCalled();
     }
 
     /**
