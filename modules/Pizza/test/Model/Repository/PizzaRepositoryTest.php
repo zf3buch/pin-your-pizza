@@ -12,9 +12,8 @@ namespace PizzaTest\Model\Repository;
 use PHPUnit_Framework_TestCase;
 use Pizza\Model\Repository\PizzaRepository;
 use Pizza\Model\Repository\PizzaRepositoryInterface;
-use Pizza\Model\Table\CommentTableInterface;
-use Pizza\Model\Table\PizzaTableInterface;
-use Prophecy\Prophecy\MethodProphecy;
+use Pizza\Model\Storage\CommentStorageInterface;
+use Pizza\Model\Storage\PizzaStorageInterface;
 
 /**
  * Class PizzaRepositoryTest
@@ -29,12 +28,12 @@ class PizzaRepositoryTest extends PHPUnit_Framework_TestCase
     private $pizzaRepository;
 
     /**
-     * @var PizzaTableInterface
+     * @var PizzaStorageInterface
      */
     private $pizzaTable;
 
     /**
-     * @var CommentTableInterface
+     * @var CommentStorageInterface
      */
     private $commentTable;
 
@@ -107,11 +106,11 @@ class PizzaRepositoryTest extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->pizzaTable = $this->prophesize(
-            PizzaTableInterface::class
+            PizzaStorageInterface::class
         );
 
         $this->commentTable = $this->prophesize(
-            CommentTableInterface::class
+            CommentStorageInterface::class
         );
 
         $this->pizzaRepository = new PizzaRepository(
@@ -136,20 +135,14 @@ class PizzaRepositoryTest extends PHPUnit_Framework_TestCase
         $expectedData[0]['comments'] = $commentData1;
         $expectedData[1]['comments'] = $commentData2;
 
-        /** @var MethodProphecy $method */
-        $method = $this->pizzaTable->fetchAllPizzas();
-        $method->willReturn($pizzaData);
-        $method->shouldBeCalled();
+        $this->pizzaTable->fetchAllPizzas()->willReturn($pizzaData)
+            ->shouldBeCalled();
 
-        /** @var MethodProphecy $method */
-        $method = $this->commentTable->fetchCommentsByPizza('1');
-        $method->willReturn($commentData1);
-        $method->shouldBeCalled();
+        $this->commentTable->fetchCommentsByPizza('1')
+            ->willReturn($commentData1)->shouldBeCalled();
 
-        /** @var MethodProphecy $method */
-        $method = $this->commentTable->fetchCommentsByPizza('2');
-        $method->willReturn($commentData2);
-        $method->shouldBeCalled();
+        $this->commentTable->fetchCommentsByPizza('2')
+            ->willReturn($commentData2)->shouldBeCalled();
 
         $this->assertEquals(
             $expectedData, $this->pizzaRepository->getPizzaPinboard()
@@ -167,17 +160,11 @@ class PizzaRepositoryTest extends PHPUnit_Framework_TestCase
         $expectedData             = $pizzaData;
         $expectedData['comments'] = $commentData;
 
-        /** @var MethodProphecy $method */
-        $method = $this->pizzaTable->fetchPizzaById($pizzaData['id']);
-        $method->willReturn($pizzaData);
-        $method->shouldBeCalled();
+        $this->pizzaTable->fetchPizzaById($pizzaData['id'])
+            ->willReturn($pizzaData)->shouldBeCalled();
 
-        /** @var MethodProphecy $method */
-        $method = $this->commentTable->fetchCommentsByPizza(
-            $pizzaData['id']
-        );
-        $method->willReturn($commentData);
-        $method->shouldBeCalled();
+        $this->commentTable->fetchCommentsByPizza($pizzaData['id'])
+            ->willReturn($commentData)->shouldBeCalled();
 
         $this->assertEquals(
             $expectedData,
@@ -193,10 +180,8 @@ class PizzaRepositoryTest extends PHPUnit_Framework_TestCase
         $id   = 1;
         $star = 3;
 
-        /** @var MethodProphecy $method */
-        $method = $this->pizzaTable->saveVoting($id, $star);
-        $method->willReturn(true);
-        $method->shouldBeCalled();
+        $this->pizzaTable->saveVoting($id, $star)->willReturn(true)
+            ->shouldBeCalled();
 
         $this->assertTrue($this->pizzaRepository->saveVoting($id, $star));
     }

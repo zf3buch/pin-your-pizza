@@ -11,10 +11,9 @@ namespace PizzaTest\Form;
 
 use Interop\Container\ContainerInterface;
 use PHPUnit_Framework_TestCase;
-use Pizza\Form\CommentFormFactory;
 use Pizza\Form\CommentForm;
+use Pizza\Form\CommentFormFactory;
 use Pizza\Model\InputFilter\CommentInputFilter;
-use Prophecy\Prophecy\MethodProphecy;
 
 /**
  * Class CommentFormFactoryTest
@@ -28,23 +27,16 @@ class CommentFormFactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testFactory()
     {
-        $container = $this->prophesize(ContainerInterface::class);
-
         /** @var CommentInputFilter $inputFilter */
         $inputFilter = $this->prophesize(CommentInputFilter::class);
 
-        /** @var MethodProphecy $method */
-        $method = $container->get(CommentInputFilter::class);
-        $method->willReturn($inputFilter);
-        $method->shouldBeCalled();
+        $container = $this->prophesize(ContainerInterface::class);
+        $container->get(CommentInputFilter::class)
+            ->willReturn($inputFilter)->shouldBeCalled();
 
         $expectedElementKeys = ['name', 'text', 'save_comment'];
 
         $factory = new CommentFormFactory();
-
-        $this->assertTrue(
-            $factory instanceof CommentFormFactory
-        );
 
         /** @var CommentForm $form */
         $form = $factory($container->reveal());

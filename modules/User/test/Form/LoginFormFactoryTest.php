@@ -11,10 +11,9 @@ namespace UserTest\Form;
 
 use Interop\Container\ContainerInterface;
 use PHPUnit_Framework_TestCase;
-use User\Form\LoginFormFactory;
 use User\Form\LoginForm;
+use User\Form\LoginFormFactory;
 use User\Model\InputFilter\LoginInputFilter;
-use Prophecy\Prophecy\MethodProphecy;
 
 /**
  * Class LoginFormFactoryTest
@@ -28,23 +27,16 @@ class LoginFormFactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testFactory()
     {
-        $container = $this->prophesize(ContainerInterface::class);
-
         /** @var LoginInputFilter $inputFilter */
         $inputFilter = $this->prophesize(LoginInputFilter::class);
 
-        /** @var MethodProphecy $method */
-        $method = $container->get(LoginInputFilter::class);
-        $method->willReturn($inputFilter);
-        $method->shouldBeCalled();
+        $container = $this->prophesize(ContainerInterface::class);
+        $container->get(LoginInputFilter::class)
+            ->willReturn($inputFilter)->shouldBeCalled();
 
         $expectedElementKeys = ['email', 'password', 'login_user'];
 
         $factory = new LoginFormFactory();
-
-        $this->assertTrue(
-            $factory instanceof LoginFormFactory
-        );
 
         /** @var LoginForm $form */
         $form = $factory($container->reveal());

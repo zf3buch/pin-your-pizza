@@ -13,9 +13,8 @@ use Interop\Container\ContainerInterface;
 use PHPUnit_Framework_TestCase;
 use Pizza\Model\Repository\PizzaRepository;
 use Pizza\Model\Repository\PizzaRepositoryFactory;
-use Pizza\Model\Table\PizzaTableInterface;
-use Pizza\Model\Table\CommentTableInterface;
-use Prophecy\Prophecy\MethodProphecy;
+use Pizza\Model\Storage\CommentStorageInterface;
+use Pizza\Model\Storage\PizzaStorageInterface;
 
 /**
  * Class PizzaRepositoryFactoryTest
@@ -29,32 +28,22 @@ class PizzaRepositoryFactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testFactory()
     {
+        /** @var PizzaStorageInterface $pizzaTable */
+        $pizzaTable = $this->prophesize(PizzaStorageInterface::class);
+
+        /** @var CommentStorageInterface $commentTable */
+        $commentTable = $this->prophesize(
+            CommentStorageInterface::class
+        );
+
         /** @var ContainerInterface $container */
         $container = $this->prophesize(ContainerInterface::class);
-
-        /** @var PizzaTableInterface $pizzaTable */
-        $pizzaTable = $this->prophesize(PizzaTableInterface::class);
-
-        /** @var CommentTableInterface $commentTable */
-        $commentTable = $this->prophesize(
-            CommentTableInterface::class
-        );
-
-        /** @var MethodProphecy $method */
-        $method = $container->get(PizzaTableInterface::class);
-        $method->willReturn($pizzaTable);
-        $method->shouldBeCalled();
-
-        /** @var MethodProphecy $method */
-        $method = $container->get(CommentTableInterface::class);
-        $method->willReturn($commentTable);
-        $method->shouldBeCalled();
+        $container->get(PizzaStorageInterface::class)
+            ->willReturn($pizzaTable)->shouldBeCalled();
+        $container->get(CommentStorageInterface::class)
+            ->willReturn($commentTable)->shouldBeCalled();
 
         $factory = new PizzaRepositoryFactory();
-
-        $this->assertTrue(
-            $factory instanceof PizzaRepositoryFactory
-        );
 
         /** @var PizzaRepository $repository */
         $repository = $factory($container->reveal());

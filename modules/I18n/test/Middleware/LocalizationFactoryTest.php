@@ -60,19 +60,13 @@ class LocalizationFactoryTest extends PHPUnit_Framework_TestCase
             ]
         ];
 
-        /** @var MethodProphecy $method */
-        $method = $this->container->get('config');
-        $method->willReturn($config);
-        $method->shouldBeCalled();
+        $this->container->get('config')->willReturn($config)
+            ->shouldBeCalled();
 
-        /** @var MethodProphecy $method */
-        $method = $this->container->get(Translator::class);
-        $method->willReturn($this->translator);
-        $method->shouldBeCalled();
+        $this->container->get(Translator::class)
+            ->willReturn($this->translator)->shouldBeCalled();
 
         $factory = new LocalizationFactory();
-
-        $this->assertTrue($factory instanceof LocalizationFactory);
 
         /** @var LocalizationMiddleware $middleware */
         $middleware = $factory($this->container->reveal());

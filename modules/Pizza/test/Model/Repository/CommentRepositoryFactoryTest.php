@@ -13,9 +13,7 @@ use Interop\Container\ContainerInterface;
 use PHPUnit_Framework_TestCase;
 use Pizza\Model\Repository\CommentRepository;
 use Pizza\Model\Repository\CommentRepositoryFactory;
-use Pizza\Model\Table\PizzaTableInterface;
-use Pizza\Model\Table\CommentTableInterface;
-use Prophecy\Prophecy\MethodProphecy;
+use Pizza\Model\Storage\CommentStorageInterface;
 
 /**
  * Class CommentRepositoryFactoryTest
@@ -29,24 +27,17 @@ class CommentRepositoryFactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testFactory()
     {
+        /** @var CommentStorageInterface $commentTable */
+        $commentTable = $this->prophesize(
+            CommentStorageInterface::class
+        );
+
         /** @var ContainerInterface $container */
         $container = $this->prophesize(ContainerInterface::class);
-
-        /** @var CommentTableInterface $commentTable */
-        $commentTable = $this->prophesize(
-            CommentTableInterface::class
-        );
-
-        /** @var MethodProphecy $method */
-        $method = $container->get(CommentTableInterface::class);
-        $method->willReturn($commentTable);
-        $method->shouldBeCalled();
+        $container->get(CommentStorageInterface::class)
+            ->willReturn($commentTable)->shouldBeCalled();
 
         $factory = new CommentRepositoryFactory();
-
-        $this->assertTrue(
-            $factory instanceof CommentRepositoryFactory
-        );
 
         /** @var CommentRepository $repository */
         $repository = $factory($container->reveal());

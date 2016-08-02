@@ -7,29 +7,29 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
-namespace PizzaTest\Model\Table;
+namespace PizzaTest\Model\Storage\Db;
 
 use PHPUnit_Extensions_Database_DataSet_IDataSet;
 use PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection;
 use PHPUnit_Extensions_Database_DB_IDatabaseConnection;
 use PHPUnit_Extensions_Database_TestCase;
-use Pizza\Model\Table\PizzaTable;
-use Pizza\Model\Table\PizzaTableInterface;
+use Pizza\Model\Storage\Db\PizzaDbStorage;
+use Pizza\Model\Storage\PizzaStorageInterface;
 use Zend\Db\Adapter\Adapter;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 
 /**
- * Class PizzaTableTest
+ * Class PizzaStorageTest
  *
- * @package PizzaTest\Model\Table
+ * @package PizzaTest\Model\Storage\Db
  */
-class PizzaTableTest extends PHPUnit_Extensions_Database_TestCase
+class PizzaStorageTest extends PHPUnit_Extensions_Database_TestCase
 {
     /**
-     * @var PizzaTableInterface
+     * @var PizzaStorageInterface
      */
-    private $pizzaTable;
+    private $pizzaStorage;
 
     /**
      * @var Adapter
@@ -46,9 +46,9 @@ class PizzaTableTest extends PHPUnit_Extensions_Database_TestCase
      */
     protected function setUp()
     {
-        if (!$this->pizzaTable) {
+        if (!$this->pizzaStorage) {
             $dbConfig = include __DIR__
-                . '/../../../../../config/autoload/database.test.php';
+                . '/../../../../../../config/autoload/database.test.php';
 
             $this->adapter = new Adapter($dbConfig['db']);
 
@@ -58,7 +58,7 @@ class PizzaTableTest extends PHPUnit_Extensions_Database_TestCase
                 'pizza', $this->adapter, null, $resultSet
             );
 
-            $this->pizzaTable = new PizzaTable($tableGateway);
+            $this->pizzaStorage = new PizzaDbStorage($tableGateway);
         }
 
         parent::setUp();
@@ -99,16 +99,16 @@ class PizzaTableTest extends PHPUnit_Extensions_Database_TestCase
      */
     public function testFetchAllPizzas()
     {
-        $pizzaList = $this->pizzaTable->fetchAllPizzas();
+        $pizzaList = $this->pizzaStorage->fetchAllPizzas();
 
-        $queryTable = $this->getConnection()->createQueryTable(
+        $queryStorage = $this->getConnection()->createQueryTable(
             'fetchAllPizzas', 'SELECT * FROM pizza ORDER BY id;'
         );
 
         $allPizzas = [];
 
-        for ($key = 0; $key < $queryTable->getRowCount(); $key++) {
-            $pizza = $queryTable->getRow($key);
+        for ($key = 0; $key < $queryStorage->getRowCount(); $key++) {
+            $pizza = $queryStorage->getRow($key);
 
             $allPizzas[$pizza['id']] = $pizza;
         }
@@ -129,14 +129,14 @@ class PizzaTableTest extends PHPUnit_Extensions_Database_TestCase
      */
     public function testFetchPizzaById($id)
     {
-        $pizzaById = $this->pizzaTable->fetchPizzaById($id);
+        $pizzaById = $this->pizzaStorage->fetchPizzaById($id);
 
-        $queryTable = $this->getConnection()->createQueryTable(
+        $queryStorage = $this->getConnection()->createQueryTable(
             'fetchPizzaById',
             'SELECT * FROM pizza WHERE id = "' . $id . '";'
         );
 
-        $this->assertEquals($queryTable->getRow(0), $pizzaById);
+        $this->assertEquals($queryStorage->getRow(0), $pizzaById);
     }
 
     /**
@@ -167,14 +167,14 @@ class PizzaTableTest extends PHPUnit_Extensions_Database_TestCase
      */
     public function testSaveVoting($id, $star, $starCnt, $total, $rate)
     {
-        $result = $this->pizzaTable->saveVoting($id, $star);
+        $result = $this->pizzaStorage->saveVoting($id, $star);
 
-        $queryTable = $this->getConnection()->createQueryTable(
+        $queryStorage = $this->getConnection()->createQueryTable(
             'fetchPizzaById',
             'SELECT * FROM pizza WHERE id = "' . $id . '";'
         );
 
-        $expectedData = $queryTable->getRow(0);
+        $expectedData = $queryStorage->getRow(0);
 
         $this->assertTrue($result);
         $this->assertEquals($starCnt, $expectedData['stars' . $star]);

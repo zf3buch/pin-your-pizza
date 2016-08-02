@@ -18,7 +18,7 @@ namespace Pizza\Model\Repository;
  */
 function date($format)
 {
-    return \date($format, mktime(15,39,33,4,13,2016));
+    return \date($format, mktime(15, 39, 33, 4, 13, 2016));
 }
 
 namespace PizzaTest\Model\Repository;
@@ -26,8 +26,7 @@ namespace PizzaTest\Model\Repository;
 use PHPUnit_Framework_TestCase;
 use Pizza\Model\Repository\CommentRepository;
 use Pizza\Model\Repository\CommentRepositoryInterface;
-use Pizza\Model\Table\CommentTableInterface;
-use Prophecy\Prophecy\MethodProphecy;
+use Pizza\Model\Storage\CommentStorageInterface;
 
 /**
  * Class CommentRepositoryTest
@@ -42,7 +41,7 @@ class CommentRepositoryTest extends PHPUnit_Framework_TestCase
     private $commentRepository;
 
     /**
-     * @var CommentTableInterface
+     * @var CommentStorageInterface
      */
     private $commentTable;
 
@@ -52,7 +51,7 @@ class CommentRepositoryTest extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->commentTable = $this->prophesize(
-            CommentTableInterface::class
+            CommentStorageInterface::class
         );
 
         $this->commentRepository = new CommentRepository(
@@ -67,21 +66,21 @@ class CommentRepositoryTest extends PHPUnit_Framework_TestCase
     {
         $id   = '1';
         $data = [
-            'name'  => 'Test name',
+            'name' => 'Test name',
             'text' => 'Test comment',
         ];
 
         $insertData = [
             'pizza' => $id,
-            'date'  => date('Y-m-d H:i:s', mktime(15,39,33,4,13,2016)),
+            'date'  => date(
+                'Y-m-d H:i:s', mktime(15, 39, 33, 4, 13, 2016)
+            ),
             'name'  => $data['name'],
-            'text' => $data['text'],
+            'text'  => $data['text'],
         ];
 
-        /** @var MethodProphecy $method */
-        $method = $this->commentTable->saveComment($insertData);
-        $method->willReturn(true);
-        $method->shouldBeCalled();
+        $this->commentTable->saveComment($insertData)->willReturn(true)
+            ->shouldBeCalled();
 
         $this->assertTrue(
             $this->commentRepository->saveComment($id, $data)
@@ -98,15 +97,15 @@ class CommentRepositoryTest extends PHPUnit_Framework_TestCase
 
         $insertData = [
             'pizza' => $id,
-            'date'  => date('Y-m-d H:i:s', mktime(15,39,33,4,13,2016)),
+            'date'  => date(
+                'Y-m-d H:i:s', mktime(15, 39, 33, 4, 13, 2016)
+            ),
             'name'  => 'unbekannt',
             'text'  => 'kein Kommentar',
         ];
 
-        /** @var MethodProphecy $method */
-        $method = $this->commentTable->saveComment($insertData);
-        $method->willReturn(true);
-        $method->shouldBeCalled();
+        $this->commentTable->saveComment($insertData)->willReturn(true)
+            ->shouldBeCalled();
 
         $this->assertTrue(
             $this->commentRepository->saveComment($id, $data)
@@ -123,15 +122,15 @@ class CommentRepositoryTest extends PHPUnit_Framework_TestCase
 
         $insertData = [
             'pizza' => $id,
-            'date'  => date('Y-m-d H:i:s', mktime(15,39,33,4,13,2016)),
+            'date'  => date(
+                'Y-m-d H:i:s', mktime(15, 39, 33, 4, 13, 2016)
+            ),
             'name'  => 'unbekannt',
             'text'  => 'kein Kommentar',
         ];
 
-        /** @var MethodProphecy $method */
-        $method = $this->commentTable->saveComment($insertData);
-        $method->willReturn(false);
-        $method->shouldBeCalled();
+        $this->commentTable->saveComment($insertData)->willReturn(false)
+            ->shouldBeCalled();
 
         $this->assertFalse(
             $this->commentRepository->saveComment($id, $data)
@@ -145,10 +144,8 @@ class CommentRepositoryTest extends PHPUnit_Framework_TestCase
     {
         $id = '1';
 
-        /** @var MethodProphecy $method */
-        $method = $this->commentTable->deleteComment($id);
-        $method->willReturn(true);
-        $method->shouldBeCalled();
+        $this->commentTable->deleteComment($id)->willReturn(true)
+            ->shouldBeCalled();
 
         $this->assertTrue(
             $this->commentRepository->deleteComment($id)
@@ -162,10 +159,8 @@ class CommentRepositoryTest extends PHPUnit_Framework_TestCase
     {
         $id = '1';
 
-        /** @var MethodProphecy $method */
-        $method = $this->commentTable->deleteComment($id);
-        $method->willReturn(false);
-        $method->shouldBeCalled();
+        $this->commentTable->deleteComment($id)->willReturn(false)
+            ->shouldBeCalled();
 
         $this->assertFalse(
             $this->commentRepository->deleteComment($id)
