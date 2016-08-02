@@ -8,8 +8,9 @@
  */
 
 namespace Pizza\Model\Repository;
-use Pizza\Model\Table\CommentTableInterface;
-use Pizza\Model\Table\PizzaTableInterface;
+
+use Pizza\Model\Storage\CommentStorageInterface;
+use Pizza\Model\Storage\PizzaStorageInterface;
 
 /**
  * Class PizzaRepository
@@ -19,26 +20,26 @@ use Pizza\Model\Table\PizzaTableInterface;
 class PizzaRepository implements PizzaRepositoryInterface
 {
     /**
-     * @var PizzaTableInterface
+     * @var PizzaStorageInterface
      */
-    private $pizzaTable;
+    private $pizzaStorage;
 
     /**
-     * @var CommentTableInterface
+     * @var CommentStorageInterface
      */
-    private $commentTable;
+    private $commentStorage;
 
     /**
      * PizzaRepository constructor.
      *
-     * @param PizzaTableInterface   $pizzaTable
-     * @param CommentTableInterface $commentTable
+     * @param PizzaStorageInterface   $pizzaStorage
+     * @param CommentStorageInterface $commentStorage
      */
     public function __construct(
-        PizzaTableInterface $pizzaTable, CommentTableInterface $commentTable
+        PizzaStorageInterface $pizzaStorage, CommentStorageInterface $commentStorage
     ) {
-        $this->pizzaTable   = $pizzaTable;
-        $this->commentTable = $commentTable;
+        $this->pizzaStorage   = $pizzaStorage;
+        $this->commentStorage = $commentStorage;
     }
 
     /**
@@ -48,10 +49,10 @@ class PizzaRepository implements PizzaRepositoryInterface
      */
     public function getPizzaPinboard()
     {
-        $pizzas = $this->pizzaTable->fetchAllPizzas();
+        $pizzas = $this->pizzaStorage->fetchAllPizzas();
 
         foreach ($pizzas as $key => $pizza) {
-            $comments = $this->commentTable->fetchCommentsByPizza(
+            $comments = $this->commentStorage->fetchCommentsByPizza(
                 $pizza['id']
             );
 
@@ -70,13 +71,13 @@ class PizzaRepository implements PizzaRepositoryInterface
      */
     public function getSinglePizza($id)
     {
-        $pizza = $this->pizzaTable->fetchPizzaById($id);
+        $pizza = $this->pizzaStorage->fetchPizzaById($id);
 
         if (!$pizza) {
             return false;
         }
 
-        $pizza['comments'] = $this->commentTable->fetchCommentsByPizza($id);
+        $pizza['comments'] = $this->commentStorage->fetchCommentsByPizza($id);
 
         return $pizza;
     }
@@ -91,6 +92,6 @@ class PizzaRepository implements PizzaRepositoryInterface
      */
     public function saveVoting($id, $star)
     {
-        return $this->pizzaTable->saveVoting($id, $star);
+        return $this->pizzaStorage->saveVoting($id, $star);
     }
 }
