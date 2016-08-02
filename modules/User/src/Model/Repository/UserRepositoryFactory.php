@@ -10,7 +10,7 @@
 namespace User\Model\Repository;
 
 use Interop\Container\ContainerInterface;
-use User\Model\Table\UserTableInterface;
+use User\Model\Storage\UserStorageInterface;
 
 /**
  * Class UserRepositoryFactory
@@ -26,8 +26,8 @@ class UserRepositoryFactory
      */
     public function __invoke(ContainerInterface $container)
     {
-        $userTable = $container->get(UserTableInterface::class);
+        $userStorage = $container->get(UserStorageInterface::class);
 
-        return new UserRepository($userTable);
+        return new UserRepository($userStorage);
     }
 }
