@@ -41,8 +41,6 @@ class ShowPizzaFactoryTest extends AbstractTest
 
         $factory = new ShowPizzaFactory();
 
-        $this->assertTrue($factory instanceof ShowPizzaFactory);
-
         /** @var ShowPizzaAction $action */
         $action = $factory($this->container->reveal());
 

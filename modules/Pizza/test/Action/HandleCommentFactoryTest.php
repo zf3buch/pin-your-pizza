@@ -41,8 +41,6 @@ class HandleCommentFactoryTest extends AbstractTest
 
         $factory = new HandleCommentFactory();
 
-        $this->assertTrue($factory instanceof HandleCommentFactory);
-
         /** @var HandleCommentAction $action */
         $action = $factory($this->container->reveal());
 

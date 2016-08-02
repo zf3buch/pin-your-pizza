@@ -38,8 +38,6 @@ class ShowPinboardFactoryTest extends AbstractTest
 
         $factory = new ShowPinboardFactory();
 
-        $this->assertTrue($factory instanceof ShowPinboardFactory);
-
         /** @var ShowPinboardAction $action */
         $action = $factory($this->container->reveal());
 
