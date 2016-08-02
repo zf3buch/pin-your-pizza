@@ -40,7 +40,7 @@ use PHPUnit_Framework_TestCase;
 use Prophecy\Prophecy\MethodProphecy;
 use User\Model\Repository\UserRepository;
 use User\Model\Repository\UserRepositoryInterface;
-use User\Model\Table\UserTableInterface;
+use User\Model\Storage\UserStorageInterface;
 
 /**
  * Class UserRepositoryTest
@@ -55,9 +55,9 @@ class UserRepositoryTest extends PHPUnit_Framework_TestCase
     private $userRepository;
 
     /**
-     * @var UserTableInterface
+     * @var UserStorageInterface
      */
-    private $userTable;
+    private $userStorage;
 
     /**
      * @var array
@@ -94,12 +94,12 @@ class UserRepositoryTest extends PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->userTable = $this->prophesize(
-            UserTableInterface::class
+        $this->userStorage = $this->prophesize(
+            UserStorageInterface::class
         );
 
         $this->userRepository = new UserRepository(
-            $this->userTable->reveal()
+            $this->userStorage->reveal()
         );
     }
 
@@ -112,10 +112,8 @@ class UserRepositoryTest extends PHPUnit_Framework_TestCase
 
         $expectedData = $userData;
 
-        /** @var MethodProphecy $method */
-        $method = $this->userTable->fetchUserById($userData['id']);
-        $method->willReturn($userData);
-        $method->shouldBeCalled();
+        $this->userStorage->fetchUserById($userData['id'])
+            ->willReturn($userData)->shouldBeCalled();
 
         $this->assertEquals(
             $expectedData,
@@ -144,10 +142,8 @@ class UserRepositoryTest extends PHPUnit_Framework_TestCase
             'last_name'  => $data['last_name'],
         ];
 
-        /** @var MethodProphecy $method */
-        $method = $this->userTable->insertUser($insertData);
-        $method->willReturn(true);
-        $method->shouldBeCalled();
+        $this->userStorage->insertUser($insertData)->willReturn(true)
+            ->shouldBeCalled();
 
         $this->assertTrue(
             $this->userRepository->registerUser($data)

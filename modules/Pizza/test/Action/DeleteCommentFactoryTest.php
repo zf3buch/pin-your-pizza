@@ -38,8 +38,6 @@ class DeleteCommentFactoryTest extends AbstractTest
 
         $factory = new DeleteCommentFactory();
 
-        $this->assertTrue($factory instanceof DeleteCommentFactory);
-
         /** @var DeleteCommentAction $action */
         $action = $factory($this->container->reveal());
 

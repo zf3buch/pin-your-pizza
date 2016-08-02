@@ -34,11 +34,8 @@ class HandleCommentActionTest extends AbstractTest
         $getData,
         $isValidReturn = true
     ) {
-        /** @var MethodProphecy $method */
-        $method = $this->commentForm->setData($setData);
-        $method->shouldBeCalled();
+        $this->commentForm->setData($setData)->shouldBeCalled();
 
-        /** @var MethodProphecy $method */
         $method = $this->commentForm->getData();
 
         if ($getData) {
@@ -48,10 +45,8 @@ class HandleCommentActionTest extends AbstractTest
             $method->shouldNotBeCalled();
         }
 
-        /** @var MethodProphecy $method */
-        $method = $this->commentForm->isValid();
-        $method->willReturn($isValidReturn);
-        $method->shouldBeCalled();
+        $this->commentForm->isValid()->willReturn($isValidReturn)
+            ->shouldBeCalled();
     }
 
     /**
@@ -157,14 +152,9 @@ class HandleCommentActionTest extends AbstractTest
         $this->prepareCommentForm($postData, false, false);
         $this->prepareCommentRepository($id, $postData, false);
 
-        /** @var MethodProphecy $method */
-        $method = $this->commentForm->getData();
-        $method->shouldNotBeCalled();
-
-        /** @var MethodProphecy $method */
-        $method = $this->commentForm->isValid();
-        $method->willReturn(false);
-        $method->shouldBeCalled();
+        $this->commentForm->getData()->shouldNotBeCalled();
+        $this->commentForm->isValid()->willReturn(false)
+            ->shouldBeCalled();
 
         $action = new HandleCommentAction();
         $action->setRouter($this->router->reveal());

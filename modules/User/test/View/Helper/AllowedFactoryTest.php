@@ -51,18 +51,10 @@ class AllowedFactoryTest extends PHPUnit_Framework_TestCase
         $this->rbac = $this->prophesize(Rbac::class);
 
         $this->container = $this->prophesize(ContainerInterface::class);
-
-        /** @var MethodProphecy $method */
-        $method = $this->container->get(
-            AuthenticationServiceInterface::class
-        );
-        $method->willReturn($this->authService);
-        $method->shouldBeCalled();
-
-        /** @var MethodProphecy $method */
-        $method = $this->container->get(Rbac::class);
-        $method->willReturn($this->rbac);
-        $method->shouldBeCalled();
+        $this->container->get(AuthenticationServiceInterface::class)
+            ->willReturn($this->authService)->shouldBeCalled();
+        $this->container->get(Rbac::class)->willReturn($this->rbac)
+            ->shouldBeCalled();
     }
 
     /**
@@ -74,21 +66,13 @@ class AllowedFactoryTest extends PHPUnit_Framework_TestCase
 
         $identity = (object)['role' => $role];
 
-        /** @var MethodProphecy $method */
-        $method = $this->authService->hasIdentity();
-        $method->willReturn(true);
-        $method->shouldBeCalled();
+        $this->authService->hasIdentity()->willReturn(true)
+            ->shouldBeCalled();
 
-        /** @var MethodProphecy $method */
-        $method = $this->authService->getIdentity();
-        $method->willReturn($identity);
-        $method->shouldBeCalled();
+        $this->authService->getIdentity()->willReturn($identity)
+            ->shouldBeCalled();
 
         $factory = new AllowedFactory();
-
-        $this->assertTrue(
-            $factory instanceof AllowedFactory
-        );
 
         /** @var Allowed $viewHelper */
         $viewHelper = $factory($this->container->reveal());
@@ -108,16 +92,10 @@ class AllowedFactoryTest extends PHPUnit_Framework_TestCase
     {
         $role = 'guest';
 
-        /** @var MethodProphecy $method */
-        $method = $this->authService->hasIdentity();
-        $method->willReturn(false);
-        $method->shouldBeCalled();
+        $this->authService->hasIdentity()->willReturn(false)
+            ->shouldBeCalled();
 
         $factory = new AllowedFactory();
-
-        $this->assertTrue(
-            $factory instanceof AllowedFactory
-        );
 
         /** @var Allowed $viewHelper */
         $viewHelper = $factory($this->container->reveal());

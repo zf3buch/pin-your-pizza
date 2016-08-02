@@ -41,8 +41,6 @@ class HandleRegisterFactoryTest extends AbstractTest
 
         $factory = new HandleRegisterFactory();
 
-        $this->assertTrue($factory instanceof HandleRegisterFactory);
-
         /** @var HandleRegisterAction $action */
         $action = $factory($this->container->reveal());
 
