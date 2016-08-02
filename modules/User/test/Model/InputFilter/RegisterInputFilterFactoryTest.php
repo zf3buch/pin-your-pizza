@@ -37,10 +37,6 @@ class RegisterInputFilterFactoryTest extends PHPUnit_Framework_TestCase
 
         $factory = new RegisterInputFilterFactory();
 
-        $this->assertTrue(
-            $factory instanceof RegisterInputFilterFactory
-        );
-
         /** @var RegisterInputFilter $inputFilter */
         $inputFilter = $factory($container->reveal());
 

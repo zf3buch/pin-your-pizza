@@ -112,10 +112,8 @@ class UserRepositoryTest extends PHPUnit_Framework_TestCase
 
         $expectedData = $userData;
 
-        /** @var MethodProphecy $method */
-        $method = $this->userStorage->fetchUserById($userData['id']);
-        $method->willReturn($userData);
-        $method->shouldBeCalled();
+        $this->userStorage->fetchUserById($userData['id'])
+            ->willReturn($userData)->shouldBeCalled();
 
         $this->assertEquals(
             $expectedData,
@@ -144,10 +142,8 @@ class UserRepositoryTest extends PHPUnit_Framework_TestCase
             'last_name'  => $data['last_name'],
         ];
 
-        /** @var MethodProphecy $method */
-        $method = $this->userStorage->insertUser($insertData);
-        $method->willReturn(true);
-        $method->shouldBeCalled();
+        $this->userStorage->insertUser($insertData)->willReturn(true)
+            ->shouldBeCalled();
 
         $this->assertTrue(
             $this->userRepository->registerUser($data)

@@ -45,8 +45,6 @@ class ShowRegisteredFactoryTest extends AbstractTest
 
         $factory = new ShowRegisteredFactory();
 
-        $this->assertTrue($factory instanceof ShowRegisteredFactory);
-
         /** @var ShowRegisteredAction $action */
         $action = $factory($this->container->reveal());
 

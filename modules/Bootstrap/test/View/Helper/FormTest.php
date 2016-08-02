@@ -11,7 +11,6 @@ namespace BootstrapTest\View\Helper;
 
 use PHPUnit_Framework_TestCase;
 use Bootstrap\View\Helper\Form;
-use Prophecy\Prophecy\MethodProphecy;
 use Zend\Form\FormInterface;
 use Zend\View\Model\ViewModel;
 use Zend\View\Renderer\RendererInterface;
@@ -39,10 +38,8 @@ class FormTest extends PHPUnit_Framework_TestCase
         $viewModel->setVariable('form', $form->reveal());
         $viewModel->setTemplate('bootstrap::form');
 
-        /** @var MethodProphecy $method */
-        $method = $renderer->render($viewModel);
-        $method->willReturn($renderedHtml);
-        $method->shouldBeCalled();
+        $renderer->render($viewModel)->willReturn($renderedHtml)
+            ->shouldBeCalled();
 
         $viewHelper = new Form();
         $viewHelper->setView($renderer->reveal());

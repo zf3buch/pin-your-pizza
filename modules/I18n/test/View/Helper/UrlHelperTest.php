@@ -11,7 +11,6 @@ namespace I18nTest\View\Helper;
 
 use I18n\View\Helper\UrlHelper;
 use PHPUnit_Framework_TestCase;
-use Prophecy\Prophecy\MethodProphecy;
 use Zend\Expressive\Router\RouteResult;
 use Zend\Expressive\Router\RouterInterface;
 
@@ -51,11 +50,8 @@ class UrlHelperTest extends PHPUnit_Framework_TestCase
 
         /** @var RouterInterface $router */
         $router = $this->prophesize(RouterInterface::class);
-
-        /** @var MethodProphecy $method */
-        $method = $router->generateUri($routeName, $routeParams);
-        $method->willReturn($expectedUrl);
-        $method->shouldBeCalled();
+        $router->generateUri($routeName, $routeParams)
+            ->willReturn($expectedUrl)->shouldBeCalled();
 
         $viewHelper = new UrlHelper($router->reveal());
         $viewHelper->setDefaultLang($this->config['i18n']['defaultLang']);
@@ -78,11 +74,8 @@ class UrlHelperTest extends PHPUnit_Framework_TestCase
 
         /** @var RouterInterface $router */
         $router = $this->prophesize(RouterInterface::class);
-
-        /** @var MethodProphecy $method */
-        $method = $router->generateUri($routeName, $routeParams);
-        $method->willReturn($expectedUrl);
-        $method->shouldBeCalled();
+        $router->generateUri($routeName, $routeParams)
+            ->willReturn($expectedUrl)->shouldBeCalled();
 
         $routeResult = RouteResult::fromRouteFailure();
 
@@ -108,11 +101,8 @@ class UrlHelperTest extends PHPUnit_Framework_TestCase
 
         /** @var RouterInterface $router */
         $router = $this->prophesize(RouterInterface::class);
-
-        /** @var MethodProphecy $method */
-        $method = $router->generateUri($routeName, $routeParams);
-        $method->willReturn($expectedUrl);
-        $method->shouldBeCalled();
+        $router->generateUri($routeName, $routeParams)
+            ->willReturn($expectedUrl)->shouldBeCalled();
 
         $viewHelper = new UrlHelper($router->reveal());
         $viewHelper->setDefaultLang($this->config['i18n']['defaultLang']);
@@ -135,11 +125,8 @@ class UrlHelperTest extends PHPUnit_Framework_TestCase
 
         /** @var RouterInterface $router */
         $router = $this->prophesize(RouterInterface::class);
-
-        /** @var MethodProphecy $method */
-        $method = $router->generateUri($routeName, $routeParams);
-        $method->willReturn($expectedUrl);
-        $method->shouldBeCalled();
+        $router->generateUri($routeName, $routeParams)
+            ->willReturn($expectedUrl)->shouldBeCalled();
 
         $routeResult = RouteResult::fromRouteMatch(
             $routeName,
@@ -173,11 +160,8 @@ class UrlHelperTest extends PHPUnit_Framework_TestCase
 
         /** @var RouterInterface $router */
         $router = $this->prophesize(RouterInterface::class);
-
-        /** @var MethodProphecy $method */
-        $method = $router->generateUri($routeName, $usedParams);
-        $method->willReturn($expectedUrl);
-        $method->shouldBeCalled();
+        $router->generateUri($routeName, $usedParams)
+            ->willReturn($expectedUrl)->shouldBeCalled();
 
         $routeResult = RouteResult::fromRouteMatch(
             $routeName,

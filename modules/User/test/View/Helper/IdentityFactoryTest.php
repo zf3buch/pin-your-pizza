@@ -44,13 +44,8 @@ class IdentityFactoryTest extends PHPUnit_Framework_TestCase
         );
 
         $this->container = $this->prophesize(ContainerInterface::class);
-
-        /** @var MethodProphecy $method */
-        $method = $this->container->get(
-            AuthenticationServiceInterface::class
-        );
-        $method->willReturn($this->authService);
-        $method->shouldBeCalled();
+        $this->container->get(AuthenticationServiceInterface::class)
+            ->willReturn($this->authService)->shouldBeCalled();
     }
 
     /**
@@ -62,21 +57,13 @@ class IdentityFactoryTest extends PHPUnit_Framework_TestCase
 
         $identity = (object)['role' => $role];
 
-        /** @var MethodProphecy $method */
-        $method = $this->authService->hasIdentity();
-        $method->willReturn(true);
-        $method->shouldBeCalled();
+        $this->authService->hasIdentity()->willReturn(true)
+            ->shouldBeCalled();
 
-        /** @var MethodProphecy $method */
-        $method = $this->authService->getIdentity();
-        $method->willReturn($identity);
-        $method->shouldBeCalled();
+        $this->authService->getIdentity()->willReturn($identity)
+            ->shouldBeCalled();
 
         $factory = new IdentityFactory();
-
-        $this->assertTrue(
-            $factory instanceof IdentityFactory
-        );
 
         /** @var Identity $viewHelper */
         $viewHelper = $factory($this->container->reveal());
@@ -95,16 +82,10 @@ class IdentityFactoryTest extends PHPUnit_Framework_TestCase
 
         $identity = (object)['role' => $role];
 
-        /** @var MethodProphecy $method */
-        $method = $this->authService->hasIdentity();
-        $method->willReturn(false);
-        $method->shouldBeCalled();
+        $this->authService->hasIdentity()->willReturn(false)
+            ->shouldBeCalled();
 
         $factory = new IdentityFactory();
-
-        $this->assertTrue(
-            $factory instanceof IdentityFactory
-        );
 
         /** @var Identity $viewHelper */
         $viewHelper = $factory($this->container->reveal());

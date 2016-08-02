@@ -29,22 +29,15 @@ class UserDbStorageFactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testFactory()
     {
-        /** @var ContainerInterface $container */
-        $container = $this->prophesize(ContainerInterface::class);
-
         /** @var UserStorageInterface $userStorage */
         $dbAdapter = $this->prophesize(AdapterInterface::class);
 
-        /** @var MethodProphecy $method */
-        $method = $container->get(AdapterInterface::class);
-        $method->willReturn($dbAdapter);
-        $method->shouldBeCalled();
+        /** @var ContainerInterface $container */
+        $container = $this->prophesize(ContainerInterface::class);
+        $container->get(AdapterInterface::class)->willReturn($dbAdapter)
+            ->shouldBeCalled();
 
         $factory = new UserDbStorageFactory();
-
-        $this->assertTrue(
-            $factory instanceof UserDbStorageFactory
-        );
 
         /** @var UserDbStorage $storage */
         $storage = $factory($container->reveal());

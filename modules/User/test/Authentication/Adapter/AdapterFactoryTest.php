@@ -11,7 +11,6 @@ namespace UserTest\Authentication\Adapter;
 
 use Interop\Container\ContainerInterface;
 use PHPUnit_Framework_TestCase;
-use Prophecy\Prophecy\MethodProphecy;
 use User\Authentication\Adapter\AdapterFactory;
 use Zend\Authentication\Adapter\DbTable\CallbackCheckAdapter;
 use Zend\Db\Adapter\Adapter;
@@ -45,11 +44,8 @@ class AdapterFactoryTest extends PHPUnit_Framework_TestCase
         $this->dbAdapter = new Adapter($dbConfig['db']);
 
         $this->container = $this->prophesize(ContainerInterface::class);
-
-        /** @var MethodProphecy $method */
-        $method = $this->container->get(AdapterInterface::class);
-        $method->willReturn($this->dbAdapter);
-        $method->shouldBeCalled();
+        $this->container->get(AdapterInterface::class)
+            ->willReturn($this->dbAdapter)->shouldBeCalled();
     }
 
     /**
@@ -58,10 +54,6 @@ class AdapterFactoryTest extends PHPUnit_Framework_TestCase
     public function testFactory()
     {
         $factory = new AdapterFactory();
-
-        $this->assertTrue(
-            $factory instanceof AdapterFactory
-        );
 
         /** @var CallbackCheckAdapter $authAdapter */
         $authAdapter = $factory($this->container->reveal());
