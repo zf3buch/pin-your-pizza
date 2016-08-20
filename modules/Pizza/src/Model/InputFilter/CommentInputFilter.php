@@ -9,7 +9,11 @@
 
 namespace Pizza\Model\InputFilter;
 
+use Zend\Filter\StringTrim;
+use Zend\Filter\StripTags;
 use Zend\InputFilter\InputFilter;
+use Zend\Validator\NotEmpty;
+use Zend\Validator\StringLength;
 
 /**
  * Class CommentInputFilter
@@ -29,22 +33,22 @@ class CommentInputFilter extends InputFilter
                 'required'   => true,
                 'filters'    => [
                     [
-                        'name' => 'StripTags',
+                        'name' => StripTags::class,
                     ],
                     [
-                        'name' => 'StringTrim',
+                        'name' => StringTrim::class,
                     ],
                 ],
                 'validators' => [
                     [
-                        'name'                   => 'NotEmpty',
+                        'name'                   => NotEmpty::class,
                         'break_chain_on_failure' => true,
                         'options'                => [
                             'message' => 'Bitte Namen eingeben!',
                         ],
                     ],
                     [
-                        'name'    => 'StringLength',
+                        'name'    => StringLength::class,
                         'options' => [
                             'min'      => 3,
                             'max'      => 64,
@@ -61,22 +65,22 @@ class CommentInputFilter extends InputFilter
                 'required'   => true,
                 'filters'    => [
                     [
-                        'name' => 'StripTags',
+                        'name' => StripTags::class,
                     ],
                     [
-                        'name' => 'StringTrim',
+                        'name' => StringTrim::class,
                     ],
                 ],
                 'validators' => [
                     [
-                        'name'                   => 'NotEmpty',
+                        'name'                   => NotEmpty::class,
                         'break_chain_on_failure' => true,
                         'options'                => [
                             'message' => 'Bitte Kommentar eingeben!',
                         ],
                     ],
                     [
-                        'name'    => 'StringLength',
+                        'name'    => StringLength::class,
                         'options' => [
                             'min'      => 3,
                             'message'  => 'Mindestens %min% Zeichen eingeben!',
