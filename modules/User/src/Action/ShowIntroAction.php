@@ -49,7 +49,7 @@ class ShowIntroAction
         ];
 
         return new HtmlResponse(
-            $this->template->render('user::intro', $data)
+            $this->renderer->render('user::intro', $data)
         );
     }
 }

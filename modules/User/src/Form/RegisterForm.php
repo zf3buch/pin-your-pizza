@@ -9,6 +9,10 @@
 
 namespace User\Form;
 
+use Zend\Form\Element\Email;
+use Zend\Form\Element\Password;
+use Zend\Form\Element\Submit;
+use Zend\Form\Element\Text;
 use Zend\Form\Form;
 
 /**
@@ -31,7 +35,7 @@ class RegisterForm extends Form
         $this->add(
             [
                 'name'       => 'email',
-                'type'       => 'text',
+                'type'       => Email::class,
                 'options'    => [
                     'label'            => 'user_label_email',
                     'label_attributes' => [
@@ -47,7 +51,7 @@ class RegisterForm extends Form
         $this->add(
             [
                 'name'       => 'password',
-                'type'       => 'password',
+                'type'       => Password::class,
                 'options'    => [
                     'label'            => 'user_label_password',
                     'label_attributes' => [
@@ -63,7 +67,7 @@ class RegisterForm extends Form
         $this->add(
             [
                 'name'       => 'first_name',
-                'type'       => 'text',
+                'type'       => Text::class,
                 'options'    => [
                     'label'            => 'user_label_first_name',
                     'label_attributes' => [
@@ -79,7 +83,7 @@ class RegisterForm extends Form
         $this->add(
             [
                 'name'       => 'last_name',
-                'type'       => 'text',
+                'type'       => Text::class,
                 'options'    => [
                     'label'            => 'user_label_last_name',
                     'label_attributes' => [
@@ -95,7 +99,7 @@ class RegisterForm extends Form
         $this->add(
             [
                 'name'       => 'register_user',
-                'type'       => 'submit',
+                'type'       => Submit::class,
                 'attributes' => [
                     'class' => 'btn btn-success',
                     'value' => 'user_action_register',

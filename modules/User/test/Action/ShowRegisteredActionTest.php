@@ -26,7 +26,7 @@ class ShowRegisteredActionTest extends AbstractTest
      */
     public function setUp()
     {
-        $this->mockTemplate();
+        $this->mockRenderer();
         $this->mockLoginForm();
     }
 
@@ -45,7 +45,7 @@ class ShowRegisteredActionTest extends AbstractTest
         $this->prepareRenderer($templateName, $templateVars);
 
         $action = new ShowRegisteredAction();
-        $action->setTemplateRenderer($this->template->reveal());
+        $action->setTemplateRenderer($this->renderer->reveal());
         $action->setLoginForm($this->loginForm->reveal());
 
         $serverRequest = new ServerRequest([$requestUri]);

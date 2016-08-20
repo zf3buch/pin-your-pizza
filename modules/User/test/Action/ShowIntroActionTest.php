@@ -27,7 +27,7 @@ class ShowIntroActionTest extends AbstractTest
      */
     public function setUp()
     {
-        $this->mockTemplate();
+        $this->mockRenderer();
         $this->mockLoginForm();
         $this->mockRegisterForm();
     }
@@ -50,7 +50,7 @@ class ShowIntroActionTest extends AbstractTest
         $this->prepareRenderer($templateName, $templateVars);
 
         $action = new ShowIntroAction();
-        $action->setTemplateRenderer($this->template->reveal());
+        $action->setTemplateRenderer($this->renderer->reveal());
         $action->setLoginForm($this->loginForm->reveal());
         $action->setRegisterForm($this->registerForm->reveal());
 

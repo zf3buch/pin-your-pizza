@@ -31,7 +31,7 @@ class ShowRegisteredFactoryTest extends AbstractTest
      */
     public function setUp()
     {
-        $this->mockTemplate();
+        $this->mockRenderer();
         $this->mockLoginForm();
         $this->mockDiContainer();
     }
@@ -41,7 +41,7 @@ class ShowRegisteredFactoryTest extends AbstractTest
      */
     public function testFactoryWithAllDependencies()
     {
-        $this->prepareDiContainer(['template', 'loginForm']);
+        $this->prepareDiContainer(['renderer', 'loginForm']);
 
         $factory = new ShowRegisteredFactory();
 
@@ -51,7 +51,7 @@ class ShowRegisteredFactoryTest extends AbstractTest
         $this->assertTrue($action instanceof ShowRegisteredAction);
 
         $this->assertAttributeEquals(
-            $this->template->reveal(), 'template', $action
+            $this->renderer->reveal(), 'renderer', $action
         );
 
         $this->assertAttributeEquals(

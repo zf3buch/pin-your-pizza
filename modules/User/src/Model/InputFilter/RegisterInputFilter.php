@@ -9,7 +9,11 @@
 
 namespace User\Model\InputFilter;
 
+use Zend\Filter\StringTrim;
 use Zend\InputFilter\InputFilter;
+use Zend\Validator\EmailAddress;
+use Zend\Validator\NotEmpty;
+use Zend\Validator\StringLength;
 
 /**
  * Class RegisterInputFilter
@@ -34,14 +38,14 @@ class RegisterInputFilter extends InputFilter
                 ],
                 'validators' => [
                     [
-                        'name'                   => 'NotEmpty',
+                        'name'                   => NotEmpty::class,
                         'break_chain_on_failure' => true,
                         'options'                => [
                             'message' => 'user_validator_email_notempty',
                         ],
                     ],
                     [
-                        'name'    => 'EmailAddress',
+                        'name'    => EmailAddress::class,
                         'options' => [
                             'message' => 'user_validator_email_format',
                         ],
@@ -57,14 +61,14 @@ class RegisterInputFilter extends InputFilter
                 'filters'    => [],
                 'validators' => [
                     [
-                        'name'                   => 'NotEmpty',
+                        'name'                   => NotEmpty::class,
                         'break_chain_on_failure' => true,
                         'options'                => [
                             'message' => 'user_validator_password_notempty',
                         ],
                     ],
                     [
-                        'name'    => 'StringLength',
+                        'name'    => StringLength::class,
                         'options' => [
                             'encoding' => 'UTF-8',
                             'min'      => 6,
@@ -82,19 +86,19 @@ class RegisterInputFilter extends InputFilter
                 'required'   => true,
                 'filters'    => [
                     [
-                        'name' => 'StringTrim',
+                        'name' => StringTrim::class,
                     ],
                 ],
                 'validators' => [
                     [
-                        'name'                   => 'NotEmpty',
+                        'name'                   => NotEmpty::class,
                         'break_chain_on_failure' => true,
                         'options'                => [
                             'message' => 'user_validator_first_name_notempty',
                         ],
                     ],
                     [
-                        'name'    => 'StringLength',
+                        'name'    => StringLength::class,
                         'options' => [
                             'encoding' => 'UTF-8',
                             'min'      => 2,
@@ -112,19 +116,19 @@ class RegisterInputFilter extends InputFilter
                 'required'   => true,
                 'filters'    => [
                     [
-                        'name' => 'StringTrim',
+                        'name' => StringTrim::class,
                     ],
                 ],
                 'validators' => [
                     [
-                        'name'                   => 'NotEmpty',
+                        'name'                   => NotEmpty::class,
                         'break_chain_on_failure' => true,
                         'options'                => [
                             'message' => 'user_validator_last_name_notempty',
                         ],
                     ],
                     [
-                        'name'    => 'StringLength',
+                        'name'    => StringLength::class,
                         'options' => [
                             'encoding' => 'UTF-8',
                             'min'      => 2,

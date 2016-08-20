@@ -21,14 +21,14 @@ trait TemplateRendererAwareTrait
     /**
      * @var TemplateRendererInterface
      */
-    private $template;
+    private $renderer;
 
     /**
-     * @param TemplateRendererInterface $template
+     * @param TemplateRendererInterface $renderer
      */
     public function setTemplateRenderer(
-        TemplateRendererInterface $template
+        TemplateRendererInterface $renderer
     ) {
-        $this->template = $template;
+        $this->renderer = $renderer;
     }
 }
