@@ -61,7 +61,7 @@ class HandleRegisterAction
      * @param ResponseInterface      $response
      * @param callable|null          $next
      *
-     * @return HtmlResponse
+     * @return RedirectResponse|callable
      */
     public function __invoke(
         ServerRequestInterface $request,
