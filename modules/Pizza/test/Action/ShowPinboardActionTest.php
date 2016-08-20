@@ -38,7 +38,7 @@ class ShowPinboardActionTest extends AbstractTest
      */
     public function setUp()
     {
-        $this->mockTemplate();
+        $this->mockRenderer();
         $this->mockPizzaRepository();
     }
 
@@ -60,7 +60,7 @@ class ShowPinboardActionTest extends AbstractTest
         $this->preparePizzaRepository($pizzaPinboard);
 
         $action = new ShowPinboardAction();
-        $action->setTemplateRenderer($this->template->reveal());
+        $action->setTemplateRenderer($this->renderer->reveal());
         $action->setPizzaRepository($this->pizzaRepository->reveal());
 
         $serverRequest = new ServerRequest([$requestUri]);

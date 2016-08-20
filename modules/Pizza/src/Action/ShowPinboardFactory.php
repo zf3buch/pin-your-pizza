@@ -27,11 +27,11 @@ class ShowPinboardFactory
      */
     public function __invoke(ContainerInterface $container)
     {
-        $template   = $container->get(TemplateRendererInterface::class);
+        $renderer   = $container->get(TemplateRendererInterface::class);
         $repository = $container->get(PizzaRepositoryInterface::class);
 
         $action = new ShowPinboardAction();
-        $action->setTemplateRenderer($template);
+        $action->setTemplateRenderer($renderer);
         $action->setPizzaRepository($repository);
 
         return $action;

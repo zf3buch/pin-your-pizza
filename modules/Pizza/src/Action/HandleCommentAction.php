@@ -14,7 +14,6 @@ use Pizza\Form\CommentFormAwareTrait;
 use Pizza\Model\Repository\CommentRepositoryAwareTrait;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Zend\Diactoros\Response\HtmlResponse;
 use Zend\Diactoros\Response\RedirectResponse;
 
 /**
@@ -36,7 +35,7 @@ class HandleCommentAction
      * @param ResponseInterface      $response
      * @param callable|null          $next
      *
-     * @return HtmlResponse
+     * @return RedirectResponse
      */
     public function __invoke(
         ServerRequestInterface $request, ResponseInterface $response,
