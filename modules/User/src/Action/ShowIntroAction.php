@@ -26,7 +26,7 @@ class ShowIntroAction
     /**
      * @var TemplateRendererInterface
      */
-    private $template;
+    private $renderer;
 
     /**
      * @var LoginForm
@@ -41,16 +41,16 @@ class ShowIntroAction
     /**
      * ShowIntroAction constructor.
      *
-     * @param TemplateRendererInterface $template
+     * @param TemplateRendererInterface $renderer
      * @param LoginForm                 $loginForm
      * @param RegisterForm              $registerForm
      */
     public function __construct(
-        TemplateRendererInterface $template,
+        TemplateRendererInterface $renderer,
         LoginForm $loginForm,
         RegisterForm $registerForm
     ) {
-        $this->template     = $template;
+        $this->renderer     = $renderer;
         $this->loginForm    = $loginForm;
         $this->registerForm = $registerForm;
     }
@@ -74,7 +74,7 @@ class ShowIntroAction
         ];
 
         return new HtmlResponse(
-            $this->template->render('user::intro', $data)
+            $this->renderer->render('user::intro', $data)
         );
     }
 }
