@@ -47,7 +47,7 @@ class ShowPinboardAction
         ];
 
         return new HtmlResponse(
-            $this->template->render('pizza::pinboard', $data)
+            $this->renderer->render('pizza::pinboard', $data)
         );
     }
 }

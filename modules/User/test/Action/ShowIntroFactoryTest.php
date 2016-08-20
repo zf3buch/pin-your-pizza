@@ -24,7 +24,7 @@ class ShowIntroFactoryTest extends AbstractTest
      */
     public function setUp()
     {
-        $this->mockTemplate();
+        $this->mockRenderer();
         $this->mockLoginForm();
         $this->mockRegisterForm();
         $this->mockDiContainer();
@@ -36,7 +36,7 @@ class ShowIntroFactoryTest extends AbstractTest
     public function testFactoryWithAllDependencies()
     {
         $this->prepareDiContainer(
-            ['template', 'loginForm', 'registerForm']
+            ['renderer', 'loginForm', 'registerForm']
         );
 
         $factory = new ShowIntroFactory();
@@ -47,7 +47,7 @@ class ShowIntroFactoryTest extends AbstractTest
         $this->assertTrue($action instanceof ShowIntroAction);
 
         $this->assertAttributeEquals(
-            $this->template->reveal(), 'template', $action
+            $this->renderer->reveal(), 'renderer', $action
         );
 
         $this->assertAttributeEquals(

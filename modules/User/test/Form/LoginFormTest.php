@@ -26,7 +26,7 @@ class LoginFormTest extends PHPUnit_Framework_TestCase
     {
         $expectedElements = [
             'email'       => [
-                'type'  => 'text',
+                'type'  => 'email',
                 'name'  => 'email',
                 'label' => 'user_label_email',
                 'value' => null,
