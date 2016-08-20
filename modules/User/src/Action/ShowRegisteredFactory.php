@@ -27,9 +27,9 @@ class ShowRegisteredFactory
      */
     public function __invoke(ContainerInterface $container)
     {
-        $template  = $container->get(TemplateRendererInterface::class);
+        $renderer  = $container->get(TemplateRendererInterface::class);
         $loginForm = $container->get(LoginForm::class);
 
-        return new ShowRegisteredAction($template, $loginForm);
+        return new ShowRegisteredAction($renderer, $loginForm);
     }
 }

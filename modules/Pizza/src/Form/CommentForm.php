@@ -9,6 +9,9 @@
 
 namespace Pizza\Form;
 
+use Zend\Form\Element\Submit;
+use Zend\Form\Element\Text;
+use Zend\Form\Element\Textarea;
 use Zend\Form\Form;
 
 /**
@@ -31,7 +34,7 @@ class CommentForm extends Form
         $this->add(
             [
                 'name'       => 'name',
-                'type'       => 'text',
+                'type'       => Text::class,
                 'options'    => [
                     'label'            => 'pizza_label_name',
                     'label_attributes' => [
@@ -47,7 +50,7 @@ class CommentForm extends Form
         $this->add(
             [
                 'name'       => 'text',
-                'type'       => 'textarea',
+                'type'       => Textarea::class,
                 'options'    => [
                     'label'            => 'pizza_label_comment',
                     'label_attributes' => [
@@ -63,7 +66,7 @@ class CommentForm extends Form
         $this->add(
             [
                 'name'       => 'save_comment',
-                'type'       => 'submit',
+                'type'       => Submit::class,
                 'attributes' => [
                     'class' => 'btn btn-success',
                     'value' => 'pizza_action_new_comment',
