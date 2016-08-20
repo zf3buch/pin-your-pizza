@@ -33,7 +33,7 @@ abstract class AbstractTest extends PHPUnit_Framework_TestCase
     /**
      * @var TemplateRendererInterface
      */
-    protected $template;
+    protected $renderer;
 
     /**
      * @var RouterInterface
@@ -64,11 +64,11 @@ abstract class AbstractTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Mock template
+     * Mock renderer
      */
-    protected function mockTemplate()
+    protected function mockRenderer()
     {
-        $this->template = $this->prophesize(
+        $this->renderer = $this->prophesize(
             TemplateRendererInterface::class
         );
     }
@@ -125,9 +125,9 @@ abstract class AbstractTest extends PHPUnit_Framework_TestCase
                 ->willReturn($this->router)->shouldBeCalled();
         }
 
-        if (in_array('template', $map)) {
+        if (in_array('renderer', $map)) {
             $this->container->get(TemplateRendererInterface::class)
-                ->willReturn($this->template)->shouldBeCalled();
+                ->willReturn($this->renderer)->shouldBeCalled();
         }
 
         if (in_array('pizzaRepository', $map)) {
@@ -147,14 +147,14 @@ abstract class AbstractTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Prepare template mock
+     * Prepare renderer mock
      *
-     * @param string $templateName
-     * @param array  $templateVars
+     * @param string $rendererName
+     * @param array  $rendererVars
      */
-    protected function prepareRenderer($templateName, $templateVars)
+    protected function prepareRenderer($rendererName, $rendererVars)
     {
-        $this->template->render($templateName, $templateVars)
+        $this->renderer->render($rendererName, $rendererVars)
             ->willReturn('Whatever')->shouldBeCalled();
     }
 
