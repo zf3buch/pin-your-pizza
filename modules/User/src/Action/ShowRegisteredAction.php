@@ -25,7 +25,7 @@ class ShowRegisteredAction
     /**
      * @var TemplateRendererInterface
      */
-    private $template;
+    private $renderer;
 
     /**
      * @var LoginForm
@@ -35,14 +35,14 @@ class ShowRegisteredAction
     /**
      * ShowRegisteredAction constructor.
      *
-     * @param TemplateRendererInterface $template
+     * @param TemplateRendererInterface $renderer
      * @param LoginForm                 $loginForm
      */
     public function __construct(
-        TemplateRendererInterface $template,
+        TemplateRendererInterface $renderer,
         LoginForm $loginForm
     ) {
-        $this->template  = $template;
+        $this->renderer  = $renderer;
         $this->loginForm = $loginForm;
     }
 
@@ -63,7 +63,7 @@ class ShowRegisteredAction
         ];
 
         return new HtmlResponse(
-            $this->template->render('user::registered', $data)
+            $this->renderer->render('user::registered', $data)
         );
     }
 }
