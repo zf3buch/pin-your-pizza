@@ -24,7 +24,7 @@ class ShowPizzaFactoryTest extends AbstractTest
      */
     public function setUp()
     {
-        $this->mockTemplate();
+        $this->mockRenderer();
         $this->mockPizzaRepository();
         $this->mockCommentForm();
         $this->mockDiContainer();
@@ -36,7 +36,7 @@ class ShowPizzaFactoryTest extends AbstractTest
     public function testFactoryWithAllDependencies()
     {
         $this->prepareDiContainer(
-            ['template', 'pizzaRepository', 'commentForm']
+            ['renderer', 'pizzaRepository', 'commentForm']
         );
 
         $factory = new ShowPizzaFactory();
@@ -47,7 +47,7 @@ class ShowPizzaFactoryTest extends AbstractTest
         $this->assertTrue($action instanceof ShowPizzaAction);
 
         $this->assertAttributeEquals(
-            $this->template->reveal(), 'template', $action
+            $this->renderer->reveal(), 'renderer', $action
         );
 
         $this->assertAttributeEquals(

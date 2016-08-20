@@ -39,7 +39,7 @@ class ShowPizzaActionTest extends AbstractTest
      */
     public function setUp()
     {
-        $this->mockTemplate();
+        $this->mockRenderer();
         $this->mockPizzaRepository();
         $this->mockCommentForm();
     }
@@ -63,7 +63,7 @@ class ShowPizzaActionTest extends AbstractTest
         $this->preparePizzaRepository($id, $pizza);
 
         $action = new ShowPizzaAction();
-        $action->setTemplateRenderer($this->template->reveal());
+        $action->setTemplateRenderer($this->renderer->reveal());
         $action->setPizzaRepository($this->pizzaRepository->reveal());
         $action->setCommentForm(
             $this->commentForm->reveal()

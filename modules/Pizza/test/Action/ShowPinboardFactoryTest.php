@@ -24,7 +24,7 @@ class ShowPinboardFactoryTest extends AbstractTest
      */
     public function setUp()
     {
-        $this->mockTemplate();
+        $this->mockRenderer();
         $this->mockPizzaRepository();
         $this->mockDiContainer();
     }
@@ -34,7 +34,7 @@ class ShowPinboardFactoryTest extends AbstractTest
      */
     public function testFactoryWithAllDependencies()
     {
-        $this->prepareDiContainer(['template', 'pizzaRepository']);
+        $this->prepareDiContainer(['renderer', 'pizzaRepository']);
 
         $factory = new ShowPinboardFactory();
 
@@ -44,7 +44,7 @@ class ShowPinboardFactoryTest extends AbstractTest
         $this->assertTrue($action instanceof ShowPinboardAction);
 
         $this->assertAttributeEquals(
-            $this->template->reveal(), 'template', $action
+            $this->renderer->reveal(), 'renderer', $action
         );
 
         $this->assertAttributeEquals(

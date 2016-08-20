@@ -31,6 +31,6 @@ class TemplateRendererAwareTraitTest extends PHPUnit_Framework_TestCase
 
         $this->setTemplateRenderer($templateRenderer);
 
-        $this->assertEquals($templateRenderer, $this->template);
+        $this->assertEquals($templateRenderer, $this->renderer);
     }
 }
