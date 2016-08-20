@@ -14,7 +14,6 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use User\Form\RegisterFormAwareTrait;
 use User\Model\Repository\UserRepositoryAwareTrait;
-use Zend\Diactoros\Response\HtmlResponse;
 use Zend\Diactoros\Response\RedirectResponse;
 
 /**
@@ -36,7 +35,7 @@ class HandleRegisterAction
      * @param ResponseInterface      $response
      * @param callable|null          $next
      *
-     * @return HtmlResponse
+     * @return RedirectResponse|callable
      */
     public function __invoke(
         ServerRequestInterface $request,

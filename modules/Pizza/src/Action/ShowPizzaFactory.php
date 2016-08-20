@@ -28,12 +28,12 @@ class ShowPizzaFactory
      */
     public function __invoke(ContainerInterface $container)
     {
-        $template   = $container->get(TemplateRendererInterface::class);
+        $renderer   = $container->get(TemplateRendererInterface::class);
         $repository = $container->get(PizzaRepositoryInterface::class);
         $form       = $container->get(CommentForm::class);
 
         $action = new ShowPizzaAction();
-        $action->setTemplateRenderer($template);
+        $action->setTemplateRenderer($renderer);
         $action->setPizzaRepository($repository);
         $action->setCommentForm($form);
 
