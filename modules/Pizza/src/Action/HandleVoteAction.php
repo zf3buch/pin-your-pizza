@@ -11,12 +11,9 @@ namespace Pizza\Action;
 
 use Application\Router\RouterAwareTrait;
 use Pizza\Model\Repository\PizzaRepositoryAwareTrait;
-use Pizza\Model\Repository\PizzaRepositoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Zend\Diactoros\Response\HtmlResponse;
 use Zend\Diactoros\Response\RedirectResponse;
-use Zend\Expressive\Router\RouterInterface;
 
 /**
  * Class HandleVoteAction
@@ -36,7 +33,7 @@ class HandleVoteAction
      * @param ResponseInterface      $response
      * @param callable|null          $next
      *
-     * @return HtmlResponse
+     * @return RedirectResponse
      */
     public function __invoke(
         ServerRequestInterface $request, ResponseInterface $response,
@@ -47,7 +44,7 @@ class HandleVoteAction
 
         // get params
         $id   = $request->getAttribute('id');
-        $star = (int) $queryParams['star'];
+        $star = (int)$queryParams['star'];
 
         if ($star) {
             $this->pizzaRepository->saveVoting($id, $star);

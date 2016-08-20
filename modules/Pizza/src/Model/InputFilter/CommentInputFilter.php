@@ -9,7 +9,11 @@
 
 namespace Pizza\Model\InputFilter;
 
+use Zend\Filter\StringTrim;
+use Zend\Filter\StripTags;
 use Zend\InputFilter\InputFilter;
+use Zend\Validator\NotEmpty;
+use Zend\Validator\StringLength;
 
 /**
  * Class CommentInputFilter
@@ -29,22 +33,22 @@ class CommentInputFilter extends InputFilter
                 'required'   => true,
                 'filters'    => [
                     [
-                        'name' => 'StripTags',
+                        'name' => StripTags::class,
                     ],
                     [
-                        'name' => 'StringTrim',
+                        'name' => StringTrim::class,
                     ],
                 ],
                 'validators' => [
                     [
-                        'name'                   => 'NotEmpty',
+                        'name'                   => NotEmpty::class,
                         'break_chain_on_failure' => true,
                         'options'                => [
                             'message' => 'pizza_validator_name_notempty',
                         ],
                     ],
                     [
-                        'name'    => 'StringLength',
+                        'name'    => StringLength::class,
                         'options' => [
                             'min'      => 3,
                             'max'      => 64,
@@ -61,22 +65,22 @@ class CommentInputFilter extends InputFilter
                 'required'   => true,
                 'filters'    => [
                     [
-                        'name' => 'StripTags',
+                        'name' => StripTags::class,
                     ],
                     [
-                        'name' => 'StringTrim',
+                        'name' => StringTrim::class,
                     ],
                 ],
                 'validators' => [
                     [
-                        'name'                   => 'NotEmpty',
+                        'name'                   => NotEmpty::class,
                         'break_chain_on_failure' => true,
                         'options'                => [
                             'message' => 'pizza_validator_comment_notempty',
                         ],
                     ],
                     [
-                        'name'    => 'StringLength',
+                        'name'    => StringLength::class,
                         'options' => [
                             'min'      => 3,
                             'message'  => 'pizza_validator_comment_length',

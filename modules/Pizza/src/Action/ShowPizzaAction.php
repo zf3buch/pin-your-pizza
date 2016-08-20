@@ -52,7 +52,7 @@ class ShowPizzaAction
         ];
 
         return new HtmlResponse(
-            $this->template->render('pizza::show', $data)
+            $this->renderer->render('pizza::show', $data)
         );
     }
 }

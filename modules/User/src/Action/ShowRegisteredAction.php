@@ -12,10 +12,8 @@ namespace User\Action;
 use Application\Template\TemplateRendererAwareTrait;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use User\Form\LoginForm;
 use User\Form\LoginFormAwareTrait;
 use Zend\Diactoros\Response\HtmlResponse;
-use Zend\Expressive\Template\TemplateRendererInterface;
 
 /**
  * Class ShowRegisteredAction
@@ -47,7 +45,7 @@ class ShowRegisteredAction
         ];
 
         return new HtmlResponse(
-            $this->template->render('user::registered', $data)
+            $this->renderer->render('user::registered', $data)
         );
     }
 }
