@@ -25,7 +25,7 @@ class ShowPinboardAction
     /**
      * @var TemplateRendererInterface
      */
-    private $template;
+    private $renderer;
 
     /**
      * @var PizzaRepositoryInterface
@@ -35,14 +35,14 @@ class ShowPinboardAction
     /**
      * ShowPinboardAction constructor.
      *
-     * @param TemplateRendererInterface $template
+     * @param TemplateRendererInterface $renderer
      * @param PizzaRepositoryInterface     $pizzaRepository
      */
     public function __construct(
-        TemplateRendererInterface $template,
+        TemplateRendererInterface $renderer,
         PizzaRepositoryInterface $pizzaRepository
     ) {
-        $this->template     = $template;
+        $this->renderer     = $renderer;
         $this->pizzaRepository = $pizzaRepository;
     }
 
@@ -65,7 +65,7 @@ class ShowPinboardAction
         ];
 
         return new HtmlResponse(
-            $this->template->render('pizza::pinboard', $data)
+            $this->renderer->render('pizza::pinboard', $data)
         );
     }
 }
