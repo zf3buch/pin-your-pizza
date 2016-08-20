@@ -24,17 +24,17 @@ class HomePageAction
     /**
      * @var TemplateRendererInterface
      */
-    private $template;
+    private $renderer;
 
     /**
      * HomePageAction constructor.
      *
-     * @param TemplateRendererInterface|null $template
+     * @param TemplateRendererInterface|null $renderer
      */
     public function __construct(
-        TemplateRendererInterface $template = null
+        TemplateRendererInterface $renderer = null
     ) {
-        $this->template = $template;
+        $this->renderer = $renderer;
     }
 
     /**
@@ -53,7 +53,7 @@ class HomePageAction
         ];
 
         return new HtmlResponse(
-            $this->template->render('application::home-page', $data)
+            $this->renderer->render('application::home-page', $data)
         );
     }
 }
