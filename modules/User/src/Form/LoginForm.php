@@ -9,6 +9,9 @@
 
 namespace User\Form;
 
+use Zend\Form\Element\Email;
+use Zend\Form\Element\Password;
+use Zend\Form\Element\Submit;
 use Zend\Form\Form;
 
 /**
@@ -31,7 +34,7 @@ class LoginForm extends Form
         $this->add(
             [
                 'name'       => 'email',
-                'type'       => 'text',
+                'type'       => Email::class,
                 'options'    => [
                     'label'            => 'user_label_email',
                     'label_attributes' => [
@@ -47,7 +50,7 @@ class LoginForm extends Form
         $this->add(
             [
                 'name'       => 'password',
-                'type'       => 'password',
+                'type'       => Password::class,
                 'options'    => [
                     'label'            => 'user_label_password',
                     'label_attributes' => [
@@ -63,7 +66,7 @@ class LoginForm extends Form
         $this->add(
             [
                 'name'       => 'login_user',
-                'type'       => 'submit',
+                'type'       => Submit::class,
                 'attributes' => [
                     'class' => 'btn btn-success',
                     'value' => 'user_action_login',

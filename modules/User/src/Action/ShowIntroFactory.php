@@ -28,10 +28,10 @@ class ShowIntroFactory
      */
     public function __invoke(ContainerInterface $container)
     {
-        $template     = $container->get(TemplateRendererInterface::class);
+        $renderer     = $container->get(TemplateRendererInterface::class);
         $loginForm    = $container->get(LoginForm::class);
         $registerForm = $container->get(RegisterForm::class);
 
-        return new ShowIntroAction($template, $loginForm, $registerForm);
+        return new ShowIntroAction($renderer, $loginForm, $registerForm);
     }
 }
