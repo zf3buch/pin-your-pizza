@@ -26,7 +26,7 @@ class ShowPizzaAction
     /**
      * @var TemplateRendererInterface
      */
-    private $template;
+    private $renderer;
 
     /**
      * @var PizzaRepositoryInterface
@@ -41,16 +41,16 @@ class ShowPizzaAction
     /**
      * ShowPizzaAction constructor.
      *
-     * @param TemplateRendererInterface $template
+     * @param TemplateRendererInterface $renderer
      * @param PizzaRepositoryInterface  $pizzaRepository
      * @param CommentForm               $commentForm
      */
     public function __construct(
-        TemplateRendererInterface $template,
+        TemplateRendererInterface $renderer,
         PizzaRepositoryInterface $pizzaRepository,
         CommentForm $commentForm
     ) {
-        $this->template        = $template;
+        $this->renderer        = $renderer;
         $this->pizzaRepository = $pizzaRepository;
         $this->commentForm     = $commentForm;
     }
@@ -77,7 +77,7 @@ class ShowPizzaAction
         ];
 
         return new HtmlResponse(
-            $this->template->render('pizza::show', $data)
+            $this->renderer->render('pizza::show', $data)
         );
     }
 }
