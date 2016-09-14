@@ -11,9 +11,9 @@ return [
     'pizza_heading_welcome'     => 'Willkommen zu Pin Your Pizza!',
     'pizza_heading_new_comment' => 'Neuen Kommentar für <strong>%1$s</strong> schreiben',
 
-    'pizza_navigation_pinboard' => 'Pizza Pinnwand',
+    'pizza_navigation_pinboard' => 'Pizza-Pinnwand',
 
-    'pizza_action_back_pinboard' => 'Zurück zur Pizza Pinnwand',
+    'pizza_action_back_pinboard' => 'Zurück zur Pizza-Pinnwand',
     'pizza_action_new_comment'   => 'Neuen Kommentar speichern',
 
     'pizza_message_comment' => '%1$s schrieb am %2$s um %3$s',
