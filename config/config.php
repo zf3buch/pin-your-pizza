@@ -18,6 +18,7 @@ $pattern = PROJECT_ROOT . '/config/autoload/{{,*.}global,{,*.}'
 $configManager = new ConfigManager(
     [
         Zend\I18n\ConfigProvider::class,
+        Zend\Filter\ConfigProvider::class,
         Zend\Form\ConfigProvider::class,
         Zend\InputFilter\ConfigProvider::class,
         Zend\Hydrator\ConfigProvider::class,
