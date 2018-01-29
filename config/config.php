@@ -19,6 +19,7 @@ $configManager = new ConfigManager(
     [
         Zend\Session\ConfigProvider::class,
         Zend\I18n\ConfigProvider::class,
+        Zend\Filter\ConfigProvider::class,
         Zend\Form\ConfigProvider::class,
         Zend\InputFilter\ConfigProvider::class,
         Zend\Hydrator\ConfigProvider::class,
