@@ -3,7 +3,7 @@
     "description": "Pin Your Pizza! Example Application for the Zend Framework 3",
     "type": "project",
     "homepage": "https://github.com/zf3buch/pin-your-pizza",
-    "license": "The MIT License (MIT)",
+    "license": "MIT",
     "authors": [
         {
             "name": "Ralf Eggert",
@@ -14,7 +14,6 @@
     ],
     "require": {
         "php": "^5.5 || ^7.0",
-        "roave/security-advisories": "dev-master",
         "zendframework/zend-expressive": "^1.0",
         "zendframework/zend-expressive-helpers": "^2.0",
         "zendframework/zend-stdlib": "^2.7 || ^3.0",
@@ -22,7 +21,7 @@
         "zendframework/zend-servicemanager": "^2.7.3 || ^3.0",
         "ocramius/proxy-manager": "^1.0 || ^2.0",
         "zendframework/zend-expressive-zendviewrenderer": "^1.0",
-        "zendframework/zend-component-installer": "^0.3.0",
+        "zendframework/zend-component-installer": "^1.1.1",
         "mtymek/expressive-config-manager": "^0.4.0",
         "zendframework/zend-config": "^2.6",
         "zendframework/zend-db": "^2.8"
